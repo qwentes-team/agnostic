@@ -1,0 +1,51 @@
+@mixin switch--material() {
+  $bar--width: 34px;
+  $bar--height: 14px;
+  $bar--color-default: #9e9e9e;
+  $bar--color-active: #a5d6a7;
+  $thumb--width: 20px;
+  $thumb--height: 20px;
+  $thumb--color-default: #fafafa;
+  $thumb--color-active: #4caf50;
+  $thumb--shadow: 0 3px 1px -2px rgba(0, 0, 0, .14), 0 2px 2px 0 rgba(0, 0, 0, .098), 0 1px 5px 0 rgba(0, 0, 0, .084);
+
+  .ag-toggle__switch {
+    padding: 3px 0;
+
+    &-input {
+      display: none;
+    }
+
+    &-bar {
+      width: $bar--width;
+      height: $bar--height;
+      background-color: $bar--color-default;
+      border-radius: 8px;
+      transition: background-color .3s ease;
+    }
+
+    &-thumb {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: $thumb--width;
+      height: $thumb--height;
+      background-color: $thumb--color-default;
+      border-radius: 50%;
+      box-shadow: $thumb--shadow;
+      transform: translate(0, -50%);
+      transition: background-color .3s ease, transform .3s ease;
+      will-change: transform;
+    }
+
+    &-input:checked ~ .ag-toggle__switch {
+      &-bar {
+        background-color: $bar--color-active;
+      }
+      &-thumb {
+        background-color: $thumb--color-active;
+        transform: translate(70%, -50%);
+      }
+    }
+  }
+}

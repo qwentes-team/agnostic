@@ -1,0 +1,18 @@
+<label class="ag-toggle" [ngClass]="{'ag-toggle--disabled': disabled}">
+  <span class="ag-toggle__switch">
+    <input
+      class="ag-toggle__switch-input"
+      [type]="type"
+      [name]="name"
+      [value]="value"
+      [required]="required"
+      [checked]="checked"
+      [disabled]="disabled"
+      (change)="emitValue($event.target.checked)">
+    <span class="ag-toggle__switch-bar"></span>
+    <span class="ag-toggle__switch-thumb"></span>
+  </span>
+  <span class="ag-toggle__label">
+    <ng-content></ng-content>
+  </span>
+</label>
