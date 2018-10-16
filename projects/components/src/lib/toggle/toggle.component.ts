@@ -16,6 +16,12 @@ export type ToggleType = 'checkbox' | 'radio';
 export type TogglePosition = 'before' | 'after';
 export type ToggleBoolean = boolean | 'true' | 'false';
 
+export interface ToggleChange {
+  name: string;
+  value: any;
+  checked: boolean;
+}
+
 @Component({
   selector: 'ag-toggle',
   templateUrl: './toggle.component.html',
@@ -32,7 +38,7 @@ export class ToggleComponent implements OnInit, OnChanges {
   @Input() public type: ToggleType = 'checkbox';
   @Input() public theme: ToggleTheme = 'material';
   @Input() public position: TogglePosition = 'before';
-  @Output() public change: EventEmitter<any> = new EventEmitter();
+  @Output() public change: EventEmitter<ToggleChange> = new EventEmitter();
 
   @HostBinding('attr.theme') get themeType() {
     return this.theme;

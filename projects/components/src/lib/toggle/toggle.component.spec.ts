@@ -1,6 +1,6 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ToggleComponent } from './toggle.component';
+import { ToggleChange, ToggleComponent } from './toggle.component';
 import { click, getChildDebugElement } from '../../test.shared';
 
 describe('ToggleComponent', () => {
@@ -133,6 +133,88 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       expect(toggleDebugger.nativeElement.querySelector('input').disabled).toBe(true);
       expect(toggleDebugger.nativeElement.querySelector('input').checked).toBe(false);
+    });
+  });
+
+  describe('[required]', () => {
+    @Component({template: '<ag-toggle required="true"></ag-toggle>'})
+    class TestHostComponent {
+    }
+
+    beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+    it('should binding required', () => {
+      hostFixture.detectChanges();
+      toggleDebugger = getToggleDebugger();
+      expect(toggleDebugger.componentInstance.required).toBe(true);
+      expect(toggleDebugger.nativeElement.querySelector('input').required).toBe(true);
+    });
+  });
+
+  describe('[type]', () => {
+    @Component({template: '<ag-toggle type="radio"></ag-toggle>'})
+    class TestHostComponent {
+    }
+
+    beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+    it('should binding type', () => {
+      hostFixture.detectChanges();
+      toggleDebugger = getToggleDebugger();
+      expect(toggleDebugger.componentInstance.type).toBe('radio');
+      expect(toggleDebugger.nativeElement.querySelector('input').type).toBe('radio');
+    });
+  });
+
+  describe('[theme]', () => {
+    @Component({template: '<ag-toggle theme="ios"></ag-toggle>'})
+    class TestHostComponent {
+    }
+
+    beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+    it('should binding theme', () => {
+      hostFixture.detectChanges();
+      toggleDebugger = getToggleDebugger();
+      expect(toggleDebugger.componentInstance.theme).toBe('ios');
+      expect(toggleDebugger.nativeElement.getAttribute('theme')).toBe('ios');
+    });
+  });
+
+  describe('[position]', () => {
+    @Component({template: '<ag-toggle position="after">Test</ag-toggle>'})
+    class TestHostComponent {
+    }
+
+    beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+    it('should binding position', () => {
+      hostFixture.detectChanges();
+      toggleDebugger = getToggleDebugger();
+      expect(toggleDebugger.componentInstance.position).toBe('after');
+      expect(toggleDebugger.nativeElement.getAttribute('position')).toBe('after');
+    });
+  });
+
+  describe('(change)', () => {
+    @Component({template: '<ag-toggle name="test" value="foo" (change)="onChangeToggle($event)"></ag-toggle>'})
+    class TestHostComponent {
+      onChangeToggle(e: ToggleChange) {
+      }
+    }
+
+    beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+    it('should emit changes', () => {
+      hostFixture.detectChanges();
+      toggleDebugger = getToggleDebugger();
+      spyOn(hostFixture.componentInstance, 'onChangeToggle').and.callThrough();
+      click(toggleDebugger.nativeElement.querySelector('label'));
+      expect(hostFixture.componentInstance.onChangeToggle).toHaveBeenCalledWith({
+        name: 'test',
+        value: 'foo',
+        checked: true,
+      } as ToggleChange);
     });
   });
 });
