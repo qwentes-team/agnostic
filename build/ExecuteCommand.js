@@ -9,10 +9,10 @@ const executeCommand = (commandArgs, options = {}) => {
       return;
     }
     const command = spawn(commandArgs.name, commandArgs.params);
-    command.stdout.on('data', (data) => console.log(data.toString('utf8')));
+    command.stdout.on('data', (data) => console.log(data.toString('utf8').trim()));
     command.stderr.on('data', (data) => reject(`stderr: ${data}`));
     command.on('close', (code) => {
-      console.log(`Finished command "${command.spawnargs.join(' ')}". Child process exited with code ${code}`);
+      console.log('\x1b[36m%s\x1b[0m', `Finished command "${command.spawnargs.join(' ')}". Child process exited with code ${code}`);
       resolve();
     });
   })
@@ -21,7 +21,7 @@ const executeCommand = (commandArgs, options = {}) => {
 const execute = (directories, options = {}) => {
   return new Promise((resolve, reject) => {
     if (!directories.length) {
-      console.log('All builds done!!');
+      console.log('\x1b[32m%s\x1b[0m', '\nALL BUILDS DONE!');
       resolve();
       return;
     }
@@ -30,8 +30,10 @@ const execute = (directories, options = {}) => {
     const buildCommand = commandModel('npm', ['run', 'build', activeDirectory]);
     const packageJsonPath = `${__dirname}/../dist/${activeDirectory}/package.json`;
 
-    executeCommand(buildCommand)
-      .then(() => executeCommand(testCommand))
+    console.log('\x1b[32m%s\x1b[0m', `\nEXECUTE COMMANDS FOR: ${activeDirectory}\n`);
+
+    executeCommand(testCommand, options)
+      .then(() => executeCommand(buildCommand))
       .then(() => replacePackageJSONVersion(packageJsonPath, options.version))
       .then(() => {
         execute(directories.filter(dir => dir !== activeDirectory), options)
@@ -41,7 +43,6 @@ const execute = (directories, options = {}) => {
       .catch((e) => reject(e));
   });
 };
-
 
 module.exports = {
   execute,

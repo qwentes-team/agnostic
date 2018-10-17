@@ -9,8 +9,9 @@ const skipTest = argv.skipTest;
 const mainPackageJsonPath = `${__dirname}/../dist/package.json`;
 const directories = getDirectories(basename(`${__dirname}/../projects/`));
 
-console.log(directories);
+console.log('\x1b[32m%s\x1b[0m', `\nProjects: ${directories.join(', ')}`);
 
 execute([...directories], {version, skip: skipTest})
   .then(() => createMainPackageJSON(version, mainPackageJsonPath))
+  .then(() => console.log('\nFinish, bye :)'))
   .catch(console.log);

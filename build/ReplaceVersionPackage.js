@@ -6,7 +6,7 @@ const replacePackageJSONVersion = (someFile, version) => {
       const contentOfFile = readFileSync(someFile, 'utf8');
       const result = contentOfFile.replace(/0.0.0-PLACEHOLDER/g, version);
       writeFileSync(someFile, result, 'utf8');
-      console.log('Replace package.json version successfully');
+      console.log('\x1b[36m%s\x1b[0m', '\nReplace package.json version successfully');
       resolve();
     } catch (e) {
       reject(e);
