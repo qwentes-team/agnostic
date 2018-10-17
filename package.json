@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --aot --open",
+    "start": "ng serve --open",
     "build": "ng build",
+    "build:node": "node ./build.js --v 7.4.16 --skip-test=false",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,6 +23,7 @@
     "@angular/router": "^6.1.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.2.0",
+    "yargs": "^12.0.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
