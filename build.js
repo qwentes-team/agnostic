@@ -58,7 +58,6 @@ const directories = getDirectories(source);
 const testCommand = spawn('npm', ['--help']);
 const buildCommand = spawn('npm', ['run', 'build', 'components']);
 const packageJsonPath = `${__dirname}/dist/components/package.json`;
-console.log(packageJsonPath);
 
 executeCommandPromise(testCommand)
   .then((data) => {
