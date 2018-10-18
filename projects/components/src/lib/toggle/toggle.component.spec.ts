@@ -210,11 +210,8 @@ describe('ToggleComponent', () => {
       toggleDebugger = getToggleDebugger();
       spyOn(hostFixture.componentInstance, 'onChangeToggle').and.callThrough();
       click(toggleDebugger.nativeElement.querySelector('label'));
-      expect(hostFixture.componentInstance.onChangeToggle).toHaveBeenCalledWith({
-        name: 'test',
-        value: 'foo',
-        checked: true,
-      } as ToggleChange);
+      const expectedEvent = new ToggleChange('test', 'foo', true);
+      expect(hostFixture.componentInstance.onChangeToggle).toHaveBeenCalledWith(expectedEvent);
     });
   });
 });

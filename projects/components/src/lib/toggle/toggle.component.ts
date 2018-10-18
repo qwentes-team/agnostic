@@ -16,10 +16,13 @@ export type ToggleType = 'checkbox' | 'radio';
 export type TogglePosition = 'before' | 'after';
 export type ToggleBoolean = boolean | 'true' | 'false';
 
-export interface ToggleChange {
-  name: string;
-  value: any;
-  checked: boolean;
+export class ToggleChange {
+  constructor(
+    public name: string,
+    public value: any,
+    public checked: boolean,
+  ) {
+  }
 }
 
 @Component({
@@ -68,11 +71,7 @@ export class ToggleComponent implements OnInit, OnChanges {
   }
 
   public emitValue(checked: boolean): void {
-    this.change.emit({
-      name: this.name,
-      value: this.value,
-      checked,
-    });
+    this.change.emit(new ToggleChange(this.name, this.value, checked));
   }
 
   private convertToBoolean(value: ToggleBoolean): boolean {
