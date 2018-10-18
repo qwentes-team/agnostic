@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /.storybook-dist
+package-lock.json
 
 # dependencies
 /node_modules
