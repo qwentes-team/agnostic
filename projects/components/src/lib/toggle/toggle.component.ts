@@ -8,8 +8,10 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  forwardRef,
   ViewEncapsulation
 } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export type ToggleTheme = 'material' | 'ios';
 export type ToggleType = 'checkbox' | 'radio';
@@ -31,9 +33,15 @@ export class ToggleChange {
   styleUrls: ['./toggle.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => ToggleComponent),
+    multi: true
+  }]
 })
-export class ToggleComponent implements OnInit, OnChanges {
+export class ToggleComponent implements ControlValueAccessor, OnChanges {
   @Input() public name: string;
+  @Input() public formControlName: string;
   @Input() public value: any;
   @Input() public checked: ToggleBoolean;
   @Input() public disabled: ToggleBoolean;
@@ -51,30 +59,60 @@ export class ToggleComponent implements OnInit, OnChanges {
     return this.position;
   }
 
-  public ngOnInit(): void {
-    this.checked = this.convertToBoolean(this.checked);
-    this.disabled = this.convertToBoolean(this.disabled);
-    this.required = this.convertToBoolean(this.required);
-  }
-
-  public ngOnChanges({checked, disabled, required}: SimpleChanges) {
+  public ngOnChanges({checked, disabled, required, formControlName}: SimpleChanges) {
+    if (formControlName) {
+      this.name = formControlName.currentValue;
+    }
     if (checked) {
-      this.checked = this.convertToBoolean(checked.currentValue);
-      this.emitValue(this.checked);
+      this.checked = checked.currentValue;
+      // this.emitValue(checked.currentValue);
     }
     if (disabled) {
-      this.disabled = this.convertToBoolean(disabled.currentValue);
+      this.setDisabledState(disabled.currentValue);
+      // this.disabled = this.convertToBoolean(disabled.currentValue);
     }
     if (required) {
       this.required = this.convertToBoolean(required.currentValue);
     }
   }
 
-  public emitValue(checked: boolean): void {
-    this.change.emit(new ToggleChange(this.name, this.value, checked));
-  }
+  // public emitValue(checked: boolean): void {
+  //   this.change.emit(new ToggleChange(this.name, this.value, checked));
+  // }
 
   private convertToBoolean(value: ToggleBoolean): boolean {
     return value === 'false' ? false : !!value;
   }
+
+  // Allows Angular to update the model (rating).
+  // Update the model and changes needed for the view here.
+  writeValue(value: any): void {
+    this.checked = typeof value === 'boolean' ? (value || this.value === value) : false;
+    this.onChange(this.value);
+  }
+
+  // Allows Angular to register a function to call when the model (rating) changes.
+  // Save the function as a property to call later here.
+  registerOnChange(fn: (rating: number) => void): void {
+    this.onChange = fn;
+  }
+
+  // Allows Angular to register a function to call when the input has been touched.
+  // Save the function as a property to call later here.
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  // Allows Angular to disable the input.
+  setDisabledState(disabled: ToggleBoolean): void {
+    this.disabled = this.convertToBoolean(disabled);
+  }
+
+  // Function to call when the rating changes.
+  onChange = (value: any) => {
+  };
+
+  // Function to call when the input is touched (when a star is clicked).
+  onTouched = () => {
+  };
 }

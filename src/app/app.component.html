@@ -1,1 +1,24 @@
-<ag-toggle theme="ios" checked="true" [position]="'after'">Bla bla</ag-toggle>
+<form [formGroup]="form" novalidate>
+<!--
+  <input formControlName="color" type="radio" value="blue">Blue<br/>
+  <input formControlName="color" type="radio" value="red">Red<br/>
+  <input formControlName="color" type="radio" value="yellow">Yellow<br/>
+  <input formControlName="color" type="radio" value="pink">Pink<br/>
+  <input formControlName="color" type="radio" value="violet">Violet<br/>
+  <input formControlName="color" type="radio" value="purple">Purple<br/>
+-->
+<!--
+  <ag-toggle formControlName="color" type="radio" value="blue">Blue</ag-toggle>
+  <ag-toggle formControlName="color" type="radio" value="red">Red</ag-toggle>
+  <ag-toggle formControlName="color" type="radio" value="yellow">Yellow</ag-toggle>
+  <ag-toggle formControlName="color" type="radio" value="pink">Pink</ag-toggle>
+  <ag-toggle formControlName="color" type="radio" value="violet">Violet</ag-toggle>
+  <ag-toggle formControlName="color" type="radio" value="purple">Purple</ag-toggle>
+-->
+  <div formArrayName="color">
+    <div *ngFor="let color of formColor.controls; index as i">
+      <ag-toggle [formControl]="color" type="radio" [value]="colors[i].value" [checked]="color.value">{{colors[i].value}}</ag-toggle>
+      <!--<input [formControl]="color" type="radio" [value]="colors[i].value" [checked]="color.value">{{colors[i].value}}<br/>-->
+    </div>
+  </div>
+</form>

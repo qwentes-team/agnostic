@@ -8,7 +8,7 @@
       [required]="required"
       [checked]="checked"
       [disabled]="disabled"
-      (change)="emitValue($event.target.checked)">
+      (change)="onChange($event.target.value)">
     <span class="ag-toggle__switch-bar"></span>
     <span class="ag-toggle__switch-thumb"></span>
   </span>
