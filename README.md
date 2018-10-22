@@ -1,18 +1,36 @@
-# Build process
-build.(js|ts)
-* Deve accettare in ingresso i parametri:
-  * --version
-  * --skip-test
-* Esamina la cartellina /projects
-* Per ogni folder, prendere il nome ed eseguire gli scripts:
-  * `npm run test <FOLDER_NAME>`
-  * sostituire nel package.json `"version": "0.0.0-PLACEHOLDER"` con `"version": "<VERSION_PARAMS>"`
-  * `npm run build <FOLDER_NAME>`
-* alla fine di tutti i processi di test/build creare un file package.json che abbia come struttura interna solo:
-```json
-{
-  "name": "@qwentes/agnostic",
-  "version": "<VERSION_PARAMS>"
-}
+# Agnostic
+
+### Run app example
+```ssh
+npm start
 ```
-e salvarlo come file di primo livello dentro la cartellina /dist
+
+### Build project
+```ssh
+npm run build -- <project>
+```
+
+### Test project
+```ssh
+npm run test -- <project>
+```
+
+
+### Release
+Release command prepare all projects for the release: 
+* for each project run tests
+* for each project run build
+* for each project define a version (the main version is in root/package.json)
+* create a new package.json for `@qwentes/agnostic` in `/dist` 
+```
+npm run release
+```
+
+**params:**
+* --skip-test
+  * run build command without test
+  
+### Documentation
+```
+npm run storybook:dev
+```
