@@ -8,7 +8,7 @@
       [required]="required"
       [checked]="checked"
       [disabled]="disabled"
-      (change)="onChange($event.target.value)">
+      (change)="emitToNgModel($event)">
     <span class="ag-toggle__switch-bar"></span>
     <span class="ag-toggle__switch-thumb"></span>
   </span>

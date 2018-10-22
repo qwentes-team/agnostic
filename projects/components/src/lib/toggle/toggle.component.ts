@@ -1,15 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   HostBinding,
   Input,
-  OnChanges,
   OnInit,
-  Output,
+  OnChanges,
   SimpleChanges,
   forwardRef,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -17,15 +15,6 @@ export type ToggleTheme = 'material' | 'ios';
 export type ToggleType = 'checkbox' | 'radio';
 export type TogglePosition = 'before' | 'after';
 export type ToggleBoolean = boolean | 'true' | 'false';
-
-export class ToggleChange {
-  constructor(
-    public name: string,
-    public value: any,
-    public checked: boolean,
-  ) {
-  }
-}
 
 @Component({
   selector: 'ag-toggle',
@@ -39,7 +28,7 @@ export class ToggleChange {
     multi: true
   }]
 })
-export class ToggleComponent implements ControlValueAccessor, OnChanges {
+export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges {
   @Input() public name: string;
   @Input() public formControlName: string;
   @Input() public value: any;
@@ -49,7 +38,7 @@ export class ToggleComponent implements ControlValueAccessor, OnChanges {
   @Input() public type: ToggleType = 'checkbox';
   @Input() public theme: ToggleTheme = 'material';
   @Input() public position: TogglePosition = 'before';
-  @Output() public change: EventEmitter<ToggleChange> = new EventEmitter();
+  private isCheckbox: boolean;
 
   @HostBinding('attr.theme') get themeType() {
     return this.theme;
@@ -59,41 +48,39 @@ export class ToggleComponent implements ControlValueAccessor, OnChanges {
     return this.position;
   }
 
-  public ngOnChanges({checked, disabled, required, formControlName}: SimpleChanges) {
+  public ngOnInit() {
+    this.isCheckbox = this.type === 'checkbox';
+  }
+
+  public ngOnChanges({checked, disabled, required, formControlName, type}: SimpleChanges) {
     if (formControlName) {
       this.name = formControlName.currentValue;
     }
     if (checked) {
-      this.checked = checked.currentValue;
-      // this.emitValue(checked.currentValue);
+      this.checked = this.convertToBoolean(checked.currentValue);
     }
     if (disabled) {
       this.setDisabledState(disabled.currentValue);
-      // this.disabled = this.convertToBoolean(disabled.currentValue);
     }
     if (required) {
       this.required = this.convertToBoolean(required.currentValue);
     }
   }
 
-  // public emitValue(checked: boolean): void {
-  //   this.change.emit(new ToggleChange(this.name, this.value, checked));
-  // }
-
   private convertToBoolean(value: ToggleBoolean): boolean {
     return value === 'false' ? false : !!value;
   }
 
-  // Allows Angular to update the model (rating).
+  // Allows Angular to update the model.
   // Update the model and changes needed for the view here.
   writeValue(value: any): void {
-    this.checked = typeof value === 'boolean' ? (value || this.value === value) : false;
-    this.onChange(this.value);
+    this.checked = typeof value === 'boolean' ? value : this.value === value;
+    this.emitToNgModel({target: {value: this.value, checked: this.checked}});
   }
 
-  // Allows Angular to register a function to call when the model (rating) changes.
+  // Allows Angular to register a function to call when the model changes.
   // Save the function as a property to call later here.
-  registerOnChange(fn: (rating: number) => void): void {
+  registerOnChange(fn: (value: boolean | any) => void): void {
     this.onChange = fn;
   }
 
@@ -108,8 +95,13 @@ export class ToggleComponent implements ControlValueAccessor, OnChanges {
     this.disabled = this.convertToBoolean(disabled);
   }
 
-  // Function to call when the rating changes.
-  onChange = (value: any) => {
+  emitToNgModel(event: any): void {
+    const value = this.isCheckbox ? event.target.checked : event.target.value;
+    this.onChange(value);
+  }
+
+  // Function to call when the changes.
+  onChange = (value: boolean | string) => {
   };
 
   // Function to call when the input is touched (when a star is clicked).

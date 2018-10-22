@@ -1,6 +1,6 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ToggleChange, ToggleComponent } from './toggle.component';
+import { ToggleComponent } from './toggle.component';
 import { click, getChildDebugElement } from '../../test.shared';
 
 describe('ToggleComponent', () => {
@@ -199,7 +199,10 @@ describe('ToggleComponent', () => {
   describe('(change)', () => {
     @Component({template: '<ag-toggle name="test" value="foo" (change)="onChangeToggle($event)"></ag-toggle>'})
     class TestHostComponent {
-      onChangeToggle(e: ToggleChange) {
+      toggleEvent: Event;
+
+      onChangeToggle(e: Event) {
+        this.toggleEvent = e;
       }
     }
 
@@ -210,8 +213,13 @@ describe('ToggleComponent', () => {
       toggleDebugger = getToggleDebugger();
       spyOn(hostFixture.componentInstance, 'onChangeToggle').and.callThrough();
       click(toggleDebugger.nativeElement.querySelector('label'));
-      const expectedEvent = new ToggleChange('test', 'foo', true);
-      expect(hostFixture.componentInstance.onChangeToggle).toHaveBeenCalledWith(expectedEvent);
+      expect(hostFixture.componentInstance.onChangeToggle).toHaveBeenCalled();
+      expect(hostFixture.componentInstance.onChangeToggle.calls.count()).toBe(1);
+      expect(hostFixture.componentInstance.toggleEvent.target).toEqual(jasmine.objectContaining({
+        name: 'test',
+        value: 'foo',
+        checked: true,
+      }))
     });
   });
 });
