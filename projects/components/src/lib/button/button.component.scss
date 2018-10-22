@@ -1,0 +1,15 @@
+$button-height: 44px;
+$button-gap: 12px;
+$button-radius: 2px;
+
+ag-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: deepskyblue;
+  padding: $button-gap;
+  border-radius: $button-radius;
+  height: $button-height;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
