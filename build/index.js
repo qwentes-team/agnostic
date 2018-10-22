@@ -1,3 +1,4 @@
+const colors = require('colors');
 const {basename} = require('path');
 const {argv} = require('yargs');
 const {build} = require('./build');
@@ -9,9 +10,9 @@ const skipTest = argv.skipTest;
 const mainPackageJsonPath = `${__dirname}/../dist/package.json`;
 const directories = getChildDirectories(basename(`${__dirname}/../projects/`));
 
-console.log('\x1b[32m%s\x1b[0m', `\nProjects: ${directories.join(', ')}`);
+console.log(colors.green(`Projects: ${directories.join(', ')}\n`));
 
 build(directories, {version, skipTest: skipTest})
-  .then(() => createMainPackageJson(version, mainPackageJsonPath))
-  .then(() => console.log('\nFinish, bye :)'))
+  .then(() => createMainPackageJson(mainPackageJsonPath, version))
+  .then(({version}) => console.log(colors.green.bold(`\n@qwentes/agnostic@${version}`)))
   .catch(console.log);

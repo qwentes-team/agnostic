@@ -11,7 +11,7 @@ exports.runCommand = (commandArgs) => {
     command.stdout.on('data', (data) => console.log(colors.gray(data.toString('utf8').trim())));
     command.stderr.on('data', (data) => reject(`stderr: ${data}`));
     command.on('close', (code) => {
-      console.log(colors.cyan(`Finished command "${commandString}". Child process exited with code ${code}`));
+      console.log(colors.gray(`Finished command "${commandString}". Child process exited with code ${code}`));
       resolve();
     });
   })

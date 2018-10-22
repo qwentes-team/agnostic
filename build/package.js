@@ -1,3 +1,5 @@
+const path = require('path');
+const colors = require('colors');
 const {readFileSync, writeFileSync} = require('fs');
 
 const fileContent = (version) => `{
@@ -5,12 +7,16 @@ const fileContent = (version) => `{
   "version": "${version}"
 }`;
 
-exports.createMainPackageJson = (version, filePath) => {
+exports.createMainPackageJson = (filePath, version) => {
   return new Promise((resolve, reject) => {
     try {
+      const directory = path.basename(path.dirname(filePath))
       writeFileSync(filePath, fileContent(version), 'utf8');
-      console.log('\x1b[36m%s\x1b[0m', '\nCreate main package.json successfully');
-      resolve();
+      resolve({
+        directory,
+        version,
+        message: `${directory}@${version} completed`,
+      });
     } catch (e) {
       reject(e);
     }
@@ -22,9 +28,13 @@ exports.replacePackageJsonVersion = (filePath, version) => {
     try {
       const fileContent = readFileSync(filePath, 'utf8');
       const fileEdited = fileContent.replace(/0.0.0-PLACEHOLDER/g, version);
+      const directory = path.basename(path.dirname(filePath));
       writeFileSync(filePath, fileEdited, 'utf8');
-      console.log('\x1b[36m%s\x1b[0m', '\nReplace package.json version successfully');
-      resolve();
+      resolve({
+        directory,
+        version,
+        message: `${JSON.parse(fileEdited).name}@${version} completed`,
+      });
     } catch (e) {
       reject(e);
     }
