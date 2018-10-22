@@ -3,8 +3,7 @@ const {readFileSync, writeFileSync} = require('fs');
 
 const fileContent = (version) => `{
   "name": "@qwentes/agnostic",
-  "version": "${version}",
-  "private": true
+  "version": "${version}"
 }`;
 
 exports.createMainPackageJson = (filePath, version) => {
