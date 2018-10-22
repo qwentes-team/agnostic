@@ -4,8 +4,9 @@ const {argv} = require('yargs');
 const {build} = require('./build');
 const {createMainPackageJson} = require('./package');
 const {getChildDirectories} = require('./shared');
+const pkg = require('./../package');
 
-const version = argv.v;
+const version = argv.v || pkg.version;
 const skipTest = argv.skipTest;
 const mainPackageJsonPath = `${__dirname}/../dist/package.json`;
 const directories = getChildDirectories(basename(`${__dirname}/../projects/`));

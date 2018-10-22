@@ -1,10 +1,10 @@
 const path = require('path');
-const colors = require('colors');
 const {readFileSync, writeFileSync} = require('fs');
 
 const fileContent = (version) => `{
   "name": "@qwentes/agnostic",
-  "version": "${version}"
+  "version": "${version}",
+  "private": true
 }`;
 
 exports.createMainPackageJson = (filePath, version) => {
@@ -33,7 +33,7 @@ exports.replacePackageJsonVersion = (filePath, version) => {
       resolve({
         directory,
         version,
-        message: `${JSON.parse(fileEdited).name}@${version} completed`,
+        message: `${JSON.parse(fileEdited).name}@${version}`,
       });
     } catch (e) {
       reject(e);
