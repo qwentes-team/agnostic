@@ -9,7 +9,25 @@ storiesOf('Toggle', module)
       declarations: [ToggleComponent],
     }),
   )
-  .add('Default', () => ({template: `<ag-toggle></ag-toggle>`}))
+  .add('Demo', () => ({
+    template: `
+      <div>
+        <h3>Checkbox</h3>
+        <ag-toggle (change)="change($event)" theme="ios" name="color" value="blue" disabled="true" checked="true">Blue</ag-toggle><br>
+        <ag-toggle (change)="change($event)" theme="ios" name="color" value="green" disabled="true">Green</ag-toggle><br>
+        <ag-toggle (change)="change($event)" theme="ios" name="color" value="yellow">Yellow</ag-toggle><br>
+      </div>
+      <div>
+        <h3>Radio</h3>
+        <ag-toggle (change)="change($event)" type="radio" name="color" value="blue" >Blue</ag-toggle><br>
+        <ag-toggle (change)="change($event)" type="radio" name="color" value="green">Green</ag-toggle><br>
+        <ag-toggle (change)="change($event)" type="radio" name="color" value="yellow" checked="true">Yellow</ag-toggle><br>
+      </div>
+    `,
+    props: {
+      change: action('change'),
+    }
+  }))
   .add('Theme', () => ({
     template: `
       <div>
@@ -49,23 +67,4 @@ storiesOf('Toggle', module)
         <ag-toggle type="radio" name="color" value="yellow">Yellow</ag-toggle><br>
       </div>
     `,
-  }))
-  .add('Demo', () => ({
-    template: `
-      <div>
-        <h3>Checkbox</h3>
-        <ag-toggle (change)="change($event)" theme="ios" name="color" value="blue" disabled="true" checked="true">Blue</ag-toggle><br>
-        <ag-toggle (change)="change($event)" theme="ios" name="color" value="green" disabled="true">Green</ag-toggle><br>
-        <ag-toggle (change)="change($event)" theme="ios" name="color" value="yellow">Yellow</ag-toggle><br>
-      </div>
-      <div>
-        <h3>Radio</h3>
-        <ag-toggle (change)="change($event)" type="radio" name="color" value="blue" >Blue</ag-toggle><br>
-        <ag-toggle (change)="change($event)" type="radio" name="color" value="green">Green</ag-toggle><br>
-        <ag-toggle (change)="change($event)" type="radio" name="color" value="yellow" checked="true">Yellow</ag-toggle><br>
-      </div>
-    `,
-    props: {
-      change: action('change'),
-    }
   }));
