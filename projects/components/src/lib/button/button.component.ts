@@ -25,9 +25,9 @@ export class ButtonComponent {
   }
 
   constructor(
-    @Attribute('expand') public expand: ButtonExpand,
-    @Attribute('fill') public fill: ButtonFill,
-    @Attribute('shape') public shape: ButtonShape,
+    @Attribute('expand') public expand,
+    @Attribute('fill') public fill,
+    @Attribute('shape') public shape,
   ) {
   }
 }
