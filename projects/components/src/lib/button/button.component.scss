@@ -8,12 +8,20 @@ ag-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: deepskyblue;
+  background-color: rgba(black, .1);
   color: rgba(black, .75);
   padding: $button-gap;
   border-radius: $button-radius;
   height: $button-height;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1em;
+
+  &:hover {
+    background-color: rgba(lighten(black, 20%), .1);
+  }
+  &:active {
+    background-color: rgba(darken(black, 40%), .1);
+  }
 
   &[expand="block"], &[expand="full"] {
     width: 100%;
@@ -32,7 +40,7 @@ ag-button {
   }
 
   &[disabled="true"] {
-    opacity: .65;
+    opacity: .4;
     pointer-events: none !important;
     background-color: #ddd;
     cursor: default !important;
@@ -40,5 +48,16 @@ ag-button {
 
   &[shape="round"] {
     border-radius: $button-height;
+  }
+
+  [position="before"] {
+    padding-right: $button-gap;
+  }
+  [position="after"] {
+    padding-left: $button-gap;
+  }
+
+  .ag-button__text {
+    text-transform: uppercase;
   }
 }

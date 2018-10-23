@@ -2,8 +2,7 @@ import {
   Attribute,
   ChangeDetectionStrategy,
   Component, HostBinding,
-  Input, OnChanges,
-  SimpleChanges,
+  Input,
   ViewEncapsulation
 } from '@angular/core';
 
@@ -18,12 +17,11 @@ export type ButtonShape = 'round';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnChanges {
-
+export class ButtonComponent {
   @Input() public disabled: boolean = false;
 
   @HostBinding('attr.disabled') get disabledValue() {
-    return this.disabled;
+    return this.disabled ? true : null;
   }
 
   constructor(
@@ -31,9 +29,5 @@ export class ButtonComponent implements OnChanges {
     @Attribute('fill') public fill: ButtonFill,
     @Attribute('shape') public shape: ButtonShape,
   ) {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
   }
 }
