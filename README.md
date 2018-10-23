@@ -1,5 +1,5 @@
 # Agnostic
-[Components](https://agnostic.netlify.com)
+<a href="https://agnostic.netlify.com" target="_blank">Components</a>
 
 ### Run app example
 ```ssh
