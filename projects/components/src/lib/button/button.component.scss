@@ -24,6 +24,7 @@ ag-button {
   height: var(--ag-button-height);
   font-family: var(--ag-button-font-family);
   font-size: 1em;
+  transition: background-color .3s ease;
 
   &:hover {
     background-color: var(--ag-button-background-color-hover);
