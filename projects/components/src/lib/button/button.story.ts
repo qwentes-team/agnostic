@@ -1,5 +1,6 @@
 import { moduleMetadata, storiesOf } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
+import { withNotes } from '@storybook/addon-notes';
 import { ButtonComponent } from './button.component';
 
 
@@ -9,6 +10,7 @@ storiesOf('Button', module)
       declarations: [ButtonComponent],
     }),
   )
+  .addDecorator(withNotes)
   .add('Demo', () => ({
     template: `
     <div>
@@ -37,7 +39,15 @@ storiesOf('Button', module)
       <ag-button expand="full">Foo</ag-button>
     </div>
   `
-  }))
+  }), {
+    notes: `
+      [expand=block]
+      Full-width button with rounded corners.
+      
+      [expand=full]
+      Full-width button with square corners and no border on the left or right.
+    `
+  })
   .add('Fill', () => ({
     template: `
     <div>
