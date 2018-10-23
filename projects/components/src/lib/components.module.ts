@@ -4,7 +4,7 @@ import { ButtonModule } from './button/button.module';
 
 @NgModule({
   imports: [ToggleModule, ButtonModule],
-  exports: []
+  exports: [ToggleModule, ButtonModule]
 })
 export class ComponentsModule {
 }
