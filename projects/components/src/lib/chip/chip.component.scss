@@ -1,0 +1,46 @@
+ag-chip {
+  --ag-chip-height: 32px;
+  --ag-chip-gap: 16px;
+  --ag-chip-radius: 16px;
+  --ag-chip-color: rgba(0, 0, 0, .75);
+  --ag-chip-background-color: rgba(0, 0, 0, .1);
+  --ag-chip-primary-background-color: #003366;
+  --ag-chip-success-background-color: #43a047;
+  --ag-chip-warning-background-color: #fff176;
+  --ag-chip-danger-background-color: #f04141;
+  --ag-chip-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ag-chip-background-color);
+  color: var(--ag-chip-color);
+  padding: var(--ag-chip-gap);
+  border-radius: var(--ag-chip-radius);
+  height: var(--ag-chip-height);
+  font-family: var(--ag-chip-font-family);
+  font-size: 14px;
+
+  [position="before"] {
+    padding-right: var(--ag-chip-gap);
+  }
+  [position="after"] {
+    padding-left: var(--ag-chip-gap);
+  }
+  &[color="primary"] {
+    background-color: var(--ag-chip-primary-background-color);
+  }
+  &[color="success"] {
+    background-color: var(--ag-chip-success-background-color);
+  }
+  &[color="warning"] {
+    background-color: var(--ag-chip-warning-background-color);
+  }
+  &[color="danger"] {
+    background-color: var(--ag-chip-danger-background-color);
+  }
+  &[label-color="light"] {
+    color: white;
+  }
+}
