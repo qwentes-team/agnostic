@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken, Injector, NgZone } from '@angular/core';
+import { Injectable, InjectionToken, Injector } from '@angular/core';
 import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { DialogModule } from './dialog.module';
