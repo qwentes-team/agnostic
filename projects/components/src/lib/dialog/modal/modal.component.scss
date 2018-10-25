@@ -3,6 +3,7 @@
 ag-modal {
   --ag-modal-header-height: 44px;
   --ag-modal-content-height: auto;
+  --ag-modal-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
   --ag-modal-desktop-max-width: 600px;
   --ag-modal-desktop-max-height: 80vh;
   --ag-modal-desktop-border-radius: 2px;
@@ -12,6 +13,7 @@ ag-modal {
   height: 100vh;
   width: 100vw;
   margin: auto;
+  box-shadow: var(--ag-modal-box-shadow);
 
   ag-modal-header, ag-modal-content {
     display: block;
