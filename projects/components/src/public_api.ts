@@ -5,3 +5,4 @@
 export * from './lib/components.module';
 export * from './lib/toggle/toggle.module';
 export * from './lib/button/button.module';
+export * from './lib/fab/fab.module';
