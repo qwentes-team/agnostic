@@ -1,8 +1,7 @@
 import { fromEvent, Observable, Subject } from 'rxjs';
 import { OverlayRef } from '@angular/cdk/overlay';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { DialogConfig } from './dialog.service';
-import { NgZone } from '@angular/core';
 
 export class Dialog {
 
@@ -43,6 +42,10 @@ export class Dialog {
 
   public close(value?: any): void {
     this._result = value;
+    this.closeTransition();
+  }
+
+  private closeTransition(): void {
     this.observableTransitionEndOf(this._overlayRef.overlayElement).subscribe(() => this._overlayRef.dispose())
     this._overlayRef.backdropElement.classList.add(Dialog.CLASS_DIALOG_BACKDROP_CLOSING);
     this._overlayRef.overlayElement.classList.add(Dialog.CLASS_DIALOG_CONTENT_CLOSING);
@@ -58,7 +61,7 @@ export class Dialog {
 
   private shouldDisposeOnClickOut(): void {
     if (this.getConfig().disposeOnClickOut !== false) {
-      this._overlayRef.backdropClick().subscribe(() => this._overlayRef.dispose());
+      this._overlayRef.backdropClick().subscribe(() => this.close());
     }
   }
 
