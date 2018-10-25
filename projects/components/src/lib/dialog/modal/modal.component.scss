@@ -5,6 +5,7 @@ ag-modal {
   --ag-modal-content-height: auto;
   --ag-modal-desktop-max-width: 600px;
   --ag-modal-desktop-max-height: 80vh;
+  --ag-modal-desktop-border-radius: 2px;
 
   display: flex;
   flex-direction: column;
@@ -64,7 +65,7 @@ ag-modal {
   ag-modal {
     max-width: var(--ag-modal-desktop-max-width);
     max-height: var(--ag-modal-desktop-max-height);
-    border-radius: 2px;
+    border-radius: var(--ag-modal-desktop-border-radius);
     overflow: hidden;
   }
 }
