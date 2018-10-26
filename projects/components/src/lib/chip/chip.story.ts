@@ -61,20 +61,4 @@ storiesOf('Chip', module)
         </ag-chip><br><br>
       </div>
     `,
-  }))
-  .add('Position', () => ({
-    template: `
-      <div>
-        <h3>Before</h3>
-        <ag-chip>
-          Content
-          <span position="before">•</span>
-        </ag-chip><br><br>
-        <h3>After</h3>
-        <ag-chip>
-          Content
-          <span position="after">•</span>
-        </ag-chip><br><br>
-      </div>
-    `,
   }));
