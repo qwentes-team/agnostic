@@ -20,6 +20,7 @@ describe('ChipComponent', () => {
   });
 
   it('should create', () => {
+    console.log('qui');
     expect(component).toBeTruthy();
   });
 });
