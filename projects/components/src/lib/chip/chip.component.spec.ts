@@ -1,26 +1,60 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from '@angular/core';
 import { ChipComponent } from './chip.component';
+import { getChildDebugElement } from '../../test.shared';
 
 describe('ChipComponent', () => {
-  let component: ChipComponent;
-  let fixture: ComponentFixture<ChipComponent>;
+  let hostFixture: ComponentFixture<any>;
+  let hostComponent: any;
+  let hostElement: HTMLElement;
+  let chipDebugger: DebugElement;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ChipComponent ]
-    })
-    .compileComponents();
-  }));
+  const setupBeforeEachTestWithHostComponent = (HostComponentClass) => {
+    TestBed.configureTestingModule({declarations: [ChipComponent, HostComponentClass]});
+    hostFixture = TestBed.createComponent(HostComponentClass);
+    hostComponent = hostFixture.componentInstance;
+    hostElement = hostFixture.nativeElement;
+  };
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ChipComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  const getChipDebugger = () => getChildDebugElement('ag-chip').from(hostFixture);
+
+  afterEach(() => {
+    hostFixture && hostFixture.destroy && hostFixture.destroy();
+    hostFixture = null;
+    hostComponent = null;
+    hostElement = null;
+    chipDebugger = null;
   });
 
-  it('should create', () => {
-    console.log('qui');
-    expect(component).toBeTruthy();
+  describe('transclude', () => {
+    describe('[position=before]', () => {
+      @Component({template: '<ag-chip><span position="before">icon</span>Content</ag-chip>'})
+      class TestHostComponent {
+      }
+
+      beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+      it('should transclude before the .ag-chip__text element', () => {
+        hostFixture.detectChanges();
+        chipDebugger = getChipDebugger();
+        const defaultTransclude = chipDebugger.nativeElement.querySelector('.ag-chip__text');
+        expect(defaultTransclude.previousElementSibling.innerText).toBe('icon');
+      });
+    });
+
+    describe('[position=after]', () => {
+      @Component({template: '<ag-chip>Content<span position="after">icon</span></ag-chip>'})
+      class TestHostComponent {
+      }
+
+      beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+      it('should transclude before the .ag-chip__text element', () => {
+        hostFixture.detectChanges();
+        chipDebugger = getChipDebugger();
+        const defaultTransclude = chipDebugger.nativeElement.querySelector('.ag-chip__text');
+        expect(defaultTransclude.nextElementSibling.innerText).toBe('icon');
+      });
+    });
   });
 });
