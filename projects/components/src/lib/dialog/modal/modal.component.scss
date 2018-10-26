@@ -1,0 +1,61 @@
+@import './../dialog';
+
+ag-modal {
+  --ag-modal-header-height: 44px;
+  --ag-modal-header-background-color: #FFF;
+  --ag-modal-content-height: auto;
+  --ag-modal-content-background-color: #f9f9f9;
+  --ag-modal-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+  --ag-modal-desktop-max-width: 600px;
+  --ag-modal-desktop-max-height: 80vh;
+  --ag-modal-desktop-border-radius: 2px;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: auto;
+  box-shadow: var(--ag-modal-box-shadow);
+
+  ag-modal-header, ag-modal-content {
+    display: block;
+  }
+  ag-modal-header {
+    height: var(--ag-modal-header-height);
+    min-height: var(--ag-modal-header-height);
+    background-color: var(--ag-modal-header-background-color);
+  }
+  ag-modal-content {
+    height: var(--ag-modal-content-height);
+    min-height: 100%;
+    overflow: auto;
+    background-color: var(--ag-modal-content-background-color);
+  }
+}
+
+.ag-dialog-content {
+  ag-modal {
+    will-change: transform;
+    transform: translate(0, 100%);
+    transition: transform var(--ag-dialog-content-time-showing) ease-out;
+  }
+  &--showing ag-modal {
+    transform: translate(0, 0%);
+  }
+  &--closing ag-modal {
+    transform: translate(0, 100%);
+    transition: transform var(--ag-dialog-content-time-closing) ease-in;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  ag-modal {
+    max-width: var(--ag-modal-desktop-max-width);
+    max-height: var(--ag-modal-desktop-max-height);
+    border-radius: var(--ag-modal-desktop-border-radius);
+    overflow: hidden;
+  }
+}
+
+
