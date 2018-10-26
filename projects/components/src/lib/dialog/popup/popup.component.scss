@@ -1,0 +1,56 @@
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+ag-popup {
+  --ag-popup-width: 400px;
+  --ag-popup-border-radius: 2px;
+  --ag-popup-padding: 16px;
+  --ag-popup-background-color: #fff;
+  --ag-popup-transition-time-showing: .3s;
+  --ag-popup-transition-time-closing: .2s;
+  --ag-popup-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  max-width: var(--ag-popup-width);
+  margin: auto;
+  padding: var(--ag-popup-padding);
+  border-radius: var(--ag-popup-border-radius);
+  background-color: var(--ag-popup-background-color);
+  box-shadow: var(--ag-popup-box-shadow);
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity .3s ease;
+  &.ag-dialog-backdrop--showing {
+    opacity: 1;
+  }
+  &.ag-dialog-backdrop--closing {
+    opacity: 0;
+  }
+}
+
+.ag-dialog-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ag-popup {
+    will-change: transform, opacity;
+    transform: scale(.9);
+    transition: transform var(--ag-popup-transition-time-showing) ease-out, opacity var(--ag-popup-transition-time-showing) ease-out;
+  }
+}
+
+.ag-dialog-content--showing ag-popup {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.ag-dialog-content--closing ag-popup {
+  transform: scale(.9);
+  opacity: 0;
+  transition: transform var(--ag-popup-transition-time-closing) ease-out, opacity var(--ag-popup-transition-time-closing) ease-out;
+}
