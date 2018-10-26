@@ -17,13 +17,13 @@ export class Dialog {
   constructor(
     private _overlayRef: OverlayRef,
   ) {
-    this.onInit();
+    this._onInit();
   }
 
-  private onInit() {
-    this.subscribeOnClose();
-    this.shouldDisposeOnClickOut();
-    this.onAttachDialog().subscribe(() => {
+  private _onInit() {
+    this._subscribeOnClose();
+    this._shouldDisposeOnClickOut();
+    this._onAttachDialog().subscribe(() => {
       this._overlayRef.overlayElement.classList.add(Dialog.CLASS_DIALOG_CONTENT_SHOWING);
       setTimeout(() => {
         this._overlayRef.backdropElement.classList.add(Dialog.CLASS_DIALOG_BACKDROP_SHOWING);
@@ -31,22 +31,28 @@ export class Dialog {
     });
   }
 
-  private onAttachDialog(): Observable<any> {
+  private _onAttachDialog(): Observable<any> {
     this._overlayRef.overlayElement.classList.add(Dialog.CLASS_DIALOG_CONTENT);
     return this._overlayRef.attachments();
   }
 
-  private observableTransitionEndOf(element): Observable<any> {
+  private _observableTransitionEndOf(element): Observable<any> {
     return fromEvent(element, 'transitionend').pipe(take(1));
   }
 
   public close(value?: any): void {
     this._result = value;
-    this.closeTransition();
+    this._hasTransition(this._overlayRef.overlayElement)
+      ? this._closeTransition()
+      : this._overlayRef.dispose();
   }
 
-  private closeTransition(): void {
-    this.observableTransitionEndOf(this._overlayRef.overlayElement).subscribe(() => this._overlayRef.dispose())
+  private _hasTransition(element) {
+    return window.getComputedStyle(this._overlayRef.overlayElement).transition !== 'all 0s ease 0s';
+  }
+
+  private _closeTransition(): void {
+    this._observableTransitionEndOf(this._overlayRef.overlayElement).subscribe(() => this._overlayRef.dispose())
     this._overlayRef.backdropElement.classList.add(Dialog.CLASS_DIALOG_BACKDROP_CLOSING);
     this._overlayRef.overlayElement.classList.add(Dialog.CLASS_DIALOG_CONTENT_CLOSING);
   }
@@ -59,13 +65,13 @@ export class Dialog {
     return this._overlayRef.getConfig() as DialogConfig;
   }
 
-  private shouldDisposeOnClickOut(): void {
+  private _shouldDisposeOnClickOut(): void {
     if (this.getConfig().disposeOnClickOut !== false) {
       this._overlayRef.backdropClick().subscribe(() => this.close());
     }
   }
 
-  private subscribeOnClose() {
+  private _subscribeOnClose() {
     this._overlayRef.detachments()
       .pipe(take(1))
       .subscribe(() => {
