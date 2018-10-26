@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ag-chip',
@@ -7,11 +7,5 @@ import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewEn
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChipComponent implements OnInit {
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+export class ChipComponent {
 }
