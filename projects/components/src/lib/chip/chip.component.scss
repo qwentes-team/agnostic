@@ -2,7 +2,8 @@ ag-chip {
   --ag-chip-height: 32px;
   --ag-chip-gap: 16px;
   --ag-chip-radius: 16px;
-  --ag-chip-color: rgba(0, 0, 0, .75);
+  --ag-chip-color-dark: rgba(0, 0, 0, .75);
+  --ag-chip-color-light: rgba(255, 255, 255);
   --ag-chip-background-color: rgba(0, 0, 0, .1);
   --ag-chip-primary-background-color: #003366;
   --ag-chip-success-background-color: #43a047;
@@ -15,7 +16,7 @@ ag-chip {
   justify-content: center;
   align-items: center;
   background-color: var(--ag-chip-background-color);
-  color: var(--ag-chip-color);
+  color: var(--ag-chip-color-dark);
   padding: var(--ag-chip-gap);
   border-radius: var(--ag-chip-radius);
   height: var(--ag-chip-height);
@@ -41,6 +42,6 @@ ag-chip {
     background-color: var(--ag-chip-danger-background-color);
   }
   &[label-color="light"] {
-    color: white;
+    color: var(--ag-chip-color-light);
   }
 }
