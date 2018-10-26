@@ -1,20 +1,15 @@
-import { async, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component, Inject } from '@angular/core';
-import { Overlay, OverlayContainer } from '@angular/cdk/overlay';
+import { Overlay } from '@angular/cdk/overlay';
 import { Dialog } from './dialog.model';
 import { DIALOG_DATA, DIALOG_REF, DialogService } from './dialog.service';
 import { ModalComponent } from './modal/modal.component';
 import { PopupComponent } from './popup/popup.component';
-import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { ComponentPortal } from '@angular/cdk/portal';
 
-const MOCK_INJECTION = {
-  REF: [],
-  DATA: [1, 2, 3, 4],
-}
+const MOCK_INJECTION = {REF: [], DATA: [1, 2, 3, 4]}
 
-@Component({selector: 'test-dialog', template: 'test dialog'})
+@Component({selector: 'test-dialog', template: '<ag-popup>test dialog</ag-popup>'})
 class TestDialogComponent {
   constructor(
     @Inject(DIALOG_REF) private dialogRef: Dialog,
@@ -26,9 +21,6 @@ class TestDialogComponent {
 describe('DialogService', () => {
   let service: DialogService;
   let dialog: Dialog;
-  let hostFixture;
-  let hostComponent;
-  let hostElement;
 
   const setupBeforeEachTestWithHostComponent = (HostComponentClass) => {
     TestBed.configureTestingModule({
@@ -46,17 +38,9 @@ describe('DialogService', () => {
       }
     });
     service = TestBed.get(DialogService);
-    hostFixture = TestBed.createComponent(HostComponentClass);
-    hostComponent = hostFixture.componentInstance;
-    hostElement = hostFixture.nativeElement;
   }
 
   afterEach(() => {
-    hostFixture && hostFixture.nativeElement && hostFixture.nativeElement.remove();
-    hostFixture && hostFixture.destroy && hostFixture.destroy();
-    hostFixture = null;
-    hostComponent = null;
-    hostElement = null;
     dialog = null;
   });
 
@@ -67,9 +51,7 @@ describe('DialogService', () => {
       dialog = service.open(TestDialogComponent);
       const overlay = document.querySelector('.cdk-overlay-container');
       expect(dialog instanceof Dialog).toBeTruthy();
-      hostFixture.detectChanges();
       dialog.afterClosed().subscribe(() => {
-        hostFixture.detectChanges();
         expect(overlay.querySelector('.ag-dialog-content')).toBeFalsy();
         done();
       });

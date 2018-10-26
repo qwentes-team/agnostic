@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 @Component({
   selector: 'ag-popup',
   templateUrl: './popup.component.html',
-  styleUrls: ['./popup.component.scss'],
+  styleUrls: ['./../dialog.scss', './popup.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

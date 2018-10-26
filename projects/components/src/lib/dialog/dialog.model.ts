@@ -42,13 +42,7 @@ export class Dialog {
 
   public close(value?: any): void {
     this._result = value;
-    this._hasTransition(this._overlayRef.overlayElement)
-      ? this._closeTransition()
-      : this._overlayRef.dispose();
-  }
-
-  private _hasTransition(element) {
-    return window.getComputedStyle(this._overlayRef.overlayElement).transition !== 'all 0s ease 0s';
+    this._closeTransition();
   }
 
   private _closeTransition(): void {
