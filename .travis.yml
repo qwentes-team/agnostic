@@ -3,7 +3,7 @@ node_js:
 - "10.0.0"
 
 script:
-- npm run test -- components
+- npm run test -- components --watch=false
 
 before_install:
 - export CHROME_BIN=chromium-browser
