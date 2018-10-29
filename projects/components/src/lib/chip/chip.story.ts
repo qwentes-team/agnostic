@@ -1,13 +1,12 @@
-import { moduleMetadata, storiesOf } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
-import { ChipComponent } from './chip.component';
-
+import {moduleMetadata, storiesOf} from '@storybook/angular';
+import {action} from '@storybook/addon-actions';
+import {ChipComponent} from './chip.component';
 
 storiesOf('Chip', module)
   .addDecorator(
     moduleMetadata({
       declarations: [ChipComponent],
-    }),
+    })
   )
   .add('Demo', () => ({
     template: `

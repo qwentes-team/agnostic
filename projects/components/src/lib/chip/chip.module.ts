@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ChipComponent } from './chip.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ChipComponent} from './chip.component';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [ChipComponent],
-  exports: [ChipComponent]
+  exports: [ChipComponent],
 })
-export class ChipModule { }
+export class ChipModule {}

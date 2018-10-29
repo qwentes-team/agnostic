@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PopupComponent } from './popup.component';
-import { Component, DebugElement } from '@angular/core';
-import { getChildDebugElement } from '../../../test.shared';
+import {PopupComponent} from './popup.component';
+import {Component, DebugElement} from '@angular/core';
+import {getChildDebugElement} from '../../../test.shared';
 
 describe('PopupComponent', () => {
   let hostFixture: ComponentFixture<any>;
@@ -10,14 +10,17 @@ describe('PopupComponent', () => {
   let hostElement: HTMLElement;
   let popupDebugger: DebugElement;
 
-  const setupBeforeEachTestWithHostComponent = (HostComponentClass) => {
-    TestBed.configureTestingModule({declarations: [PopupComponent, HostComponentClass]});
+  const setupBeforeEachTestWithHostComponent = HostComponentClass => {
+    TestBed.configureTestingModule({
+      declarations: [PopupComponent, HostComponentClass],
+    });
     hostFixture = TestBed.createComponent(HostComponentClass);
     hostComponent = hostFixture.componentInstance;
     hostElement = hostFixture.nativeElement;
   };
 
-  const getPopupDebugger = () => getChildDebugElement('ag-popup').from(hostFixture);
+  const getPopupDebugger = () =>
+    getChildDebugElement('ag-popup').from(hostFixture);
 
   afterEach(() => {
     if (hostFixture && hostFixture.destroy) {
@@ -31,8 +34,7 @@ describe('PopupComponent', () => {
 
   describe('transclude', () => {
     @Component({template: '<ag-popup>Foo</ag-popup>'})
-    class TestHostComponent {
-    }
+    class TestHostComponent {}
 
     beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
 

@@ -1,7 +1,7 @@
 const path = require('path');
 const {readFileSync, writeFileSync} = require('fs');
 
-const fileContent = (version) => `{
+const fileContent = version => `{
   "name": "@qwentes/agnostic",
   "version": "${version}"
 }`;
@@ -9,7 +9,7 @@ const fileContent = (version) => `{
 exports.createMainPackageJson = (filePath, version) => {
   return new Promise((resolve, reject) => {
     try {
-      const directory = path.basename(path.dirname(filePath))
+      const directory = path.basename(path.dirname(filePath));
       writeFileSync(filePath, fileContent(version), 'utf8');
       resolve({
         directory,

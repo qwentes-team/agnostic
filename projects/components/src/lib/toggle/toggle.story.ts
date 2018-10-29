@@ -1,13 +1,12 @@
-import { moduleMetadata, storiesOf } from '@storybook/angular';
-import { action } from '@storybook/addon-actions';
-import { ToggleComponent } from './toggle.component';
-
+import {moduleMetadata, storiesOf} from '@storybook/angular';
+import {action} from '@storybook/addon-actions';
+import {ToggleComponent} from './toggle.component';
 
 storiesOf('Toggle', module)
   .addDecorator(
     moduleMetadata({
       declarations: [ToggleComponent],
-    }),
+    })
   )
   .add('Demo', () => ({
     template: `
@@ -26,7 +25,7 @@ storiesOf('Toggle', module)
     `,
     props: {
       change: action('change'),
-    }
+    },
   }))
   .add('Theme', () => ({
     template: `
@@ -38,7 +37,7 @@ storiesOf('Toggle', module)
         <h3>iOS</h3>
         <ag-toggle theme="ios">Foo</ag-toggle>
       </div>
-  `
+  `,
   }))
   .add('Position', () => ({
     template: `
@@ -50,7 +49,7 @@ storiesOf('Toggle', module)
         <h3>After</h3>
         <ag-toggle position="after">Foo</ag-toggle>
       </div>
-    `
+    `,
   }))
   .add('Type', () => ({
     template: `

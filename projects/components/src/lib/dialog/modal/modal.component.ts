@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
@@ -11,8 +11,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModalComponent {
-}
+export class ModalComponent {}
 
 @Component({
   selector: 'ag-modal-header',
@@ -20,8 +19,7 @@ export class ModalComponent {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModalHeaderComponent {
-}
+export class ModalHeaderComponent {}
 
 @Component({
   selector: 'ag-modal-content',
@@ -29,5 +27,4 @@ export class ModalHeaderComponent {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModalContentComponent {
-}
+export class ModalContentComponent {}

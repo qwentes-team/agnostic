@@ -1,8 +1,8 @@
-import { Injectable, InjectionToken, Injector } from '@angular/core';
-import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
-import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
-import { DialogModule } from './dialog.module';
-import { Dialog } from './dialog.model';
+import {Injectable, InjectionToken, Injector} from '@angular/core';
+import {Overlay, OverlayConfig} from '@angular/cdk/overlay';
+import {ComponentPortal, PortalInjector} from '@angular/cdk/portal';
+import {DialogModule} from './dialog.module';
+import {Dialog} from './dialog.model';
 
 export const DIALOG_DATA = new InjectionToken<any>('DIALOG_DATA');
 export const DIALOG_REF = new InjectionToken<Dialog>('DIALOG_REF');
@@ -19,15 +19,10 @@ const DEFAULT_CONFIG: DialogConfig = {
 };
 
 @Injectable({
-  providedIn: DialogModule
+  providedIn: DialogModule,
 })
 export class DialogService {
-
-  constructor(
-    private injector: Injector,
-    private overlay: Overlay,
-  ) {
-  }
+  constructor(private injector: Injector, private overlay: Overlay) {}
 
   public open(component, {data, ...config}: DialogConfig = {}) {
     const overlayConfig = this.createOverlayConfig(config);
@@ -39,7 +34,8 @@ export class DialogService {
   }
 
   private createOverlayConfig(config: DialogConfig): OverlayConfig {
-    const positionStrategy = this.overlay.position()
+    const positionStrategy = this.overlay
+      .position()
       .global()
       .centerHorizontally()
       .centerVertically();
@@ -49,9 +45,11 @@ export class DialogService {
       backdropClass: config.backdropClass,
       panelClass: config.panelClass,
       scrollStrategy: this.overlay.scrollStrategies.block(),
-      disposeOnNavigation: config.disposeOnNavigation || DEFAULT_CONFIG.disposeOnNavigation,
+      disposeOnNavigation:
+        config.disposeOnNavigation || DEFAULT_CONFIG.disposeOnNavigation,
       positionStrategy,
-      disposeOnClickOut: config.disposeOnClickOut || DEFAULT_CONFIG.disposeOnClickOut,
+      disposeOnClickOut:
+        config.disposeOnClickOut || DEFAULT_CONFIG.disposeOnClickOut,
     } as OverlayConfig);
 
     return overlayConfig;
@@ -65,7 +63,11 @@ export class DialogService {
     return new PortalInjector(this.injector, injectionTokens);
   }
 
-  private createComponentPortal(component: any, data: any, dialog: Dialog): ComponentPortal<any> {
+  private createComponentPortal(
+    component: any,
+    data: any,
+    dialog: Dialog
+  ): ComponentPortal<any> {
     const injector = this.createInjector(data, dialog);
     return new ComponentPortal(component, null, injector);
   }
