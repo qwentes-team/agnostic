@@ -176,9 +176,7 @@ describe('FabComponent', () => {
       it('should set position: absolute to the ag-fab', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
-        expect(fabDebugger.nativeElement.getAttribute('fixed')).toBe(
-          'false'
-        );
+        expect(fabDebugger.nativeElement.getAttribute('fixed')).toBe('false');
       });
     });
   });

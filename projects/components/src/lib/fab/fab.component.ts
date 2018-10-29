@@ -14,10 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabComponent implements OnInit {
-  constructor(
-    @Attribute('position') public position,
-    @Attribute('fixed') public fixed
-  ) {}
+  constructor(@Attribute('position') public position, @Attribute('fixed') public fixed) {}
 
   ngOnInit() {}
 }
