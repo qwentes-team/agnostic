@@ -21,6 +21,7 @@ ag-fab {
   left: var(--ag-fab-position-left);
   transform: translate(-50%, -50%);
   font-family: var(--ag-fab-font-family);
+  text-transform: uppercase;
   
   .ag-fab__icon {
     box-sizing: border-box;
