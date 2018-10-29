@@ -9,7 +9,7 @@ import { Dialog } from './dialog.model';
 import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
-  selector: 'dialog-modal',
+  selector: 'ag-dialog-modal',
   template: `
     <ag-modal>
       <ag-modal-header>header
@@ -41,7 +41,7 @@ export class DialogModalComponent {
 }
 
 @Component({
-  selector: 'modal-story',
+  selector: 'ag-modal-story',
   template: `
     <button (click)="openModal()">open modal</button>
     <div>
@@ -64,7 +64,7 @@ export class ModalStoryComponent {
 }
 
 @Component({
-  selector: 'dialog-popup',
+  selector: 'ag-dialog-popup',
   template: `
     <ag-popup>
       <div>
@@ -94,7 +94,7 @@ export class DialogPopupComponent {
 }
 
 @Component({
-  selector: 'popup-story',
+  selector: 'ag-popup-story',
   template: `
     <button (click)="openPopup()">open popup</button>
     <div>
@@ -139,8 +139,8 @@ storiesOf('Dialog', module)
   )
   .addDecorator(withNotes)
   .add('Popup', () => ({
-    template: `<popup-story></popup-story>`
+    template: `<ag-popup-story></ag-popup-story>`
   }))
   .add('Modal', () => ({
-    template: `<modal-story></modal-story>`
+    template: `<ag-modal-story></ag-modal-story>`
   }));

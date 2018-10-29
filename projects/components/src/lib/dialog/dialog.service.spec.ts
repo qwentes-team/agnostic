@@ -7,9 +7,9 @@ import { ModalComponent } from './modal/modal.component';
 import { PopupComponent } from './popup/popup.component';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
-const MOCK_INJECTION = {REF: [], DATA: [1, 2, 3, 4]}
+const MOCK_INJECTION = {REF: [], DATA: [1, 2, 3, 4]};
 
-@Component({selector: 'test-dialog', template: '<ag-popup>test dialog</ag-popup>'})
+@Component({selector: 'ag-test-dialog', template: '<ag-popup>test dialog</ag-popup>'})
 class TestDialogComponent {
   constructor(
     @Inject(DIALOG_REF) private dialogRef: Dialog,
@@ -38,7 +38,7 @@ describe('DialogService', () => {
       }
     });
     service = TestBed.get(DialogService);
-  }
+  };
 
   afterEach(() => {
     dialog = null;

@@ -19,7 +19,9 @@ describe('ChipComponent', () => {
   const getChipDebugger = () => getChildDebugElement('ag-chip').from(hostFixture);
 
   afterEach(() => {
-    hostFixture && hostFixture.destroy && hostFixture.destroy();
+    if (hostFixture && hostFixture.destroy) {
+      hostFixture.destroy();
+    }
     hostFixture = null;
     hostComponent = null;
     hostElement = null;

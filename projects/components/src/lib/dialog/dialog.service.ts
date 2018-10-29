@@ -8,8 +8,8 @@ export const DIALOG_DATA = new InjectionToken<any>('DIALOG_DATA');
 export const DIALOG_REF = new InjectionToken<Dialog>('DIALOG_REF');
 
 export interface DialogConfig extends OverlayConfig {
-  data?: any,
-  disposeOnClickOut?: boolean
+  data?: any;
+  disposeOnClickOut?: boolean;
 }
 
 const DEFAULT_CONFIG: DialogConfig = {

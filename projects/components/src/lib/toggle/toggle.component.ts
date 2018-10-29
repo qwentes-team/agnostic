@@ -102,9 +102,9 @@ export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges 
 
   // Function to call when the changes.
   onChange = (value: boolean | string) => {
-  };
+  }
 
   // Function to call when the input is touched (when a star is clicked).
   onTouched = () => {
-  };
+  }
 }

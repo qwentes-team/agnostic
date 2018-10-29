@@ -14,12 +14,14 @@ describe('ButtonComponent', () => {
     hostFixture = TestBed.createComponent(HostComponentClass);
     hostComponent = hostFixture.componentInstance;
     hostElement = hostFixture.nativeElement;
-  }
+  };
 
   const getButtonDebugger = () => getChildDebugElement('ag-button').from(hostFixture);
 
   afterEach(() => {
-    hostFixture && hostFixture.destroy && hostFixture.destroy();
+    if (hostFixture && hostFixture.destroy) {
+      hostFixture.destroy();
+    }
     hostFixture = null;
     hostComponent = null;
     hostElement = null;
@@ -105,7 +107,7 @@ describe('ButtonComponent', () => {
   describe('[disabled]', () => {
     @Component({template: '<ag-button [disabled]="isDisabled">Foo</ag-button>'})
     class TestHostComponent {
-      public isDisabled: boolean = true;
+      public isDisabled = true;
     }
 
     beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));

@@ -22,12 +22,14 @@ describe('ModalComponent', () => {
     hostFixture = TestBed.createComponent(HostComponentClass);
     hostComponent = hostFixture.componentInstance;
     hostElement = hostFixture.nativeElement;
-  }
+  };
 
   const getModalDebugger = () => getChildDebugElement('ag-modal').from(hostFixture);
 
   afterEach(() => {
-    hostFixture && hostFixture.destroy && hostFixture.destroy();
+    if (hostFixture && hostFixture.destroy) {
+      hostFixture.destroy();
+    }
     hostFixture = null;
     hostComponent = null;
     hostElement = null;

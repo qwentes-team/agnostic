@@ -43,7 +43,7 @@ storiesOf('Button', module)
     notes: `
       [expand=block]
       Full-width button with rounded corners.
-      
+
       [expand=full]
       Full-width button with square corners and no border on the left or right.
     `
