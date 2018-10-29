@@ -8,5 +8,4 @@ import {DialogModule} from './dialog/dialog.module';
   imports: [ToggleModule, ButtonModule, ChipModule, DialogModule],
   exports: [ToggleModule, ButtonModule, ChipModule, DialogModule],
 })
-export class ComponentsModule {
-}
+export class ComponentsModule {}
