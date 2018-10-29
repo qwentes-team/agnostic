@@ -9,6 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)\"",
     "storybook:dev": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-dist"
   },
