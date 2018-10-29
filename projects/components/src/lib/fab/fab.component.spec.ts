@@ -32,6 +32,24 @@ describe('FabComponent', () => {
   });
 
   describe('transclude', () => {
+    describe('default', () => {
+      @Component({
+        template: '<ag-fab>Test</ag-fab>',
+      })
+      class TestHostComponent {}
+
+      beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+      fit('should transclude the default content', () => {
+        hostFixture.detectChanges();
+        fabDebugger = getFabDebugger();
+        const defaultTransclude = fabDebugger.nativeElement.querySelector(
+          '.ag-fab__icon'
+        );
+        expect(defaultTransclude.innerText).toBe('TEST');
+      });
+    });
+
     describe('[position=before]', () => {
       @Component({
         template: '<ag-fab><span position="before">Test before</span></ag-fab>',
