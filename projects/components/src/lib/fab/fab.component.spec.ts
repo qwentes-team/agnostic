@@ -40,7 +40,7 @@ describe('FabComponent', () => {
 
       beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
 
-      fit('should transclude the default content', () => {
+      it('should transclude the default content', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
         const defaultTransclude = fabDebugger.nativeElement.querySelector(
@@ -58,7 +58,7 @@ describe('FabComponent', () => {
 
       beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
 
-      fit('should transclude before the .ag-fab__icon element', () => {
+      it('should transclude before the .ag-fab__icon element', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
         const defaultTransclude = fabDebugger.nativeElement.querySelector(
@@ -78,7 +78,7 @@ describe('FabComponent', () => {
 
       beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
 
-      fit('should transclude after the .ag-fab__icon element', () => {
+      it('should transclude after the .ag-fab__icon element', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
         const defaultTransclude = fabDebugger.nativeElement.querySelector(
@@ -91,5 +91,73 @@ describe('FabComponent', () => {
     });
   });
 
-  describe('position', () => {});
+  describe('position', () => {
+    describe('[position=top-left]', () => {
+      @Component({
+        template: '<ag-fab position="top-left">Test</ag-fab>',
+      })
+      class TestHostComponent {}
+
+      beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+      it('should display the fab in position top/left on the screen', () => {
+        hostFixture.detectChanges();
+        fabDebugger = getFabDebugger();
+        expect(fabDebugger.nativeElement.getAttribute('position')).toBe(
+          'top-left'
+        );
+      });
+    });
+
+    describe('[position=top-right]', () => {
+      @Component({
+        template: '<ag-fab position="top-right">Test</ag-fab>',
+      })
+      class TestHostComponent {}
+
+      beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+      it('should display the fab in position top/right on the screen', () => {
+        hostFixture.detectChanges();
+        fabDebugger = getFabDebugger();
+        expect(fabDebugger.nativeElement.getAttribute('position')).toBe(
+          'top-right'
+        );
+      });
+    });
+
+    describe('[position=bottom-left]', () => {
+      @Component({
+        template: '<ag-fab position="bottom-left">Test</ag-fab>',
+      })
+      class TestHostComponent {}
+
+      beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+      it('should display the fab in position bottom/left on the screen', () => {
+        hostFixture.detectChanges();
+        fabDebugger = getFabDebugger();
+        expect(fabDebugger.nativeElement.getAttribute('position')).toBe(
+          'bottom-left'
+        );
+      });
+    });
+
+    describe('[position=bottom-right]', () => {
+      @Component({
+        template: '<ag-fab position="bottom-right">Test</ag-fab>',
+      })
+      class TestHostComponent {}
+
+      beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+      it('should display the fab in position bottom/right on the screen', () => {
+        hostFixture.detectChanges();
+        fabDebugger = getFabDebugger();
+        expect(fabDebugger.nativeElement.getAttribute('position')).toBe(
+          'bottom-right'
+        );
+      });
+    });
+  });
 });
