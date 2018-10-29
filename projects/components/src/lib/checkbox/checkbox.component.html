@@ -1,0 +1,16 @@
+<label class="ag-checkbox--label">
+  <ng-content select="[position=before]"></ng-content>
+  <div class="ag-checkbox--container">
+    <input
+      class="ag-checkbox__input"
+      [ngClass]="{'ag-checkbox--disabled': disabled}"
+      type="checkbox"
+      [name]="name"
+      [value]="value"
+      [checked]="checked"
+      [disabled]="disabled"
+      (change)="emitToNgModel($event)">
+    <span class="ag-checkbox__checkmark"></span>
+  </div>
+  <ng-content select="[position=after]"></ng-content>
+</label>
