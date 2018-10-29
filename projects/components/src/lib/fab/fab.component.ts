@@ -1,4 +1,10 @@
-import { Attribute, ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Attribute,
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'ag-fab',
@@ -8,12 +14,7 @@ import { Attribute, ChangeDetectionStrategy, Component, OnInit, ViewEncapsulatio
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FabComponent implements OnInit {
+  constructor(@Attribute('position') public position) {}
 
-  constructor(
-    @Attribute('position') public position,
-  ) { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
