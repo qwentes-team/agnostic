@@ -1,9 +1,10 @@
 import {
   Attribute,
   ChangeDetectionStrategy,
-  Component, HostBinding,
+  Component,
+  HostBinding,
   Input,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 
 export type ButtonExpand = 'block' | 'full';
@@ -18,16 +19,17 @@ export type ButtonShape = 'round';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  @Input() public disabled: boolean = false;
+  @Input()
+  public disabled = false;
 
-  @HostBinding('attr.disabled') get disabledValue() {
+  @HostBinding('attr.disabled')
+  get disabledValue() {
     return this.disabled ? true : null;
   }
 
   constructor(
     @Attribute('expand') public expand,
     @Attribute('fill') public fill,
-    @Attribute('shape') public shape,
-  ) {
-  }
+    @Attribute('shape') public shape
+  ) {}
 }

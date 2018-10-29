@@ -15,5 +15,7 @@ console.log(colors.green(`Projects: ${directories.join(', ')}\n`));
 
 build(directories, {version, skipTest: skipTest})
   .then(() => createMainPackageJson(mainPackageJsonPath, version))
-  .then(({version}) => console.log(colors.green.bold(`\n@qwentes/agnostic@${version}`)))
+  .then(({version}) =>
+    console.log(colors.green.bold(`\n@qwentes/agnostic@${version}`))
+  )
   .catch(console.log);

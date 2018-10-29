@@ -9,7 +9,7 @@ import {
   forwardRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export type ToggleTheme = 'material' | 'ios';
 export type ToggleType = 'checkbox' | 'radio';
@@ -22,29 +22,43 @@ export type ToggleBoolean = boolean | 'true' | 'false';
   styleUrls: ['./toggle.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => ToggleComponent),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ToggleComponent),
+      multi: true,
+    },
+  ],
 })
-export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges {
-  @Input() public name: string;
-  @Input() public formControlName: string;
-  @Input() public value: any;
-  @Input() public checked: ToggleBoolean;
-  @Input() public disabled: ToggleBoolean;
-  @Input() public required: ToggleBoolean;
-  @Input() public type: ToggleType = 'checkbox';
-  @Input() public theme: ToggleTheme = 'material';
-  @Input() public position: TogglePosition = 'before';
+export class ToggleComponent
+  implements ControlValueAccessor, OnInit, OnChanges {
+  @Input()
+  public name: string;
+  @Input()
+  public formControlName: string;
+  @Input()
+  public value: any;
+  @Input()
+  public checked: ToggleBoolean;
+  @Input()
+  public disabled: ToggleBoolean;
+  @Input()
+  public required: ToggleBoolean;
+  @Input()
+  public type: ToggleType = 'checkbox';
+  @Input()
+  public theme: ToggleTheme = 'material';
+  @Input()
+  public position: TogglePosition = 'before';
   private isCheckbox: boolean;
 
-  @HostBinding('attr.theme') get themeType() {
+  @HostBinding('attr.theme')
+  get themeType() {
     return this.theme;
   }
 
-  @HostBinding('attr.position') get positionType() {
+  @HostBinding('attr.position')
+  get positionType() {
     return this.position;
   }
 
@@ -52,7 +66,13 @@ export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges 
     this.isCheckbox = this.type === 'checkbox';
   }
 
-  public ngOnChanges({checked, disabled, required, formControlName, type}: SimpleChanges) {
+  public ngOnChanges({
+    checked,
+    disabled,
+    required,
+    formControlName,
+    type,
+  }: SimpleChanges) {
     if (formControlName) {
       this.name = formControlName.currentValue;
     }
@@ -101,10 +121,8 @@ export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges 
   }
 
   // Function to call when the changes.
-  onChange = (value: boolean | string) => {
-  };
+  onChange = (value: boolean | string) => {};
 
   // Function to call when the input is touched (when a star is clicked).
-  onTouched = () => {
-  };
+  onTouched = () => {};
 }

@@ -1,5 +1,5 @@
 ag-fab {
-  --ag-fab-gap: 16px;
+  --ag-fab-gap: 12px;
   --ag-fab-min-size: 50px;
   --ag-fab-border-radius: 40px;
   --ag-fab-background-color: rgba(0, 0, 0, .1);
@@ -13,7 +13,6 @@ ag-fab {
   --ag-fab-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   
   cursor: pointer;
-  box-sizing: border-box;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -21,23 +20,30 @@ ag-fab {
   top: var(--ag-fab-position-top);
   left: var(--ag-fab-position-left);
   transform: translate(-50%, -50%);
-  transform-origin: center;
-  min-width:var(--ag-fab-min-size);
-  box-shadow: var(--ag-fab-box-shadow);
-  background-color: var(--ag-fab-background-color);
-  padding: var(--ag-fab-gap);
-  border-radius: var(--ag-fab-border-radius);
   font-family: var(--ag-fab-font-family);
-  transition: background-color .3s ease, box-shadow .3s ease;
   
-  &:hover {
-    background-color: var(--ag-fab-background-color-hover);
-    box-shadow: var(--ag-fab-box-shadow-hover);
-  }
+  .ag-fab__icon {
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: var(--ag-fab-min-size);
+    min-height: var(--ag-fab-min-size);
+    padding: var(--ag-fab-gap);
+    box-shadow: var(--ag-fab-box-shadow);
+    background-color: var(--ag-fab-background-color);
+    border-radius: var(--ag-fab-border-radius);
+    transition: background-color .3s ease, box-shadow .3s ease;
+    
+    &:hover {
+      background-color: var(--ag-fab-background-color-hover);
+      box-shadow: var(--ag-fab-box-shadow-hover);
+    }
   
-  &:active {
-    background-color: var(--ag-fab-background-color-active);
-    box-shadow: var(--ag-fab-box-shadow-active);
+    &:active {
+      background-color: var(--ag-fab-background-color-active);
+      box-shadow: var(--ag-fab-box-shadow-active);
+    }
   }
   
   &[position="top-left"],
@@ -69,5 +75,12 @@ ag-fab {
     left: auto;
     bottom: var(--ag-fab-gap);
     right: var(--ag-fab-gap);
+  }
+  
+  & [position="before"] {
+    padding-right: var(--ag-fab-gap);
+  }
+  & [position="after"] {
+    padding-left: var(--ag-fab-gap);
   }
 }
