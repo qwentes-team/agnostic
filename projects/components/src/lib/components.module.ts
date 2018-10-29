@@ -6,8 +6,19 @@ import {DialogModule} from './dialog/dialog.module';
 import {CheckboxModule} from './checkbox/checkbox.module';
 
 @NgModule({
-  imports: [ToggleModule, ButtonModule, ChipModule, DialogModule, CheckboxModule],
-  exports: [ToggleModule, ButtonModule, ChipModule, DialogModule, CheckboxModule],
+  imports: [
+    ToggleModule,
+    ButtonModule,
+    ChipModule,
+    DialogModule,
+    CheckboxModule,
+  ],
+  exports: [
+    ToggleModule,
+    ButtonModule,
+    ChipModule,
+    DialogModule,
+    CheckboxModule,
+  ],
 })
-export class ComponentsModule {
-}
+export class ComponentsModule {}

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CheckboxComponent } from './checkbox.component';
+import {CheckboxComponent} from './checkbox.component';
 
 describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
@@ -8,9 +8,8 @@ describe('CheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxComponent ]
-    })
-    .compileComponents();
+      declarations: [CheckboxComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
-import { CheckboxComponent } from './checkbox.component';
+import {CheckboxComponent} from './checkbox.component';
 
 storiesOf('Checkbox', module)
   .addDecorator(
