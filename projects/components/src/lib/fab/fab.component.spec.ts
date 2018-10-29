@@ -160,4 +160,26 @@ describe('FabComponent', () => {
       });
     });
   });
+
+  describe('fixed', () => {
+    describe('[fixed="false"]', () => {
+      @Component({
+        template: `
+          <div style="position: relative; height: 200px">
+            <ag-fab fixed="false">Test</ag-fab>
+          </div>`,
+      })
+      class TestHostComponent {}
+
+      beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+      it('should set position: absolute to the ag-fab', () => {
+        hostFixture.detectChanges();
+        fabDebugger = getFabDebugger();
+        expect(fabDebugger.nativeElement.getAttribute('fixed')).toBe(
+          'false'
+        );
+      });
+    });
+  });
 });

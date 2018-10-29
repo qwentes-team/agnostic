@@ -9,9 +9,15 @@ storiesOf('Fab', module)
   )
   .add('Demo', () => ({
     template: `
-      <div>
-        <h3 style="text-align: center">Demo</h3>
-        <ag-fab>X</ag-fab>
+      <h3 style="text-align: center">Demo</h3>
+      <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <div style="position: relative; height: 300px; width: 300px; border: 1px solid #ccc;">
+          <ag-fab fixed="false">X</ag-fab>
+          <ag-fab fixed="false" position="top-left">X</ag-fab>
+          <ag-fab fixed="false" position="top-right">X</ag-fab>
+          <ag-fab fixed="false" position="bottom-left">X</ag-fab>
+          <ag-fab fixed="false" position="bottom-right">X</ag-fab>
+        </div>
         <ag-fab position="top-left">
           X
           <span position="after">top / left</span>
@@ -34,7 +40,7 @@ storiesOf('Fab', module)
   .add('Default', () => ({
     template: `
       <div>
-        <h3>Default</h3>
+        <h3 style="text-align: center">Default</h3>
         <ag-fab>X</ag-fab>
       </div>
     `,
@@ -42,7 +48,7 @@ storiesOf('Fab', module)
   .add('Transclude', () => ({
     template: `
       <div>
-        <h3>Transclude</h3>
+        <h3 style="text-align: center">Transclude</h3>
         <ag-fab>
           X
           <span position="before">Before Text</span>
@@ -59,6 +65,20 @@ storiesOf('Fab', module)
         <ag-fab position="top-right">X</ag-fab>
         <ag-fab position="bottom-left">X</ag-fab>
         <ag-fab position="bottom-right">X</ag-fab>
+      </div>
+    `,
+  }))
+  .add('No fixed', () => ({
+    template: `
+      <div>
+        <h3 style="text-align: center">No fixed</h3>
+        <div style="position: relative; height: 200px; border: 1px solid #ccc">
+          <ag-fab fixed="false">Test</ag-fab>
+          <ag-fab fixed="false" position="top-left">X</ag-fab>
+          <ag-fab fixed="false" position="top-right">X</ag-fab>
+          <ag-fab fixed="false" position="bottom-left">X</ag-fab>
+          <ag-fab fixed="false" position="bottom-right">X</ag-fab>
+        </div>
       </div>
     `,
   }));
