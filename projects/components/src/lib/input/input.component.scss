@@ -1,0 +1,34 @@
+ag-input {
+  --ag-input-border-radius: 2px;
+  --ag-input-gap: 8px;
+  --ag-input-border: 1px solid rgba(0, 0, 0, .2);
+  --ag-input-box-shadow-focus: 0 0 1px 1px rgba(0, 0, 0, .1);
+  --ag-input-font-size: 14px;
+  --ag-input-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  
+  display: block;
+  width: 100%;
+  font-size: var(--ag-input-font-size);
+  font-family: var(--ag-input-font-family);
+  input {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: var(--ag-input-border-radius);
+    padding: calc(var(--ag-input-gap) * 2);
+    font-size: var(--ag-input-font-size);
+    border: var(--ag-input-border);
+    outline: none;
+    appearance: none;
+    box-shadow: none;
+    transition: box-shadow .3s ease;
+    
+    &:focus {
+      box-shadow: var(--ag-input-box-shadow-focus);
+    }
+  }
+  
+  .ag-input__label {
+    margin-bottom: var(--ag-input-gap);
+  }
+}
