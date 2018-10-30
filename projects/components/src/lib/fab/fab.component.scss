@@ -1,0 +1,93 @@
+ag-fab {
+  --ag-fab-gap: 12px;
+  --ag-fab-min-size: 50px;
+  --ag-fab-border-radius: 40px;
+  --ag-fab-background-color: #DFDFDF;
+  --ag-fab-background-color-hover: #EEEDEB;
+  --ag-fab-background-color-active: #CECECE;
+  --ag-fab-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  --ag-fab-box-shadow-hover: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+  --ag-fab-box-shadow-active: 0 7px 8px -4px rgba(0,0,0,.2), 0 12px 17px 2px rgba(0,0,0,.14), 0 5px 22px 4px rgba(0,0,0,.12);
+  --ag-fab-position-top: 50%;
+  --ag-fab-position-left: 50%;
+  --ag-fab-z-index: 5;
+  --ag-fab-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: var(--ag-fab-z-index);
+  top: var(--ag-fab-position-top);
+  left: var(--ag-fab-position-left);
+  transform: translate(-50%, -50%);
+  font-family: var(--ag-fab-font-family);
+  text-transform: uppercase;
+  
+  .ag-fab__icon {
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: var(--ag-fab-min-size);
+    min-height: var(--ag-fab-min-size);
+    padding: var(--ag-fab-gap);
+    box-shadow: var(--ag-fab-box-shadow);
+    background-color: var(--ag-fab-background-color);
+    border-radius: var(--ag-fab-border-radius);
+    transition: background-color .3s ease, box-shadow .3s ease;
+    
+    &:hover {
+      background-color: var(--ag-fab-background-color-hover);
+      box-shadow: var(--ag-fab-box-shadow-hover);
+    }
+  
+    &:active {
+      background-color: var(--ag-fab-background-color-active);
+      box-shadow: var(--ag-fab-box-shadow-active);
+    }
+  }
+  
+  &[position="top-left"],
+  &[position="top-right"],
+  &[position="bottom-left"],
+  &[position="bottom-right"] {
+    transform: translate(0, 0);
+  }
+  
+  &[position="top-left"] {
+    top: var(--ag-fab-gap);
+    left: var(--ag-fab-gap);
+  }
+  
+  &[position="top-right"] {
+    left: auto;
+    top: var(--ag-fab-gap);
+    right: var(--ag-fab-gap);
+  }
+  
+  &[position="bottom-left"] {
+    top: auto;
+    bottom: var(--ag-fab-gap);
+    left: var(--ag-fab-gap);
+  }
+  
+  &[position="bottom-right"] {
+    top: auto;
+    left: auto;
+    bottom: var(--ag-fab-gap);
+    right: var(--ag-fab-gap);
+  }
+  
+  &[fixed="false"] {
+    position: absolute;
+  }
+  
+  & [position="before"] {
+    padding-right: var(--ag-fab-gap);
+  }
+  & [position="after"] {
+    padding-left: var(--ag-fab-gap);
+  }
+}
