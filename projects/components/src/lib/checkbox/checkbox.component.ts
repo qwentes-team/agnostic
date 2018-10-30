@@ -2,15 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   forwardRef,
+  HostBinding,
   Input,
   OnChanges,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export type ToggleBoolean = boolean | 'true' | 'false';
-export type ToggleTheme = boolean | 'ios' | 'material';
 
 @Component({
   selector: 'ag-checkbox',
@@ -32,13 +32,13 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
   @Input()
   public disabled: ToggleBoolean;
   @Input()
-  public theme: ToggleTheme = 'material';
-  @Input()
   public checked: ToggleBoolean;
   @Input()
   public value: any;
 
-  constructor() {}
+  constructor() {
+  }
+
 
   public ngOnChanges({disabled, checked, formControlName}: SimpleChanges) {
     if (formControlName) {
@@ -78,7 +78,9 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
     this.onChange(event.target.checked);
   }
 
-  onTouched = () => {};
+  onTouched = () => {
+  };
 
-  onChange = (value: boolean | string) => {};
+  onChange = (value: boolean | string) => {
+  };
 }
