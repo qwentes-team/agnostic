@@ -2,7 +2,6 @@
   "linters": {
     "**/*.+(js|ts)": [
       "tslint",
-      "prettier --write",
       "git add"
     ]
   }
