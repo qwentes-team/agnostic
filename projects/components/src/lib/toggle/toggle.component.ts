@@ -95,7 +95,9 @@ export class ToggleComponent
   // Update the model and changes needed for the view here.
   writeValue(value: any): void {
     this.checked = typeof value === 'boolean' ? value : this.value === value;
-    this.emitToNgModel({target: {value: (this.value || value), checked: this.checked}});
+    this.emitToNgModel({
+      target: {value: this.value || value, checked: this.checked},
+    });
   }
 
   // Allows Angular to register a function to call when the model changes.
