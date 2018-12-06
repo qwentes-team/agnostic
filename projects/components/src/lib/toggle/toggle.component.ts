@@ -3,7 +3,6 @@ import {
   Component,
   HostBinding,
   Input,
-  OnInit,
   OnChanges,
   SimpleChanges,
   forwardRef,
@@ -31,24 +30,30 @@ export type ToggleBoolean = boolean | 'true' | 'false';
     },
   ],
 })
-export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges {
+export class ToggleComponent implements ControlValueAccessor, OnChanges {
   @Input()
   public name: string;
+
   @Input()
   public value: any;
+
   @Input()
   public checked: ToggleBoolean;
+
   @Input()
   public disabled: ToggleBoolean;
+
   @Input()
   public required: ToggleBoolean;
+
   @Input()
   public type: ToggleType = 'checkbox';
+
   @Input()
   public theme: ToggleTheme = 'material';
+
   @Input()
   public position: TogglePosition = 'before';
-  private isCheckbox: boolean;
 
   @HostBinding('attr.theme')
   get themeType() {
@@ -61,10 +66,6 @@ export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges 
   }
 
   constructor(private cd: ChangeDetectorRef) {}
-
-  public ngOnInit() {
-    this.isCheckbox = this.type === 'checkbox';
-  }
 
   public ngOnChanges({checked, disabled, required, type}: SimpleChanges) {
     if (checked) {
@@ -83,11 +84,10 @@ export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges 
   }
 
   private updateValue(event): boolean | any {
-    const value = this.isCheckbox ? event.target.checked : event.target.value;
-    this.value = value;
+    this.value = event.target.value;
     this.checked = !!event.target.checked;
     this.cd.detectChanges();
-    return value;
+    return this.checked;
   }
 
   // Allows Angular to update the model.

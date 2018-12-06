@@ -224,7 +224,7 @@ describe('ToggleComponent', () => {
     });
   });
 
-  fdescribe('[formControl]', () => {
+  describe('[formControl]', () => {
     @Component({
       template: `
         <form [formGroup]="form" novalidate>
