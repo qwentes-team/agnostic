@@ -8,12 +8,9 @@ import {
   SimpleChanges,
   forwardRef,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormControl,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export type ToggleTheme = 'material' | 'ios';
 export type ToggleType = 'checkbox' | 'radio';
@@ -34,14 +31,9 @@ export type ToggleBoolean = boolean | 'true' | 'false';
     },
   ],
 })
-export class ToggleComponent
-  implements ControlValueAccessor, OnInit, OnChanges {
+export class ToggleComponent implements ControlValueAccessor, OnInit, OnChanges {
   @Input()
   public name: string;
-  @Input()
-  public formControlName: string;
-  @Input()
-  public formControl: FormControl;
   @Input()
   public value: any;
   @Input()
@@ -68,21 +60,13 @@ export class ToggleComponent
     return this.position;
   }
 
+  constructor(private cd: ChangeDetectorRef) {}
+
   public ngOnInit() {
     this.isCheckbox = this.type === 'checkbox';
   }
 
-  public ngOnChanges({
-    checked,
-    disabled,
-    required,
-    formControlName,
-    type,
-    formControl,
-  }: SimpleChanges) {
-    if (formControlName) {
-      this.name = formControlName.currentValue;
-    }
+  public ngOnChanges({checked, disabled, required, type}: SimpleChanges) {
     if (checked) {
       this.checked = this.convertToBoolean(checked.currentValue);
     }
@@ -102,6 +86,7 @@ export class ToggleComponent
     const value = this.isCheckbox ? event.target.checked : event.target.value;
     this.value = value;
     this.checked = !!event.target.checked;
+    this.cd.detectChanges();
     return value;
   }
 
@@ -133,7 +118,7 @@ export class ToggleComponent
   emitToNgModel(event: any): void {
     const value = this.updateValue(event);
     // wait angular form changes to be completed
-    setTimeout(() => this.onChange(value));
+    this.onChange(value);
   }
 
   // Function to call when the changes.

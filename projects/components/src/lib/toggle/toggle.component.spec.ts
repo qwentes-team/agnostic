@@ -1,7 +1,8 @@
-import {Component, DebugElement} from '@angular/core';
+import {Component, DebugElement, OnInit} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ToggleComponent} from './toggle.component';
-import {click, getChildDebugElement} from '../../test.shared';
+import {click, getChildDebugElement, updateValueOfInput, updateValueOfSelect} from '../../test.shared';
+import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 describe('ToggleComponent', () => {
   let hostFixture: ComponentFixture<any>;
@@ -11,6 +12,7 @@ describe('ToggleComponent', () => {
 
   const setupBeforeEachTestWithHostComponent = HostComponentClass => {
     TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
       declarations: [ToggleComponent, HostComponentClass],
     });
     hostFixture = TestBed.createComponent(HostComponentClass);
@@ -18,8 +20,7 @@ describe('ToggleComponent', () => {
     hostElement = hostFixture.nativeElement;
   };
 
-  const getToggleDebugger = () =>
-    getChildDebugElement('ag-toggle').from(hostFixture);
+  const getToggleDebugger = () => getChildDebugElement('ag-toggle').from(hostFixture);
 
   afterEach(() => {
     if (hostFixture && hostFixture.destroy) {
@@ -41,9 +42,7 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       const childComponent = toggleDebugger.componentInstance;
-      const childInput: HTMLElement = toggleDebugger.nativeElement.querySelector(
-        'input'
-      );
+      const childInput: HTMLElement = toggleDebugger.nativeElement.querySelector('input');
       expect(childComponent.type).toBe('checkbox');
       expect(childInput.getAttribute('type')).toBe('checkbox');
     });
@@ -53,9 +52,7 @@ describe('ToggleComponent', () => {
       toggleDebugger = getToggleDebugger();
       const childComponent = toggleDebugger.componentInstance;
       expect(childComponent.theme).toBe('material');
-      expect(toggleDebugger.nativeElement.getAttribute('theme')).toBe(
-        'material'
-      );
+      expect(toggleDebugger.nativeElement.getAttribute('theme')).toBe('material');
     });
 
     it('should has default [position]', () => {
@@ -63,9 +60,7 @@ describe('ToggleComponent', () => {
       toggleDebugger = getToggleDebugger();
       const childComponent = toggleDebugger.componentInstance;
       expect(childComponent.position).toBe('before');
-      expect(toggleDebugger.nativeElement.getAttribute('position')).toBe(
-        'before'
-      );
+      expect(toggleDebugger.nativeElement.getAttribute('position')).toBe('before');
     });
   });
 
@@ -79,9 +74,7 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       expect(toggleDebugger.componentInstance.name).toBe('foo');
-      expect(
-        toggleDebugger.nativeElement.querySelector('input').getAttribute('name')
-      ).toBe('foo');
+      expect(toggleDebugger.nativeElement.querySelector('input').getAttribute('name')).toBe('foo');
     });
   });
 
@@ -95,9 +88,7 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       expect(toggleDebugger.componentInstance.value).toBe('bar');
-      expect(toggleDebugger.nativeElement.querySelector('input').value).toBe(
-        'bar'
-      );
+      expect(toggleDebugger.nativeElement.querySelector('input').value).toBe('bar');
     });
   });
 
@@ -111,9 +102,7 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       expect(toggleDebugger.componentInstance.checked).toBe(true);
-      expect(toggleDebugger.nativeElement.querySelector('input').checked).toBe(
-        true
-      );
+      expect(toggleDebugger.nativeElement.querySelector('input').checked).toBe(true);
     });
   });
 
@@ -127,21 +116,15 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       expect(toggleDebugger.componentInstance.disabled).toBe(true);
-      expect(toggleDebugger.nativeElement.querySelector('input').disabled).toBe(
-        true
-      );
+      expect(toggleDebugger.nativeElement.querySelector('input').disabled).toBe(true);
     });
 
     it('should has disabled class', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       const toggleElement: HTMLElement = toggleDebugger.nativeElement;
-      const toggleContainer: HTMLElement = toggleElement.querySelector(
-        '.ag-toggle'
-      );
-      expect(toggleContainer.classList.contains('ag-toggle--disabled')).toBe(
-        true
-      );
+      const toggleContainer: HTMLElement = toggleElement.querySelector('.ag-toggle');
+      expect(toggleContainer.classList.contains('ag-toggle--disabled')).toBe(true);
     });
 
     it('should prevent checked changes', () => {
@@ -149,12 +132,8 @@ describe('ToggleComponent', () => {
       toggleDebugger = getToggleDebugger();
       click(toggleDebugger.nativeElement.querySelector('label'));
       hostFixture.detectChanges();
-      expect(toggleDebugger.nativeElement.querySelector('input').disabled).toBe(
-        true
-      );
-      expect(toggleDebugger.nativeElement.querySelector('input').checked).toBe(
-        false
-      );
+      expect(toggleDebugger.nativeElement.querySelector('input').disabled).toBe(true);
+      expect(toggleDebugger.nativeElement.querySelector('input').checked).toBe(false);
     });
   });
 
@@ -168,9 +147,7 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       expect(toggleDebugger.componentInstance.required).toBe(true);
-      expect(toggleDebugger.nativeElement.querySelector('input').required).toBe(
-        true
-      );
+      expect(toggleDebugger.nativeElement.querySelector('input').required).toBe(true);
     });
   });
 
@@ -184,9 +161,7 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       expect(toggleDebugger.componentInstance.type).toBe('radio');
-      expect(toggleDebugger.nativeElement.querySelector('input').type).toBe(
-        'radio'
-      );
+      expect(toggleDebugger.nativeElement.querySelector('input').type).toBe('radio');
     });
   });
 
@@ -214,16 +189,13 @@ describe('ToggleComponent', () => {
       hostFixture.detectChanges();
       toggleDebugger = getToggleDebugger();
       expect(toggleDebugger.componentInstance.position).toBe('after');
-      expect(toggleDebugger.nativeElement.getAttribute('position')).toBe(
-        'after'
-      );
+      expect(toggleDebugger.nativeElement.getAttribute('position')).toBe('after');
     });
   });
 
   describe('(change)', () => {
     @Component({
-      template:
-        '<ag-toggle name="test" value="foo" (change)="onChangeToggle($event)"></ag-toggle>',
+      template: '<ag-toggle name="test" value="foo" (change)="onChangeToggle($event)"></ag-toggle>',
     })
     class TestHostComponent {
       toggleEvent: Event;
@@ -241,9 +213,7 @@ describe('ToggleComponent', () => {
       spyOn(hostFixture.componentInstance, 'onChangeToggle').and.callThrough();
       click(toggleDebugger.nativeElement.querySelector('label'));
       expect(hostFixture.componentInstance.onChangeToggle).toHaveBeenCalled();
-      expect(hostFixture.componentInstance.onChangeToggle.calls.count()).toBe(
-        1
-      );
+      expect(hostFixture.componentInstance.onChangeToggle.calls.count()).toBe(1);
       expect(hostFixture.componentInstance.toggleEvent.target).toEqual(
         jasmine.objectContaining({
           name: 'test',
@@ -251,6 +221,124 @@ describe('ToggleComponent', () => {
           checked: true,
         })
       );
+    });
+  });
+
+  fdescribe('[formControl]', () => {
+    @Component({
+      template: `
+        <form [formGroup]="form" novalidate>
+          <div formGroupName="item">
+            <select formControlName="language" (change)="onChangeLanguage($event.target.value)">
+              <option *ngFor="let option of selectOptions" [value]="option.id">{{option.label}}</option>
+            </select>
+            <div formGroupName="translations">
+              <div [formGroup]="form.get('item.translations.'+ form.value.item.language)">
+                <ag-toggle
+                  [formControl]="form.get('item.translations.'+ form.value.item.language +'.hasFlag')">
+                </ag-toggle>
+                <input type="text" formControlName="value">
+              </div>
+            </div>
+          </div>
+        </form>
+      `,
+    })
+    class TestHostComponent implements OnInit {
+      form: FormGroup;
+      selectOptions = [{id: 'en', label: 'ENG'}, {id: 'it', label: 'ITA'}, {id: 'fr', label: 'FRA'}];
+
+      constructor(private fb: FormBuilder) {}
+
+      public ngOnInit(): void {
+        this.form = this.fb.group({
+          item: this.fb.group({
+            translations: this.fb.group({
+              en: this.createFormGroupLanguage(),
+            }),
+            language: [this.selectOptions[0].id],
+          }),
+        });
+      }
+
+      public onChangeLanguage(langKey): void {
+        (this.form.get('item.translations') as FormGroup).addControl(langKey, this.createFormGroupLanguage());
+      }
+
+      public createFormGroupLanguage(): FormGroup {
+        return this.fb.group({hasFlag: [false], value: ['']});
+      }
+    }
+
+    beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+    it('should change form value', () => {
+      hostFixture.detectChanges();
+      toggleDebugger = getToggleDebugger();
+      const inputDOM = getChildDebugElement('input[type="text"]').from(hostFixture);
+      const selectDOM = getChildDebugElement('select').from(hostFixture);
+      click(toggleDebugger.nativeElement.querySelector('label'));
+      updateValueOfInput(inputDOM.nativeElement, 'Foo', hostFixture).catch(console.log);
+      expect(toggleDebugger.componentInstance.checked).toBe(true);
+      expect(hostFixture.componentInstance.form.value).toEqual({
+        item: {
+          translations: {
+            en: {hasFlag: true, value: 'Foo'},
+          },
+          language: 'en',
+        },
+      });
+
+      updateValueOfSelect(selectDOM.nativeElement, 'it', hostFixture).catch(console.log);
+      expect(toggleDebugger.componentInstance.checked).toBe(false);
+      expect(inputDOM.nativeElement.value).toBe('');
+      expect(hostFixture.componentInstance.form.value).toEqual({
+        item: {
+          translations: {
+            en: {hasFlag: true, value: 'Foo'},
+            it: {hasFlag: false, value: ''},
+          },
+          language: 'it',
+        },
+      });
+
+      click(toggleDebugger.nativeElement.querySelector('label'));
+      updateValueOfInput(inputDOM.nativeElement, 'Bar', hostFixture).catch(console.log);
+      expect(toggleDebugger.componentInstance.checked).toBe(true);
+      expect(hostFixture.componentInstance.form.value).toEqual({
+        item: {
+          translations: {
+            en: {hasFlag: true, value: 'Foo'},
+            it: {hasFlag: true, value: 'Bar'},
+          },
+          language: 'it',
+        },
+      });
+
+      click(toggleDebugger.nativeElement.querySelector('label'));
+      updateValueOfInput(inputDOM.nativeElement, 'Baz', hostFixture).catch(console.log);
+      expect(toggleDebugger.componentInstance.checked).toBe(false);
+      expect(hostFixture.componentInstance.form.value).toEqual({
+        item: {
+          translations: {
+            en: {hasFlag: true, value: 'Foo'},
+            it: {hasFlag: false, value: 'Baz'},
+          },
+          language: 'it',
+        },
+      });
+
+      updateValueOfSelect(selectDOM.nativeElement, 'en', hostFixture).catch(console.log);
+      expect(toggleDebugger.componentInstance.checked).toBe(true);
+      expect(hostFixture.componentInstance.form.value).toEqual({
+        item: {
+          translations: {
+            en: {hasFlag: true, value: 'Foo'},
+            it: {hasFlag: false, value: 'Baz'},
+          },
+          language: 'en',
+        },
+      });
     });
   });
 });
