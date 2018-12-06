@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   forwardRef,
   HostBinding,
@@ -8,7 +9,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export type ToggleBoolean = boolean | 'true' | 'false';
 
@@ -36,9 +37,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
   @Input()
   public value: any;
 
-  constructor() {
-  }
-
+  constructor(private cd: ChangeDetectorRef) {}
 
   public ngOnChanges({disabled, checked, formControlName}: SimpleChanges) {
     if (formControlName) {
@@ -56,31 +55,37 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
     return value === 'false' ? false : !!value;
   }
 
-  writeValue(value: any): void {
-    this.checked = typeof value === 'boolean' ? value : this.value === value;
-    console.log('qui', this.checked);
-    this.emitToNgModel({target: {value: this.value, checked: this.checked}});
+  public writeValue(value: any): void {
+    this.updateValue({
+      target: {value, checked: this.convertToBoolean(value)},
+    });
   }
 
-  registerOnChange(fn: (value: boolean | any) => void): void {
+  public registerOnChange(fn: (value: boolean | any) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => void): void {
+  public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
-  setDisabledState(disabled: ToggleBoolean): void {
+  public setDisabledState(disabled: ToggleBoolean): void {
     this.disabled = this.convertToBoolean(disabled);
   }
 
-  emitToNgModel(event: any): void {
-    this.onChange(event.target.checked);
+  public emitToNgModel(event: any): void {
+    const value = this.updateValue(event);
+    this.onChange(value);
   }
 
-  onTouched = () => {
-  };
+  public onChange = (value: boolean | string) => {};
 
-  onChange = (value: boolean | string) => {
-  };
+  private onTouched = () => {};
+
+  private updateValue(event): boolean | any {
+    this.value = event.target.value;
+    this.checked = !!event.target.checked;
+    this.cd.detectChanges();
+    return this.checked;
+  }
 }
