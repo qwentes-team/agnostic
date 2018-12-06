@@ -14,10 +14,7 @@ const MOCK_INJECTION = {REF: [], DATA: [1, 2, 3, 4]};
   template: '<ag-popup>test dialog</ag-popup>',
 })
 class TestDialogComponent {
-  constructor(
-    @Inject(DIALOG_REF) private dialogRef: Dialog,
-    @Inject(DIALOG_DATA) private dialogData: any
-  ) {}
+  constructor(@Inject(DIALOG_REF) private dialogRef: Dialog, @Inject(DIALOG_DATA) private dialogData: any) {}
 }
 
 // @TODO: fix tests!!!
@@ -64,9 +61,7 @@ xdescribe('DialogService', () => {
     it('should create an overlay dialog with data injection', done => {
       dialog = service.open(TestDialogComponent);
       dialog.afterClosed().subscribe(() => done());
-      expect(TestBed.get(TestDialogComponent).dialogData).toEqual(
-        MOCK_INJECTION.DATA
-      );
+      expect(TestBed.get(TestDialogComponent).dialogData).toEqual(MOCK_INJECTION.DATA);
       dialog.close();
     });
   });

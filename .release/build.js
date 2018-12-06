@@ -10,15 +10,7 @@ exports.build = (directories, options = {}) => {
   const activeDirectory = directories[0];
   const packageJsonPath = `${__dirname}/../dist/${activeDirectory}/package.json`;
   const commands = {
-    test:
-      !options.skipTest &&
-      commandModel('npm', [
-        'run',
-        'test',
-        activeDirectory,
-        '--',
-        '--watch=false',
-      ]),
+    test: !options.skipTest && commandModel('npm', ['run', 'test', activeDirectory, '--', '--watch=false']),
     build: commandModel('npm', ['run', 'build', activeDirectory]),
   };
 
@@ -26,9 +18,7 @@ exports.build = (directories, options = {}) => {
     .then(() => replacePackageJsonVersion(packageJsonPath, options.version))
     .then(({message}) => {
       console.log(colors.cyan(message));
-      const directoriesToBuild = directories.filter(
-        dir => dir !== activeDirectory
-      );
+      const directoriesToBuild = directories.filter(dir => dir !== activeDirectory);
       return exports.build(directoriesToBuild, options);
     })
     .catch(e => Promise.reject(e));

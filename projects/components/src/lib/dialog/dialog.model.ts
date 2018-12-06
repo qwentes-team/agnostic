@@ -21,13 +21,9 @@ export class Dialog {
     this._subscribeOnClose();
     this._shouldDisposeOnClickOut();
     this._onAttachDialog().subscribe(() => {
-      this._overlayRef.overlayElement.classList.add(
-        Dialog.CLASS_DIALOG_CONTENT_SHOWING
-      );
+      this._overlayRef.overlayElement.classList.add(Dialog.CLASS_DIALOG_CONTENT_SHOWING);
       setTimeout(() => {
-        this._overlayRef.backdropElement.classList.add(
-          Dialog.CLASS_DIALOG_BACKDROP_SHOWING
-        );
+        this._overlayRef.backdropElement.classList.add(Dialog.CLASS_DIALOG_BACKDROP_SHOWING);
       });
     });
   }
@@ -47,15 +43,9 @@ export class Dialog {
   }
 
   private _closeTransition(): void {
-    this._observableTransitionEndOf(this._overlayRef.overlayElement).subscribe(
-      () => this._overlayRef.dispose()
-    );
-    this._overlayRef.backdropElement.classList.add(
-      Dialog.CLASS_DIALOG_BACKDROP_CLOSING
-    );
-    this._overlayRef.overlayElement.classList.add(
-      Dialog.CLASS_DIALOG_CONTENT_CLOSING
-    );
+    this._observableTransitionEndOf(this._overlayRef.overlayElement).subscribe(() => this._overlayRef.dispose());
+    this._overlayRef.backdropElement.classList.add(Dialog.CLASS_DIALOG_BACKDROP_CLOSING);
+    this._overlayRef.overlayElement.classList.add(Dialog.CLASS_DIALOG_CONTENT_CLOSING);
   }
 
   public afterClosed(): Observable<any> {

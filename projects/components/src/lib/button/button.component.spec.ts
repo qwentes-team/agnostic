@@ -18,8 +18,7 @@ describe('ButtonComponent', () => {
     hostElement = hostFixture.nativeElement;
   };
 
-  const getButtonDebugger = () =>
-    getChildDebugElement('ag-button').from(hostFixture);
+  const getButtonDebugger = () => getChildDebugElement('ag-button').from(hostFixture);
 
   afterEach(() => {
     if (hostFixture && hostFixture.destroy) {
@@ -41,9 +40,7 @@ describe('ButtonComponent', () => {
       it('should has expand attribute to full', () => {
         hostFixture.detectChanges();
         buttonDebugger = getButtonDebugger();
-        expect(buttonDebugger.nativeElement.getAttribute('expand')).toBe(
-          'full'
-        );
+        expect(buttonDebugger.nativeElement.getAttribute('expand')).toBe('full');
       });
     });
 
@@ -56,9 +53,7 @@ describe('ButtonComponent', () => {
       it('should has expand attribute to block', () => {
         hostFixture.detectChanges();
         buttonDebugger = getButtonDebugger();
-        expect(buttonDebugger.nativeElement.getAttribute('expand')).toBe(
-          'block'
-        );
+        expect(buttonDebugger.nativeElement.getAttribute('expand')).toBe('block');
       });
     });
   });
@@ -86,9 +81,7 @@ describe('ButtonComponent', () => {
       it('should has fill attribute to outline', () => {
         hostFixture.detectChanges();
         buttonDebugger = getButtonDebugger();
-        expect(buttonDebugger.nativeElement.getAttribute('fill')).toBe(
-          'outline'
-        );
+        expect(buttonDebugger.nativeElement.getAttribute('fill')).toBe('outline');
       });
     });
   });
@@ -103,9 +96,7 @@ describe('ButtonComponent', () => {
       it('should has shape attribute to round', () => {
         hostFixture.detectChanges();
         buttonDebugger = getButtonDebugger();
-        expect(buttonDebugger.nativeElement.getAttribute('shape')).toBe(
-          'round'
-        );
+        expect(buttonDebugger.nativeElement.getAttribute('shape')).toBe('round');
       });
     });
   });
@@ -121,14 +112,10 @@ describe('ButtonComponent', () => {
     it('should disable button', () => {
       hostFixture.detectChanges();
       buttonDebugger = getButtonDebugger();
-      expect(
-        window.getComputedStyle(buttonDebugger.nativeElement).pointerEvents
-      ).toBe('none');
+      expect(window.getComputedStyle(buttonDebugger.nativeElement).pointerEvents).toBe('none');
       hostFixture.componentInstance.isDisabled = false;
       hostFixture.detectChanges();
-      expect(
-        window.getComputedStyle(buttonDebugger.nativeElement).pointerEvents
-      ).toBe('auto');
+      expect(window.getComputedStyle(buttonDebugger.nativeElement).pointerEvents).toBe('auto');
     });
   });
 
@@ -142,26 +129,21 @@ describe('ButtonComponent', () => {
       it('should transclude content inside a .ag-button__text element', () => {
         hostFixture.detectChanges();
         buttonDebugger = getButtonDebugger();
-        const defaultTransclude = buttonDebugger.nativeElement.querySelector(
-          '.ag-button__text'
-        );
+        const defaultTransclude = buttonDebugger.nativeElement.querySelector('.ag-button__text');
         expect(defaultTransclude.innerText).toBeTruthy();
       });
 
       it('should transform content in uppercase', () => {
         hostFixture.detectChanges();
         buttonDebugger = getButtonDebugger();
-        const defaultTransclude = buttonDebugger.nativeElement.querySelector(
-          '.ag-button__text'
-        );
+        const defaultTransclude = buttonDebugger.nativeElement.querySelector('.ag-button__text');
         expect(defaultTransclude.innerText).toBe('FOO');
       });
     });
 
     describe('[position=before]', () => {
       @Component({
-        template:
-          '<ag-button><span position="before">bar</span>Foo</ag-button>',
+        template: '<ag-button><span position="before">bar</span>Foo</ag-button>',
       })
       class TestHostComponent {}
 
@@ -170,9 +152,7 @@ describe('ButtonComponent', () => {
       it('should transclude before the .ag-button__text element', () => {
         hostFixture.detectChanges();
         buttonDebugger = getButtonDebugger();
-        const defaultTransclude = buttonDebugger.nativeElement.querySelector(
-          '.ag-button__text'
-        );
+        const defaultTransclude = buttonDebugger.nativeElement.querySelector('.ag-button__text');
         expect(defaultTransclude.previousElementSibling.innerText).toBe('bar');
       });
     });
@@ -188,9 +168,7 @@ describe('ButtonComponent', () => {
       it('should transclude before the .ag-button__text element', () => {
         hostFixture.detectChanges();
         buttonDebugger = getButtonDebugger();
-        const defaultTransclude = buttonDebugger.nativeElement.querySelector(
-          '.ag-button__text'
-        );
+        const defaultTransclude = buttonDebugger.nativeElement.querySelector('.ag-button__text');
         expect(defaultTransclude.nextElementSibling.innerText).toBe('bar');
       });
     });

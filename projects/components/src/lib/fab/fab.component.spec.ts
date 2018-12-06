@@ -43,9 +43,7 @@ describe('FabComponent', () => {
       it('should transclude the default content', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
-        const defaultTransclude = fabDebugger.nativeElement.querySelector(
-          '.ag-fab__icon'
-        );
+        const defaultTransclude = fabDebugger.nativeElement.querySelector('.ag-fab__icon');
         expect(defaultTransclude.innerText).toBe('TEST');
       });
     });
@@ -61,12 +59,8 @@ describe('FabComponent', () => {
       it('should transclude before the .ag-fab__icon element', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
-        const defaultTransclude = fabDebugger.nativeElement.querySelector(
-          '.ag-fab__icon'
-        );
-        expect(defaultTransclude.previousElementSibling.innerText).toBe(
-          'TEST BEFORE'
-        );
+        const defaultTransclude = fabDebugger.nativeElement.querySelector('.ag-fab__icon');
+        expect(defaultTransclude.previousElementSibling.innerText).toBe('TEST BEFORE');
       });
     });
 
@@ -81,12 +75,8 @@ describe('FabComponent', () => {
       it('should transclude after the .ag-fab__icon element', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
-        const defaultTransclude = fabDebugger.nativeElement.querySelector(
-          '.ag-fab__icon'
-        );
-        expect(defaultTransclude.nextElementSibling.innerText).toBe(
-          'TEST AFTER'
-        );
+        const defaultTransclude = fabDebugger.nativeElement.querySelector('.ag-fab__icon');
+        expect(defaultTransclude.nextElementSibling.innerText).toBe('TEST AFTER');
       });
     });
   });
@@ -103,9 +93,7 @@ describe('FabComponent', () => {
       it('should display the fab in position top/left on the screen', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
-        expect(fabDebugger.nativeElement.getAttribute('position')).toBe(
-          'top-left'
-        );
+        expect(fabDebugger.nativeElement.getAttribute('position')).toBe('top-left');
       });
     });
 
@@ -120,9 +108,7 @@ describe('FabComponent', () => {
       it('should display the fab in position top/right on the screen', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
-        expect(fabDebugger.nativeElement.getAttribute('position')).toBe(
-          'top-right'
-        );
+        expect(fabDebugger.nativeElement.getAttribute('position')).toBe('top-right');
       });
     });
 
@@ -137,9 +123,7 @@ describe('FabComponent', () => {
       it('should display the fab in position bottom/left on the screen', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
-        expect(fabDebugger.nativeElement.getAttribute('position')).toBe(
-          'bottom-left'
-        );
+        expect(fabDebugger.nativeElement.getAttribute('position')).toBe('bottom-left');
       });
     });
 
@@ -154,9 +138,7 @@ describe('FabComponent', () => {
       it('should display the fab in position bottom/right on the screen', () => {
         hostFixture.detectChanges();
         fabDebugger = getFabDebugger();
-        expect(fabDebugger.nativeElement.getAttribute('position')).toBe(
-          'bottom-right'
-        );
+        expect(fabDebugger.nativeElement.getAttribute('position')).toBe('bottom-right');
       });
     });
   });
