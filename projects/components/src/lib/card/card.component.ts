@@ -19,6 +19,4 @@ export class CardComponent {
   subtitle: string;
   @Input()
   imageUrl: string;
-  @Input()
-  buttons: any[];
 }

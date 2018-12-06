@@ -25,34 +25,20 @@ ag-card {
   .ag-card__header {
     background-color: var(--ag-card-color-light);
     padding: var(--ag-card-gap);
-
     h2 {
       margin: 0;
     }
-
     p {
       margin: 0;
       color: var(--ag-card-color-medium);
     }
   }
 
-  .ag-card__image {
+  .ag-card__image img{
     width: 100%;
   }
 
   .ag-card__content {
     padding: var(--ag-card-gap);
-  }
-
-  .ag-card__footer {
-    .ag-card__buttons {
-      display: flex;
-      justify-content: space-between;
-
-      .primary {
-        background-color: var(--ag-card-primary-background-color);
-        color: var(--ag-card-background-color);
-      }
-    }
   }
 }
