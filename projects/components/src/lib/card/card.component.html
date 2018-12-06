@@ -1,0 +1,15 @@
+<div class="ag-card__header" *ngIf="title">
+  <h2>{{title}}</h2>
+  <p *ngIf="subtitle">{{subtitle}}</p>
+</div>
+<div class="ag-card__image" *ngIf="imageUrl">
+  <img class="ag-card__image" src="{{imageUrl}}">
+</div>
+<div class="ag-card__content">
+  <p class="ag-card__text"><ng-content></ng-content></p>
+</div>
+<div class="ag-card__footer">
+  <div class="ag-card__buttons" *ngIf="buttons">
+    <button *ngFor="let button of buttons" (click)="button.action()">{{button.name}}</button>
+  </div>
+</div>
