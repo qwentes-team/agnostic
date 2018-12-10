@@ -182,14 +182,6 @@ describe('InputComponent', () => {
       const inputContainer: HTMLElement = inputElement.querySelector('.ag-input');
       expect(inputContainer.classList.contains('ag-input--disabled')).toBe(true);
     });
-
-    it('should prevent changes', () => {
-      hostFixture.detectChanges();
-      inputDebugger = getInputDebugger();
-      updateValueOfInput(inputDebugger.nativeElement.querySelector('input'), 'Baz', hostFixture).catch(console.log);
-      expect(inputDebugger.nativeElement.querySelector('input').disabled).toBe(true);
-      expect(inputDebugger.nativeElement.querySelector('input').value).toBe('');
-    });
   });
 
   describe('[required]', () => {
