@@ -1,9 +1,9 @@
-<label class="ag-checkbox--wrapper">
-  <div class="ag-checkbox--input-container">
+<label class="ag-checkbox">
+  <div class="ag-checkbox__canvas">
     <input
+      class="ag-checkbox__canvas-input"
       type="checkbox"
-      class="ag-checkbox__input"
-      [ngClass]="{'ag-checkbox__input--disabled': disabled}"
+      [ngClass]="{'ag-checkbox--disabled': disabled}"
       [name]="name"
       [value]="value"
       [checked]="checked"
