@@ -1,15 +1,17 @@
-<label class="ag-checkbox--wrapper">
-  <div class="ag-checkbox--input-container">
+<label class="ag-checkbox">
+  <div class="ag-checkbox__canvas">
     <input
-      class="ag-checkbox__input"
-      [ngClass]="{'ag-checkbox--disabled': disabled}"
+      class="ag-checkbox__canvas-input"
       type="checkbox"
+      [ngClass]="{'ag-checkbox--disabled': disabled}"
       [name]="name"
       [value]="value"
       [checked]="checked"
       [disabled]="disabled"
       (change)="emitToNgModel($event)">
-    <span class="ag-checkbox__checkmark"></span>
+    <span class="ag-checkbox__canvas-check"></span>
   </div>
-  <span class="ag-checkbox__label"><ng-content></ng-content></span>
+  <span class="ag-checkbox__label">
+    <ng-content></ng-content>
+  </span>
 </label>
