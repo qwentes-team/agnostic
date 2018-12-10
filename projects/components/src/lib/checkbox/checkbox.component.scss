@@ -28,6 +28,11 @@ ag-checkbox {
       margin-left: var(--ag-checkbox-gap);
     }
 
+    &--disabled {
+      cursor: default;
+      opacity: var(--ag-checkbox-disabled-opacity);
+    }
+
     &__canvas {
       position: relative;
       margin: 0;
@@ -49,11 +54,6 @@ ag-checkbox {
         &:checked {
           background-color: var(--ag-checkbox-background-color-primary);
           border-color: var(--ag-checkbox-background-color-primary);
-        }
-
-        &--disabled {
-          cursor: default;
-          opacity: var(--ag-checkbox-disabled-opacity);
         }
       }
       .ag-checkbox__checkmark:after {
