@@ -25,11 +25,7 @@ ag-card {
   .ag-card__header {
     background-color: var(--ag-card-color-light);
     padding: var(--ag-card-gap);
-    h2 {
-      margin: 0;
-    }
-    p {
-      margin: 0;
+    .ag-card__subtitle {
       color: var(--ag-card-color-medium);
     }
   }

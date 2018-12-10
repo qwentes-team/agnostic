@@ -1,6 +1,6 @@
 <div class="ag-card__header" *ngIf="title">
-  <h2>{{title}}</h2>
-  <p *ngIf="subtitle">{{subtitle}}</p>
+  <div class="ag-card__title">{{title}}</div>
+  <div class="ag-card__subtitle" *ngIf="subtitle">{{subtitle}}</div>
 </div>
 <div class="ag-card__image" *ngIf="imageUrl">
   <img src="{{imageUrl}}">
