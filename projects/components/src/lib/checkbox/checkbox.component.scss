@@ -29,6 +29,11 @@ ag-checkbox {
       margin-left: var(--ag-checkbox-gap);
     }
 
+    &--disabled {
+      cursor: default;
+      opacity: var(--ag-checkbox-disabled-opacity);
+    }
+
     &__canvas {
       position: relative;
       margin: 0;
