@@ -5,7 +5,8 @@ ag-checkbox {
   --ag-checkbox-background-color: rgba(0, 0, 0, .1);
   --ag-checkbox-border: 1px solid var(--ag-checkbox-background-color);
   --ag-checkbox-radius: 2px;
-  --ag-checkbox-checkmark-color: #FFF;
+  --ag-checkbox-check-color: #FFF;
+  --ag-checkbox-check-weight: 1px;
   --ag-checkbox-background-color-primary: #003366;
   --ag-checkbox-disabled-opacity: .5;
   --ag-checkbox-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -64,10 +65,10 @@ ag-checkbox {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -65%) rotate(45deg);
-        width: calc(var(--ag-checkbox-size) / 4);
+        width: calc(var(--ag-checkbox-size) / 5);
         height: calc(var(--ag-checkbox-size) / 2);
-        border: solid var(--ag-checkbox-checkmark-color);
-        border-width: 0 2px 2px 0;
+        border: solid var(--ag-checkbox-check-color);
+        border-width: 0 var(--ag-checkbox-check-weight) var(--ag-checkbox-check-weight) 0;
       }
 
       .ag-checkbox__canvas-input:checked ~ .ag-checkbox__canvas-check {
