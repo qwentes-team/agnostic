@@ -1,0 +1,14 @@
+<label class="ag-input" [ngClass]="{'ag-input--disabled': disabled}">
+  <div class="ag-input__label">
+    <ng-content></ng-content>
+    <span *ngIf="metaLabel">{{metaLabel}}</span>
+  </div>
+  <input
+    type="text"
+    class="ag-input__input"
+    [name]="name"
+    [value]="value"
+    [disabled]="disabled"
+    [required]="required"
+    (input)="emitToNgModel($event.target.value)"/>
+</label>
