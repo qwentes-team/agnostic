@@ -2,9 +2,10 @@
   <div class="ag-card__title">{{title}}</div>
   <div class="ag-card__subtitle" *ngIf="subtitle">{{subtitle}}</div>
 </div>
-<div class="ag-card__image" *ngIf="imageUrl">
-  <img src="{{imageUrl}}">
-</div>
+
 <div class="ag-card__content">
+  <div class="ag-card__image" *ngIf="imageUrl">
+    <img src="{{imageUrl}}">
+  </div>
   <ng-content></ng-content>
 </div>
