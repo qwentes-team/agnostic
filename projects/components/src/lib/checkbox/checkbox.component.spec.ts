@@ -43,7 +43,7 @@ describe('CheckboxComponent', () => {
       hostFixture.detectChanges();
       checkboxDebugger = getCheckboxDebugger();
       expect(checkboxDebugger.componentInstance.name).toBe('nome');
-      expect(checkboxDebugger.nativeElement.querySelector('.ag-checkbox__input').getAttribute('name')).toBe('nome');
+      expect(checkboxDebugger.nativeElement.querySelector('input').getAttribute('name')).toBe('nome');
     });
   });
 
@@ -57,7 +57,7 @@ describe('CheckboxComponent', () => {
       hostFixture.detectChanges();
       checkboxDebugger = getCheckboxDebugger();
       expect(checkboxDebugger.componentInstance.value).toBe('valore');
-      expect(checkboxDebugger.nativeElement.querySelector('.ag-checkbox__input').getAttribute('value')).toBe('valore');
+      expect(checkboxDebugger.nativeElement.querySelector('input').getAttribute('value')).toBe('valore');
     });
   });
 
