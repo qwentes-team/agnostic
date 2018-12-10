@@ -1,0 +1,78 @@
+ag-checkbox {
+  --ag-checkbox-size: 18px;
+  --ag-checkbox-gap: 8px;
+  --ag-checkbox-radius: 2px;
+  --ag-checkbox-background-color: rgba(0, 0, 0, .1);
+  --ag-checkbox-border: 1px solid var(--ag-checkbox-background-color);
+  --ag-checkbox-radius: 2px;
+  --ag-checkbox-checkmark-color: #FFF;
+  --ag-checkbox-background-color-primary: #003366;
+  --ag-checkbox-disabled-opacity: .5;
+  --ag-checkbox-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  display: inline-flex;
+
+  &[position="after"] .ag-checkbox__label {
+    order: -1;
+    margin-left: 0;
+    margin-right: var(--ag-checkbox-gap);
+  }
+
+  .ag-checkbox {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--ag-checkbox-font-family);
+
+    &__label {
+      margin-left: var(--ag-checkbox-gap);
+    }
+
+    &--disabled {
+      cursor: default;
+      opacity: var(--ag-checkbox-disabled-opacity);
+    }
+
+    &__canvas {
+      position: relative;
+      margin: 0;
+      display: flex;
+      width: var(--ag-checkbox-size);
+      height: var(--ag-checkbox-size);
+
+      &-input {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        -webkit-appearance: none;
+        margin: 0;
+        outline: none;
+        border: var(--ag-checkbox-border);
+        background-color: var(--ag-checkbox-background-color);
+        border-radius: var(--ag-checkbox-radius);
+
+        &:checked {
+          background-color: var(--ag-checkbox-background-color-primary);
+          border-color: var(--ag-checkbox-background-color-primary);
+        }
+      }
+
+      &-check {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -65%) rotate(45deg);
+        width: calc(var(--ag-checkbox-size) / 4);
+        height: calc(var(--ag-checkbox-size) / 2);
+        border: solid var(--ag-checkbox-checkmark-color);
+        border-width: 0 2px 2px 0;
+      }
+
+      .ag-checkbox__canvas-input:checked ~ .ag-checkbox__canvas-check {
+        display: block;
+      }
+    }
+  }
+}
