@@ -45,12 +45,10 @@ export class RadioComponent implements ControlValueAccessor, OnChanges, EmitToNg
   constructor(private cd: ChangeDetectorRef) {}
 
   public ngOnChanges({disabled, name, checked, required}: SimpleChanges) {
-    console.log(name);
     if (name) {
       this.name = name.currentValue;
     }
     if (checked) {
-      console.log(checked);
       this.checked = convertToBoolean(checked.currentValue);
     }
     if (disabled) {
@@ -79,7 +77,9 @@ export class RadioComponent implements ControlValueAccessor, OnChanges, EmitToNg
   }
 
   emitToNgModel(event: any): void {
-    this.onChange(event.target.value);
+    const value = event.target.value;
+    const typedValue = value === 'false' || value === 'true' ? convertToBoolean(value) : value;
+    this.onChange(typedValue);
   }
 
   updateValue(event): void {
