@@ -2,6 +2,7 @@
   &[theme="ios"] {
     --ag-toggle-ios-width: 52px;
     --ag-toggle-ios-height: 32px;
+    --ag-toggle-ios-inactive-outline-weight: 2px;
     --ag-toggle-ios-background-color-inactive-outline: #f1f1f1;
     --ag-toggle-ios-background-color-inactive: #fff;
     --ag-toggle-ios-background-color-active: #4caf50;
@@ -23,13 +24,14 @@
         border-radius: calc(var(--ag-toggle-ios-height) / 2);
         transition: background-color .3s ease;
         background-color: var(--ag-toggle-ios-background-color-inactive-outline);
+
         &:after {
           content: '';
           position: absolute;
-          top: 2px;
-          left: 2px;
-          width: calc(100% - 4px);
-          height: calc(100% - 4px);
+          top: var(--ag-toggle-ios-inactive-outline-weight);
+          left: var(--ag-toggle-ios-inactive-outline-weight);
+          width: calc(100% - (var(--ag-toggle-ios-inactive-outline-weight) * 2));
+          height: calc(100% - (var(--ag-toggle-ios-inactive-outline-weight) * 2));
           border-radius: calc(var(--ag-toggle-ios-height) / 2);
           background-color: var(--ag-toggle-ios-background-color-inactive);
           transform: scale(1);
@@ -47,7 +49,7 @@
         background-color: var(--ag-toggle-ios-thumb-background-color-inactive);
         border-radius: 50%;
         box-shadow: var(--ag-toggle-ios-thumb-box-shadow);
-        transform: translate(0, -50%) translateX(2px);
+        transform: translate(0, -50%) translateX(var(--ag-toggle-ios-inactive-outline-weight));
         transition: transform .3s cubic-bezier(.36, .5, .23, 1.18), background-color .3s ease;
         will-change: transform;
       }
@@ -55,10 +57,12 @@
       &-input:checked ~ .ag-toggle__switch {
         &-bar {
           background-color: var(--ag-toggle-ios-background-color-active);
+
           &:after {
             transform: scale(0);
           }
         }
+
         &-thumb {
           background-color: var(--ag-toggle-ios-thumb-background-color-active);
           transform: translate(100%, -50%) translateX(-6px);
