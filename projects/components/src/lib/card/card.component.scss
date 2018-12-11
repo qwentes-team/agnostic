@@ -11,6 +11,7 @@ ag-card {
 
   max-width: var(--ag-chip-max-width);
   box-sizing: border-box;
+  padding: var(--ag-card-gap);
   display: flex;
   flex-flow: column;
   background-color: var(--ag-card-background-color);
@@ -23,14 +24,12 @@ ag-card {
 
   .ag-card__header {
     background-color: var(--ag-card-color-light);
-    padding: var(--ag-card-gap);
     .ag-card__subtitle {
       color: var(--ag-card-color-medium);
     }
   }
 
   .ag-card__content {
-    padding: var(--ag-card-gap);
     .ag-card__image img{
       width: 100%;
     }
