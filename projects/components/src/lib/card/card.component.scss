@@ -22,16 +22,16 @@ ag-card {
   font-size: 14px;
   overflow: hidden;
 
-  .ag-card__header {
-    background-color: var(--ag-card-color-light);
-    .ag-card__subtitle {
-      color: var(--ag-card-color-medium);
-    }
+  &[box-shadow="false"] {
+    box-shadow: none;
+    border: 1px solid var(--ag-card-color-light);
   }
 
-  .ag-card__content {
-    .ag-card__image img{
-      width: 100%;
-    }
+  .ag-card__banner:empty, .ag-card__header:empty, .ag-card__footer:empty {
+    display: none;
+  }
+
+  .ag-card__banner {
+    margin: calc(var(--ag-card-gap) * -1) calc(var(--ag-card-gap) * -1) var(--ag-card-gap);
   }
 }
