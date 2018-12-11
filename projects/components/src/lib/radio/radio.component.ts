@@ -9,6 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {convertToBoolean, EmitToNgModel} from '../components.shared';
 
 export type RadioBoolean = boolean | 'true' | 'false';
 
@@ -26,55 +27,64 @@ export type RadioBoolean = boolean | 'true' | 'false';
     },
   ],
 })
-export class RadioComponent implements ControlValueAccessor, OnChanges {
+export class RadioComponent implements ControlValueAccessor, OnChanges, EmitToNgModel {
+  @Input()
+  public name: string;
+  @Input()
+  public value: any;
   @Input()
   public disabled: RadioBoolean;
+  @Input()
+  public checked: RadioBoolean;
+  @Input()
+  public required: RadioBoolean;
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  public ngOnChanges({disabled}: SimpleChanges) {
+  public ngOnChanges({disabled, name, checked, required}: SimpleChanges) {
+    console.log(name);
+    if (name) {
+      this.name = name.currentValue;
+    }
+    if (checked) {
+      console.log(checked);
+      this.checked = convertToBoolean(checked.currentValue);
+    }
     if (disabled) {
       this.setDisabledState(disabled.currentValue);
     }
+    if (required) {
+      this.required = convertToBoolean(required.currentValue);
+    }
   }
 
-  private convertToBoolean(value: RadioBoolean): boolean {
-    return value === 'false' ? false : !!value;
-  }
-
-  // Allows Angular to update the model.
-  // Update the model and changes needed for the view here.
   writeValue(value: any): void {
-    // todo
+    const isChecked = value === this.value;
+    this.updateValue({target: {checked: isChecked}});
   }
 
-  // Allows Angular to register a function to call when the model changes.
-  // Save the function as a property to call later here.
   registerOnChange(fn: (value: boolean | any) => void): void {
     this.onChange = fn;
   }
 
-  // Allows Angular to register a function to call when the input has been touched.
-  // Save the function as a property to call later here.
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
-  // Allows Angular to disable the input.
   setDisabledState(disabled: RadioBoolean): void {
-    console.log('ciccio');
-    this.disabled = this.convertToBoolean(disabled);
+    this.disabled = convertToBoolean(disabled);
   }
 
   emitToNgModel(event: any): void {
-    // wait angular form changes to be completed
-    // todo
-    this.onChange(event);
+    this.onChange(event.target.value);
   }
 
-  // Function to call when the changes.
+  updateValue(event): void {
+    this.checked = !!event.target.checked;
+    this.cd.detectChanges();
+  }
+
   onChange = (value: boolean | string) => {};
 
-  // Function to call when the input is touched (when a star is clicked).
   onTouched = () => {};
 }
