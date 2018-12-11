@@ -30,6 +30,8 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
   @Input()
   public name: string;
   @Input()
+  public required: ToggleBoolean;
+  @Input()
   public disabled: ToggleBoolean;
   @Input()
   public checked: ToggleBoolean;
@@ -38,7 +40,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  public ngOnChanges({disabled, checked, formControlName}: SimpleChanges) {
+  public ngOnChanges({checked, disabled, required, formControlName}: SimpleChanges) {
     if (formControlName) {
       this.name = formControlName.currentValue;
     }
@@ -47,6 +49,9 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
     }
     if (disabled) {
       this.setDisabledState(disabled.currentValue);
+    }
+    if (required) {
+      this.required = this.convertToBoolean(required.currentValue);
     }
   }
 

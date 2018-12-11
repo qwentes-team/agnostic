@@ -61,6 +61,20 @@ describe('CheckboxComponent', () => {
     });
   });
 
+  describe('[required]', () => {
+    @Component({template: '<ag-checkbox required="true"></ag-checkbox>'})
+    class TestHostComponent {}
+
+    beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+    it('should bind required', () => {
+      hostFixture.detectChanges();
+      checkboxDebugger = getCheckboxDebugger();
+      expect(checkboxDebugger.componentInstance.required).toBe(true);
+      expect(checkboxDebugger.nativeElement.querySelector('input').required).toBe(true);
+    });
+  });
+
   describe('[checked]', () => {
     @Component({template: '<ag-checkbox checked="true"></ag-checkbox>'})
     class TestHostComponent {}
