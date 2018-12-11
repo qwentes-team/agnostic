@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {convertToBoolean, EmitToNgModel} from '../components.shared';
+import {convertToBoolean, EmitToNgModel, noop} from '../components.shared';
 
 export type RadioBoolean = boolean | 'true' | 'false';
 
@@ -38,6 +38,9 @@ export class RadioComponent implements ControlValueAccessor, OnChanges, EmitToNg
   public checked: RadioBoolean;
   @Input()
   public required: RadioBoolean;
+
+  onChange = noop.onChange;
+  onTouched = noop.onTouched;
 
   constructor(private cd: ChangeDetectorRef) {}
 
@@ -83,8 +86,4 @@ export class RadioComponent implements ControlValueAccessor, OnChanges, EmitToNg
     this.checked = !!event.target.checked;
     this.cd.detectChanges();
   }
-
-  onChange = (value: boolean | string) => {};
-
-  onTouched = () => {};
 }
