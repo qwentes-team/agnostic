@@ -37,7 +37,7 @@ storiesOf('Card', module)
       <div>
         <h3>Card</h3>
         <ag-card>
-          <h2 position="card-header">Titolo</h2>
+          <h3 position="card-header">Titolo</h3>
           testo placeholder
         </ag-card>
       </div>
