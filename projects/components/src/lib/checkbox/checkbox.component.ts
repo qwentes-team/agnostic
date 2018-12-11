@@ -9,8 +9,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {EmitToNgModel, noop} from '../components.shared';
 
-export type ToggleBoolean = boolean | 'true' | 'false';
+export type CheckboxBoolean = boolean | 'true' | 'false';
 
 @Component({
   selector: 'ag-checkbox',
@@ -26,21 +27,26 @@ export type ToggleBoolean = boolean | 'true' | 'false';
     },
   ],
 })
-export class CheckboxComponent implements ControlValueAccessor, OnChanges {
+export class CheckboxComponent implements ControlValueAccessor, OnChanges, EmitToNgModel {
   @Input()
   public name: string;
   @Input()
-  public disabled: ToggleBoolean;
+  public required: CheckboxBoolean;
   @Input()
-  public checked: ToggleBoolean;
+  public disabled: CheckboxBoolean;
+  @Input()
+  public checked: CheckboxBoolean;
   @Input()
   public value: any;
 
+  public onChange = noop.onChange;
+  public onTouched = noop.onChange;
+
   constructor(private cd: ChangeDetectorRef) {}
 
-  public ngOnChanges({disabled, checked, formControlName}: SimpleChanges) {
-    if (formControlName) {
-      this.name = formControlName.currentValue;
+  public ngOnChanges({checked, disabled, required, name}: SimpleChanges) {
+    if (name) {
+      this.name = name.currentValue;
     }
     if (checked) {
       this.checked = this.convertToBoolean(checked.currentValue);
@@ -48,9 +54,12 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
     if (disabled) {
       this.setDisabledState(disabled.currentValue);
     }
+    if (required) {
+      this.required = this.convertToBoolean(required.currentValue);
+    }
   }
 
-  private convertToBoolean(value: ToggleBoolean): boolean {
+  private convertToBoolean(value: CheckboxBoolean): boolean {
     return value === 'false' ? false : !!value;
   }
 
@@ -68,8 +77,9 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
     this.onTouched = fn;
   }
 
-  public setDisabledState(disabled: ToggleBoolean): void {
+  public setDisabledState(disabled: CheckboxBoolean): void {
     this.disabled = this.convertToBoolean(disabled);
+    this.cd.detectChanges();
   }
 
   public emitToNgModel(event: any): void {
@@ -77,11 +87,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
     this.onChange(value);
   }
 
-  public onChange = (value: boolean | string) => {};
-
-  private onTouched = () => {};
-
-  private updateValue(event): boolean | any {
+  public updateValue(event): boolean | any {
     this.value = event.target.value;
     this.checked = !!event.target.checked;
     this.cd.detectChanges();

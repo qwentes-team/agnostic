@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   forwardRef,
   Input,
   OnChanges,
+  Output,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
@@ -29,14 +31,30 @@ import {convertToBoolean, EmitToNgModel, noop} from '../components.shared';
 export class InputComponent implements OnChanges, ControlValueAccessor, EmitToNgModel {
   @Input()
   name = '';
+
   @Input()
   value = '';
+
   @Input()
   disabled = false;
+
   @Input()
   required = false;
+
   @Input()
   metaLabel = '';
+
+  @Input()
+  placeholder = '';
+
+  @Output()
+  change: EventEmitter<Event> = new EventEmitter();
+
+  @Output()
+  blur: EventEmitter<Event> = new EventEmitter();
+
+  @Output()
+  focus: EventEmitter<Event> = new EventEmitter();
 
   public onChange = noop.onChange;
   public onTouched = noop.onTouched;
@@ -69,8 +87,9 @@ export class InputComponent implements OnChanges, ControlValueAccessor, EmitToNg
     this.cd.detectChanges();
   }
 
-  public emitToNgModel(newValue: string): void {
-    this.onChange(this.updateValue(newValue));
+  public emitToNgModel(event: Event): void {
+    this.change.emit(event);
+    this.onChange(this.updateValue((event.target as HTMLInputElement).value));
   }
 
   public updateValue(newValue: string): string {

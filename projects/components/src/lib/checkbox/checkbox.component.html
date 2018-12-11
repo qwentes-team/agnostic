@@ -7,10 +7,9 @@
       [value]="value"
       [checked]="checked"
       [disabled]="disabled"
+      [required]="required"
       (change)="emitToNgModel($event)">
     <span class="ag-checkbox__canvas-check"></span>
   </div>
   <span class="ag-checkbox__label"><ng-content></ng-content></span>
 </label>
-
-<div>{{value | json}}</div>
