@@ -9,6 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {EmitToNgModel, noop} from '../components.shared';
 
 export type ToggleBoolean = boolean | 'true' | 'false';
 
@@ -26,7 +27,7 @@ export type ToggleBoolean = boolean | 'true' | 'false';
     },
   ],
 })
-export class CheckboxComponent implements ControlValueAccessor, OnChanges {
+export class CheckboxComponent implements ControlValueAccessor, OnChanges, EmitToNgModel {
   @Input()
   public name: string;
   @Input()
@@ -37,6 +38,9 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
   public checked: ToggleBoolean;
   @Input()
   public value: any;
+
+  public onChange = noop.onChange;
+  public onTouched = noop.onChange;
 
   constructor(private cd: ChangeDetectorRef) {}
 
@@ -75,6 +79,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
 
   public setDisabledState(disabled: ToggleBoolean): void {
     this.disabled = this.convertToBoolean(disabled);
+    this.cd.detectChanges();
   }
 
   public emitToNgModel(event: any): void {
@@ -82,11 +87,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges {
     this.onChange(value);
   }
 
-  public onChange = (value: boolean | string) => {};
-
-  private onTouched = () => {};
-
-  private updateValue(event): boolean | any {
+  public updateValue(event): boolean | any {
     this.value = event.target.value;
     this.checked = !!event.target.checked;
     this.cd.detectChanges();
