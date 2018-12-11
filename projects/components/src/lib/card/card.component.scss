@@ -32,9 +32,8 @@ ag-card {
   }
 
   .ag-card__header {
-    padding: 0 var(--ag-card-gap);
+    padding: var(--ag-card-gap);
     margin: calc(var(--ag-card-gap) * -1) calc(var(--ag-card-gap) * -1) var(--ag-card-gap);
-    background-color: var(--ag-card-color-light);
   }
 
   .ag-card__banner {

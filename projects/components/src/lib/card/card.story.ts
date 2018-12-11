@@ -43,13 +43,26 @@ storiesOf('Card', module)
       </div>
     `,
   }))
-  .add('Image Card', () => ({
+  .add('Banner Card', () => ({
     template: `
       <div>
         <h3>Card</h3>
         <ag-card>
           <img position="card-banner" src="http://via.placeholder.com/640x360">
           testo placeholder
+        </ag-card>
+      </div>
+    `,
+  }))
+  .add('Footer Card', () => ({
+    template: `
+      <div>
+        <h3>Card</h3>
+        <ag-card>
+          <h2 position="card-header">Header placeholder</h2>
+          <img position="card-banner" src="http://via.placeholder.com/640x360">
+          <div position="card-footer"><p>footer placeholder</p></div>
+          content placeholder
         </ag-card>
       </div>
     `,
