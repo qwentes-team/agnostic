@@ -1,0 +1,42 @@
+ag-card {
+  --ag-chip-max-width: 500px;
+  --ag-card-gap: 16px;
+  --ag-card-radius: 4px;
+  --ag-card-color-dark: rgba(0, 0, 0, .75);
+  --ag-card-color-medium: rgba(0, 0, 0, .5);
+  --ag-card-color-light: rgba(0, 0, 0, .1);
+  --ag-card-background-color: rgba(255, 255, 255);
+  --ag-card-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+  --ag-card-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  max-width: var(--ag-chip-max-width);
+  box-sizing: border-box;
+  padding: var(--ag-card-gap);
+  display: flex;
+  flex-flow: column;
+  background-color: var(--ag-card-background-color);
+  color: var(--ag-card-color-dark);
+  box-shadow: var(--ag-card-box-shadow);
+  border-radius: var(--ag-card-radius);
+  font-family: var(--ag-card-font-family);
+  font-size: 14px;
+  overflow: hidden;
+
+  &[box-shadow="false"] {
+    box-shadow: none;
+    border: 1px solid var(--ag-card-color-light);
+  }
+
+  .ag-card__banner:empty, .ag-card__header:empty, .ag-card__footer:empty {
+    display: none;
+  }
+
+  .ag-card__header {
+    padding: var(--ag-card-gap);
+    margin: calc(var(--ag-card-gap) * -1) calc(var(--ag-card-gap) * -1) var(--ag-card-gap);
+  }
+
+  .ag-card__banner {
+    margin: calc(var(--ag-card-gap) * -1) calc(var(--ag-card-gap) * -1) var(--ag-card-gap);
+  }
+}
