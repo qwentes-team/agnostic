@@ -53,4 +53,15 @@ storiesOf('Card', module)
         </ag-card>
       </div>
     `,
+  }))
+  .add('Card without shadow', () => ({
+    template: `
+      <div>
+        <h3>Card</h3>
+        <ag-card box-shadow="false">
+          <img position="card-banner" src="http://via.placeholder.com/640x360">
+          testo placeholder
+        </ag-card>
+      </div>
+    `,
   }));
