@@ -10,6 +10,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {convertToBoolean, EmitToNgModel, noop} from '../components.shared';
 
 export type ToggleTheme = 'material' | 'ios';
 export type ToggleType = 'checkbox' | 'radio';
@@ -30,7 +31,7 @@ export type ToggleBoolean = boolean | 'true' | 'false';
     },
   ],
 })
-export class ToggleComponent implements ControlValueAccessor, OnChanges {
+export class ToggleComponent implements ControlValueAccessor, OnChanges, EmitToNgModel {
   @Input()
   public name: string;
 
@@ -65,25 +66,24 @@ export class ToggleComponent implements ControlValueAccessor, OnChanges {
     return this.position;
   }
 
+  onChange = noop.onChange;
+  onTouched = noop.onTouched;
+
   constructor(private cd: ChangeDetectorRef) {}
 
   public ngOnChanges({checked, disabled, required, type}: SimpleChanges) {
     if (checked) {
-      this.checked = this.convertToBoolean(checked.currentValue);
+      this.checked = convertToBoolean(checked.currentValue);
     }
     if (disabled) {
       this.setDisabledState(disabled.currentValue);
     }
     if (required) {
-      this.required = this.convertToBoolean(required.currentValue);
+      this.required = convertToBoolean(required.currentValue);
     }
   }
 
-  private convertToBoolean(value: ToggleBoolean): boolean {
-    return value === 'false' ? false : !!value;
-  }
-
-  private updateValue(event): boolean | any {
+  public updateValue(event): boolean | any {
     this.value = event.target.value;
     this.checked = !!event.target.checked;
     this.cd.detectChanges();
@@ -92,38 +92,33 @@ export class ToggleComponent implements ControlValueAccessor, OnChanges {
 
   // Allows Angular to update the model.
   // Update the model and changes needed for the view here.
-  writeValue(value: any): void {
+  public writeValue(value: any): void {
     this.updateValue({
-      target: {value, checked: this.convertToBoolean(value)},
+      target: {value, checked: convertToBoolean(value)},
     });
   }
 
   // Allows Angular to register a function to call when the model changes.
   // Save the function as a property to call later here.
-  registerOnChange(fn: (value: boolean | any) => void): void {
+  public registerOnChange(fn: (value: boolean | any) => void): void {
     this.onChange = fn;
   }
 
   // Allows Angular to register a function to call when the input has been touched.
   // Save the function as a property to call later here.
-  registerOnTouched(fn: () => void): void {
+  public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
   // Allows Angular to disable the input.
-  setDisabledState(disabled: ToggleBoolean): void {
-    this.disabled = this.convertToBoolean(disabled);
+  public setDisabledState(disabled: ToggleBoolean): void {
+    this.disabled = convertToBoolean(disabled);
+    this.cd.detectChanges();
   }
 
-  emitToNgModel(event: any): void {
+  public emitToNgModel(event: any): void {
     const value = this.updateValue(event);
     // wait angular form changes to be completed
     this.onChange(value);
   }
-
-  // Function to call when the changes.
-  onChange = (value: boolean | string) => {};
-
-  // Function to call when the input is touched (when a star is clicked).
-  onTouched = () => {};
 }
