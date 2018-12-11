@@ -18,8 +18,7 @@ describe('ChipComponent', () => {
     hostElement = hostFixture.nativeElement;
   };
 
-  const getChipDebugger = () =>
-    getChildDebugElement('ag-chip').from(hostFixture);
+  const getChipDebugger = () => getChildDebugElement('ag-chip').from(hostFixture);
 
   afterEach(() => {
     if (hostFixture && hostFixture.destroy) {
@@ -34,8 +33,7 @@ describe('ChipComponent', () => {
   describe('transclude', () => {
     describe('[position=before]', () => {
       @Component({
-        template:
-          '<ag-chip><span position="before">icon</span>Content</ag-chip>',
+        template: '<ag-chip><span position="before">icon</span>Content</ag-chip>',
       })
       class TestHostComponent {}
 
@@ -44,17 +42,14 @@ describe('ChipComponent', () => {
       it('should transclude before the .ag-chip__text element', () => {
         hostFixture.detectChanges();
         chipDebugger = getChipDebugger();
-        const defaultTransclude = chipDebugger.nativeElement.querySelector(
-          '.ag-chip__text'
-        );
+        const defaultTransclude = chipDebugger.nativeElement.querySelector('.ag-chip__text');
         expect(defaultTransclude.previousElementSibling.innerText).toBe('icon');
       });
     });
 
     describe('[position=after]', () => {
       @Component({
-        template:
-          '<ag-chip>Content<span position="after">icon</span></ag-chip>',
+        template: '<ag-chip>Content<span position="after">icon</span></ag-chip>',
       })
       class TestHostComponent {}
 
@@ -63,9 +58,7 @@ describe('ChipComponent', () => {
       it('should transclude before the .ag-chip__text element', () => {
         hostFixture.detectChanges();
         chipDebugger = getChipDebugger();
-        const defaultTransclude = chipDebugger.nativeElement.querySelector(
-          '.ag-chip__text'
-        );
+        const defaultTransclude = chipDebugger.nativeElement.querySelector('.ag-chip__text');
         expect(defaultTransclude.nextElementSibling.innerText).toBe('icon');
       });
     });

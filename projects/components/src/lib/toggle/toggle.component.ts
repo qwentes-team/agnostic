@@ -3,17 +3,14 @@ import {
   Component,
   HostBinding,
   Input,
-  OnInit,
   OnChanges,
   SimpleChanges,
   forwardRef,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormControl,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {convertToBoolean, EmitToNgModel, noop} from '../components.shared';
 
 export type ToggleTheme = 'material' | 'ios';
 export type ToggleType = 'checkbox' | 'radio';
@@ -34,29 +31,30 @@ export type ToggleBoolean = boolean | 'true' | 'false';
     },
   ],
 })
-export class ToggleComponent
-  implements ControlValueAccessor, OnInit, OnChanges {
+export class ToggleComponent implements ControlValueAccessor, OnChanges, EmitToNgModel {
   @Input()
   public name: string;
-  @Input()
-  public formControlName: string;
-  @Input()
-  public formControl: FormControl;
+
   @Input()
   public value: any;
+
   @Input()
   public checked: ToggleBoolean;
+
   @Input()
   public disabled: ToggleBoolean;
+
   @Input()
   public required: ToggleBoolean;
+
   @Input()
   public type: ToggleType = 'checkbox';
+
   @Input()
   public theme: ToggleTheme = 'material';
+
   @Input()
   public position: TogglePosition = 'before';
-  private isCheckbox: boolean;
 
   @HostBinding('attr.theme')
   get themeType() {
@@ -68,77 +66,59 @@ export class ToggleComponent
     return this.position;
   }
 
-  public ngOnInit() {
-    this.isCheckbox = this.type === 'checkbox';
-  }
+  onChange = noop.onChange;
+  onTouched = noop.onTouched;
 
-  public ngOnChanges({
-    checked,
-    disabled,
-    required,
-    formControlName,
-    type,
-    formControl,
-  }: SimpleChanges) {
-    if (formControlName) {
-      this.name = formControlName.currentValue;
-    }
+  constructor(private cd: ChangeDetectorRef) {}
+
+  public ngOnChanges({checked, disabled, required, type}: SimpleChanges) {
     if (checked) {
-      this.checked = this.convertToBoolean(checked.currentValue);
+      this.checked = convertToBoolean(checked.currentValue);
     }
     if (disabled) {
       this.setDisabledState(disabled.currentValue);
     }
     if (required) {
-      this.required = this.convertToBoolean(required.currentValue);
+      this.required = convertToBoolean(required.currentValue);
     }
   }
 
-  private convertToBoolean(value: ToggleBoolean): boolean {
-    return value === 'false' ? false : !!value;
-  }
-
-  private updateValue(event): boolean | any {
-    const value = this.isCheckbox ? event.target.checked : event.target.value;
-    this.value = value;
+  public updateValue(event): boolean | any {
+    this.value = event.target.value;
     this.checked = !!event.target.checked;
-    return value;
+    this.cd.detectChanges();
+    return this.checked;
   }
 
   // Allows Angular to update the model.
   // Update the model and changes needed for the view here.
-  writeValue(value: any): void {
+  public writeValue(value: any): void {
     this.updateValue({
-      target: {value, checked: this.convertToBoolean(value)},
+      target: {value, checked: convertToBoolean(value)},
     });
   }
 
   // Allows Angular to register a function to call when the model changes.
   // Save the function as a property to call later here.
-  registerOnChange(fn: (value: boolean | any) => void): void {
+  public registerOnChange(fn: (value: boolean | any) => void): void {
     this.onChange = fn;
   }
 
   // Allows Angular to register a function to call when the input has been touched.
   // Save the function as a property to call later here.
-  registerOnTouched(fn: () => void): void {
+  public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
   // Allows Angular to disable the input.
-  setDisabledState(disabled: ToggleBoolean): void {
-    this.disabled = this.convertToBoolean(disabled);
+  public setDisabledState(disabled: ToggleBoolean): void {
+    this.disabled = convertToBoolean(disabled);
+    this.cd.detectChanges();
   }
 
-  emitToNgModel(event: any): void {
+  public emitToNgModel(event: any): void {
     const value = this.updateValue(event);
     // wait angular form changes to be completed
-    setTimeout(() => this.onChange(value));
+    this.onChange(value);
   }
-
-  // Function to call when the changes.
-  onChange = (value: boolean | string) => {};
-
-  // Function to call when the input is touched (when a star is clicked).
-  onTouched = () => {};
 }

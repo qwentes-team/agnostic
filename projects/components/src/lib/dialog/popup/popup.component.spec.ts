@@ -19,8 +19,7 @@ describe('PopupComponent', () => {
     hostElement = hostFixture.nativeElement;
   };
 
-  const getPopupDebugger = () =>
-    getChildDebugElement('ag-popup').from(hostFixture);
+  const getPopupDebugger = () => getChildDebugElement('ag-popup').from(hostFixture);
 
   afterEach(() => {
     if (hostFixture && hostFixture.destroy) {

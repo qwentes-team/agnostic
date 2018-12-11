@@ -9,3 +9,5 @@ export * from './lib/chip/chip.module';
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.service';
 export * from './lib/fab/fab.module';
+export * from './lib/checkbox/checkbox.module';
+export * from './lib/input/input.module';

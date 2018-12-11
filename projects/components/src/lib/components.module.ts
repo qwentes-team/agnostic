@@ -5,23 +5,11 @@ import {ChipModule} from './chip/chip.module';
 import {DialogModule} from './dialog/dialog.module';
 import {FabModule} from './fab/fab.module';
 import {CardModule} from './card/card.module';
+import {CheckboxModule} from './checkbox/checkbox.module';
+import {InputModule} from './input/input.module';
 
 @NgModule({
-  imports: [
-    ToggleModule,
-    ButtonModule,
-    ChipModule,
-    DialogModule,
-    FabModule,
-    CardModule,
-  ],
-  exports: [
-    ToggleModule,
-    ButtonModule,
-    ChipModule,
-    DialogModule,
-    FabModule,
-    CardModule,
-  ],
+  imports: [ToggleModule, ButtonModule, ChipModule, DialogModule, FabModule, CardModule, CheckboxModule, InputModule],
+  exports: [ToggleModule, ButtonModule, ChipModule, DialogModule, FabModule, CardModule, CheckboxModule, InputModule],
 })
 export class ComponentsModule {}

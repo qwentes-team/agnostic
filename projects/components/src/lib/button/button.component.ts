@@ -1,11 +1,4 @@
-import {
-  Attribute,
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import {Attribute, ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
 
 export type ButtonExpand = 'block' | 'full';
 export type ButtonFill = 'clear' | 'outline';
@@ -27,9 +20,5 @@ export class ButtonComponent {
     return this.disabled ? true : null;
   }
 
-  constructor(
-    @Attribute('expand') public expand,
-    @Attribute('fill') public fill,
-    @Attribute('shape') public shape
-  ) {}
+  constructor(@Attribute('expand') public expand, @Attribute('fill') public fill, @Attribute('shape') public shape) {}
 }

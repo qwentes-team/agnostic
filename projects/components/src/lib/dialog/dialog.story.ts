@@ -1,11 +1,7 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
 import {withNotes} from '@storybook/addon-notes';
-import {
-  ModalComponent,
-  ModalHeaderComponent,
-  ModalContentComponent,
-} from './modal/modal.component';
+import {ModalComponent, ModalHeaderComponent, ModalContentComponent} from './modal/modal.component';
 import {PopupComponent} from './popup/popup.component';
 import {DIALOG_DATA, DIALOG_REF, DialogService} from './dialog.service';
 import {Component, Inject} from '@angular/core';
@@ -29,10 +25,7 @@ import {Overlay} from '@angular/cdk/overlay';
 export class DialogModalComponent {
   closeValue: string;
 
-  constructor(
-    @Inject(DIALOG_REF) private dialogRef: Dialog,
-    @Inject(DIALOG_DATA) private dialogData: any
-  ) {}
+  constructor(@Inject(DIALOG_REF) private dialogRef: Dialog, @Inject(DIALOG_DATA) private dialogData: any) {}
 
   closeModal() {
     this.dialogRef.close(this.closeValue || 'empty!');
@@ -82,10 +75,7 @@ export class ModalStoryComponent {
 export class DialogPopupComponent {
   closeValue: string;
 
-  constructor(
-    @Inject(DIALOG_REF) private dialogRef: Dialog,
-    @Inject(DIALOG_DATA) public dialogData: any
-  ) {}
+  constructor(@Inject(DIALOG_REF) private dialogRef: Dialog, @Inject(DIALOG_DATA) public dialogData: any) {}
 
   closePopup() {
     this.dialogRef.close(this.closeValue || 'empty!');

@@ -45,29 +45,20 @@ export class DialogService {
       backdropClass: config.backdropClass,
       panelClass: config.panelClass,
       scrollStrategy: this.overlay.scrollStrategies.block(),
-      disposeOnNavigation:
-        config.disposeOnNavigation || DEFAULT_CONFIG.disposeOnNavigation,
+      disposeOnNavigation: config.disposeOnNavigation || DEFAULT_CONFIG.disposeOnNavigation,
       positionStrategy,
-      disposeOnClickOut:
-        config.disposeOnClickOut || DEFAULT_CONFIG.disposeOnClickOut,
+      disposeOnClickOut: config.disposeOnClickOut || DEFAULT_CONFIG.disposeOnClickOut,
     } as OverlayConfig);
 
     return overlayConfig;
   }
 
   private createInjector(data: any, dialog: Dialog): PortalInjector {
-    const injectionTokens = new WeakMap([
-      [DIALOG_DATA, data],
-      [DIALOG_REF, dialog],
-    ]);
+    const injectionTokens = new WeakMap([[DIALOG_DATA, data], [DIALOG_REF, dialog]]);
     return new PortalInjector(this.injector, injectionTokens);
   }
 
-  private createComponentPortal(
-    component: any,
-    data: any,
-    dialog: Dialog
-  ): ComponentPortal<any> {
+  private createComponentPortal(component: any, data: any, dialog: Dialog): ComponentPortal<any> {
     const injector = this.createInjector(data, dialog);
     return new ComponentPortal(component, null, injector);
   }
