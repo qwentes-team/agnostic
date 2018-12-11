@@ -149,24 +149,28 @@ describe('RadioComponent', () => {
         <form [formGroup]="form" novalidate>
           <div formGroupName="item">
             <select formControlName="language" (change)="onChangeLanguage($event.target.value)">
-              <option *ngFor="let option of selectOptions" [value]="option.id">{{option.label}}</option>
+              <option *ngFor="let option of selectOptions" [value]="option.id">{{ option.label }}</option>
             </select>
             <div formGroupName="translations">
-              <div [formGroup]="form.get('item.translations.'+ form.value.item.language)">
+              <div [formGroup]="form.get('item.translations.' + form.value.item.language)">
                 <ag-radio
                   id="bool-radio"
-                  [formControl]="form.get('item.translations.'+ form.value.item.language +'.hasFlag')" [value]="true">
+                  [formControl]="form.get('item.translations.' + form.value.item.language + '.hasFlag')"
+                  [value]="true"
+                >
                 </ag-radio>
                 <ag-radio
                   id="string-radio"
-                  [formControl]="form.get('item.translations.'+ form.value.item.language +'.hasFlag')" [value]="'test'">
+                  [formControl]="form.get('item.translations.' + form.value.item.language + '.hasFlag')"
+                  [value]="'test'"
+                >
                 </ag-radio>
-                <input type="text" formControlName="value">
+                <input type="text" formControlName="value" />
               </div>
             </div>
           </div>
         </form>
-        <div>{{form.value | json}}</div>
+        <div>{{ form.value | json }}</div>
       `,
     })
     class TestHostComponent implements OnInit {

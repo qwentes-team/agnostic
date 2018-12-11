@@ -147,9 +147,8 @@ describe('FabComponent', () => {
     describe('[fixed="false"]', () => {
       @Component({
         template: `
-          <div style="position: relative; height: 200px">
-            <ag-fab fixed="false">Test</ag-fab>
-          </div>`,
+          <div style="position: relative; height: 200px"><ag-fab fixed="false">Test</ag-fab></div>
+        `,
       })
       class TestHostComponent {}
 
