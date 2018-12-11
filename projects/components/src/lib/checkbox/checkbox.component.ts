@@ -11,7 +11,7 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {EmitToNgModel, noop} from '../components.shared';
 
-export type ToggleBoolean = boolean | 'true' | 'false';
+export type CheckboxBoolean = boolean | 'true' | 'false';
 
 @Component({
   selector: 'ag-checkbox',
@@ -31,11 +31,11 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges, EmitT
   @Input()
   public name: string;
   @Input()
-  public required: ToggleBoolean;
+  public required: CheckboxBoolean;
   @Input()
-  public disabled: ToggleBoolean;
+  public disabled: CheckboxBoolean;
   @Input()
-  public checked: ToggleBoolean;
+  public checked: CheckboxBoolean;
   @Input()
   public value: any;
 
@@ -44,9 +44,9 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges, EmitT
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  public ngOnChanges({checked, disabled, required, formControlName}: SimpleChanges) {
-    if (formControlName) {
-      this.name = formControlName.currentValue;
+  public ngOnChanges({checked, disabled, required, name}: SimpleChanges) {
+    if (name) {
+      this.name = name.currentValue;
     }
     if (checked) {
       this.checked = this.convertToBoolean(checked.currentValue);
@@ -59,7 +59,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges, EmitT
     }
   }
 
-  private convertToBoolean(value: ToggleBoolean): boolean {
+  private convertToBoolean(value: CheckboxBoolean): boolean {
     return value === 'false' ? false : !!value;
   }
 
@@ -77,7 +77,7 @@ export class CheckboxComponent implements ControlValueAccessor, OnChanges, EmitT
     this.onTouched = fn;
   }
 
-  public setDisabledState(disabled: ToggleBoolean): void {
+  public setDisabledState(disabled: CheckboxBoolean): void {
     this.disabled = this.convertToBoolean(disabled);
     this.cd.detectChanges();
   }
