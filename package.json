@@ -12,8 +12,12 @@
     "prettier": "prettier \"**/*.+(js|ts)\" --write --parser typescript",
     "storybook:dev": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-dist",
-    "validate": "npm run lint && npm run prettier",
-    "precommit": "lint-staged"
+    "validate": "npm run lint && npm run prettier"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "private": true,
   "dependencies": {
