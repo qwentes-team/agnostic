@@ -170,7 +170,6 @@ describe('RadioComponent', () => {
             </div>
           </div>
         </form>
-        <div>{{ form.value | json }}</div>
       `,
     })
     class TestHostComponent implements OnInit {
