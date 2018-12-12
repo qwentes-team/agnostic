@@ -1,0 +1,40 @@
+<div
+  class="ag-select__backdrop"
+  *ngIf="areVisibleHybridOptions"
+  (click)="toggleHybridOptions(false); shouldUpdateAutocompleteValue()">
+</div>
+
+<div class="ag-select">
+  <div class="ag-select__trigger">
+    <div class="ag-select__symbol" [ngClass]="{'ag-select__symbol--open': areVisibleHybridOptions}"></div>
+    <select #nativeSelect class="ag-select__native" [disabled]="disabled" [required]="required">
+      <ng-container *ngIf="isNative">
+        <option
+          *ngFor="let option of currentOptions; trackBy: trackByFn"
+          [value]="option.value"
+          [selected]="option.value === currentValue">
+          {{option.label}}
+        </option>
+      </ng-container>
+    </select>
+    <div *ngIf="isHybrid" class="ag-select__hybrid" (click)="toggleHybridOptions()">{{currentLabel}}</div>
+    <input
+      *ngIf="isAutocomplete"
+      #autocompleteSelect
+      class="ag-select__autocomplete"
+      [disabled]="disabled"
+      [required]="required"
+      [value]="currentLabel"
+      (input)="filterOptionsByLabel($event.target.value)"
+      (click)="toggleHybridOptions(); shouldUpdateAutocompleteValue()"/>
+  </div>
+
+  <div class="ag-select__hybrid-options" *ngIf="areVisibleHybridOptions">
+    <li
+      class="ag-select__hybrid-option"
+      (click)="hybridEvent$.next(option)"
+      *ngFor="let option of currentOptions; trackBy: trackByFn">
+      {{option.label}}
+    </li>
+  </div>
+</div>
