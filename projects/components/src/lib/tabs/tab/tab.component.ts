@@ -8,6 +8,7 @@ import {Component, Input, ViewEncapsulation} from '@angular/core';
 })
 export class TabComponent {
   @Input() title: string;
+  @Input() icon: string;
   @Input() active = false;
   @Input() template;
   @Input() dataContext;

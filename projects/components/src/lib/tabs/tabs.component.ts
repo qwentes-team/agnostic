@@ -40,6 +40,10 @@ export class TabsComponent implements AfterContentInit {
     }
   }
 
+  public getTabs(): TabComponent[] {
+    return [...this.tabs.toArray(), ...this.dynamicTabs];
+  }
+
   public createTab(title: string, template: any, dataContext: any, isCloseable: boolean = false): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(TabComponent);
     const componentRef = this.dynamicTabPlaceholder.createComponent(componentFactory);

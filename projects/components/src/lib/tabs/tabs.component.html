@@ -1,14 +1,11 @@
 <div class="ag-tabs__nav">
-  <div class="ag-tabs__tab-title" *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active">
-    <div class="ag-tabs__tab-title-container">{{tab.title}}</div>
-  </div>
   <div
     class="ag-tabs__tab-title"
-    *ngFor="let tab of dynamicTabs"
+    *ngFor="let tab of getTabs()"
     (click)="selectTab(tab)"
     [class.active]="tab.active">
     <div class="ag-tabs__tab-title-container">
-      <span>{{tab.title}}</span>
+      <span><span *ngIf="tab.icon" [ngClass]="tab.icon"></span> {{tab.title}}</span>
       <span
         class="ag-tabs__close-icon"
         *ngIf="tab.isCloseable"
