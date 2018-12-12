@@ -1,8 +1,23 @@
-<ul class="nav nav-tabs">
-  <li *ngFor="let tab of dynamicTabs" (click)="selectTab(tab)" [class.active]="tab.active">
-    <a href="#">{{tab.title}}</a>
-    <span *ngIf="tab.isCloseable" (click)="closeTab(tab)">X</span>
-  </li>
-</ul>
+<div class="ag-tabs__nav">
+  <div class="ag-tabs__tab-title" *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active">
+    <div class="ag-tabs__tab-title-container">{{tab.title}}</div>
+  </div>
+  <div
+    class="ag-tabs__tab-title"
+    *ngFor="let tab of dynamicTabs"
+    (click)="selectTab(tab)"
+    [class.active]="tab.active">
+    <div class="ag-tabs__tab-title-container">
+      <span>{{tab.title}}</span>
+      <span
+        class="ag-tabs__close-icon"
+        *ngIf="tab.isCloseable"
+        (click)="closeTab(tab)">
+        <span *ngIf="!iconClose">X</span>
+        <span *ngIf="iconClose" [ngClass]="iconClose"></span>
+      </span>
+    </div>
+  </div>
+</div>
 <ng-content></ng-content>
 <ng-template #container></ng-template>

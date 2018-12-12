@@ -1,11 +1,16 @@
 import {
   AfterContentInit,
+  Attribute,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
   ContentChildren,
+  Input,
   QueryList,
   ViewChild,
   ViewContainerRef,
+  ViewEncapsulation,
 } from '@angular/core';
 import {TabComponent} from './tab/tab.component';
 
@@ -13,20 +18,26 @@ import {TabComponent} from './tab/tab.component';
   selector: 'ag-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements AfterContentInit {
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
   @ViewChild('container', {read: ViewContainerRef}) dynamicTabPlaceholder;
+  @Input() iconClose: string;
   public dynamicTabs: TabComponent[] = [];
 
-  constructor(public componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(
+    public componentFactoryResolver: ComponentFactoryResolver,
+    private cd: ChangeDetectorRef,
+    @Attribute('fit') public fit
+  ) {}
 
   ngAfterContentInit() {
     const activeTabs = this.tabs.filter(t => t.active);
     if (activeTabs.length === 0) {
       this.selectTab(this.tabs.first);
     }
-    this.dynamicTabs = [...this.tabs.toArray()];
   }
 
   public createTab(title: string, template: any, dataContext: any, isCloseable: boolean = false): void {
@@ -39,9 +50,11 @@ export class TabsComponent implements AfterContentInit {
     instance.isCloseable = isCloseable;
     this.dynamicTabs.push(instance);
     this.selectTab(this.dynamicTabs[this.dynamicTabs.length - 1]);
+    this.cd.detectChanges();
   }
 
   public selectTab(tab: TabComponent): void {
+    this.tabs.toArray().forEach(t => (t.active = false));
     this.dynamicTabs.forEach(t => (t.active = false));
     tab.active = true;
   }
@@ -50,9 +63,8 @@ export class TabsComponent implements AfterContentInit {
     const indexFound = this.dynamicTabs.findIndex(t => t === tab);
     this.dynamicTabs.splice(indexFound, 1);
     this.dynamicTabPlaceholder.remove(indexFound);
-    if (this.dynamicTabs.length) {
-      this.selectTab(this.dynamicTabs[0]);
-    }
+    this.selectTab(this.tabs.first);
+    this.cd.detectChanges();
   }
 
   public closeActiveTab() {
