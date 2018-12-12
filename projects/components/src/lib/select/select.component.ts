@@ -19,7 +19,6 @@ import {fromEvent, merge, Subject} from 'rxjs';
 import {filter, map, takeUntil, tap} from 'rxjs/operators';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {convertToBoolean, EmitToNgModel, noop} from '../components.shared';
-import {ToggleBoolean} from '../toggle/toggle.component';
 
 export class AgOption {
   constructor(public readonly label: string, public readonly value: any) {}
@@ -63,10 +62,17 @@ export class SelectComponent
   public autocompleteEvent$: Subject<AgOption> = new Subject();
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef) {
+    this.cd.detach();
+  }
 
   public ngOnInit() {
     this.defineMethod(this.method);
+    if (!this.currentValue) {
+      this.updateValue(this.options[0].value);
+    } else {
+      this.cd.detectChanges();
+    }
   }
 
   public ngOnDestroy() {
@@ -75,7 +81,7 @@ export class SelectComponent
     this.destroy$.unsubscribe();
   }
 
-  public ngOnChanges({method, preselected, required, disabled}: SimpleChanges): void {
+  public ngOnChanges({method, preselected, required, disabled, options}: SimpleChanges): void {
     if (preselected) {
       this.updateValue(preselected.currentValue);
     }
@@ -117,6 +123,7 @@ export class SelectComponent
     }
     const newValue = typeof forceValue === 'boolean' ? forceValue : !this.areVisibleHybridOptions;
     this.areVisibleHybridOptions = (this.isHybrid || this.isAutocomplete) && newValue;
+    this.cd.detectChanges();
   }
 
   private defineMethod(method) {
@@ -135,16 +142,21 @@ export class SelectComponent
   }
 
   private setCurrentLabel(newValue: any): string {
-    const optionFound = this.options.find(o => o.value === newValue) || ({} as AgOption);
+    const optionFound = this.options.find(o => String(o.value) === String(newValue)) || ({} as AgOption);
     this.currentLabel = optionFound.label;
     return this.currentLabel;
   }
 
   public filterOptionsByLabel(newLabel) {
-    const label = newLabel.toLowerCase();
+    const label = String(newLabel).toLowerCase();
     this.currentOptions = this.isAutocomplete
-      ? this.options.filter(o => o.label.toLowerCase().includes(label))
+      ? this.options.filter(o =>
+          String(o.label)
+            .toLowerCase()
+            .includes(label)
+        )
       : this.options;
+    this.cd.detectChanges();
   }
 
   private shouldFindValueFromAutocomplete(): void {
@@ -185,7 +197,7 @@ export class SelectComponent
     this.onTouched = fn;
   }
 
-  public setDisabledState(disabled: ToggleBoolean): void {
+  public setDisabledState(disabled): void {
     this.disabled = convertToBoolean(disabled);
     this.cd.detectChanges();
   }

@@ -3,6 +3,7 @@ ag-select {
   --ag-select-background-color: #FFF;
   --ag-select-border: 1px solid rgba(0, 0, 0, .1);
   --ag-select-height: 44px;
+  --ag-select-disabled-opacity: .5;
   --ag-select-border-radius: 2px;
   --ag-select-symbol-image: url('https://image.flaticon.com/icons/svg/120/120906.svg');
   --ag-select-symbol-size: 14px;
@@ -24,6 +25,10 @@ ag-select {
     display: flex;
     flex-direction: column;
     width: 100%;
+
+    &--disabled {
+      opacity: var(--ag-select-disabled-opacity);
+    }
   }
 
   select, input {
