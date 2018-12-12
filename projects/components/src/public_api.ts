@@ -11,3 +11,4 @@ export * from './lib/dialog/dialog.service';
 export * from './lib/fab/fab.module';
 export * from './lib/checkbox/checkbox.module';
 export * from './lib/input/input.module';
+export * from './lib/tabs/tabs.module';
