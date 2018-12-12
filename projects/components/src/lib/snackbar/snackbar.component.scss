@@ -1,0 +1,94 @@
+ag-snackbar {
+  --ag-snackbar-height: 48px;
+  --ag-snackbar-min-width: 288px;
+  --ag-snackbar-max-width: 568px;
+  --ag-snackbar-gap: 16px;
+  --ag-snackbar-radius: 3px;
+  --ag-snackbar-color-dark: rgba(0, 0, 0, .75);
+  --ag-snackbar-color-light: rgba(255, 255, 255);
+  --ag-snackbar-background-color: rgba(0, 0, 0, .65);
+  --ag-snackbar-background-color-light: rgba(0, 0, 0, .1);
+  --ag-snackbar-hover-color: rgba(0, 0, 0, .3);
+  --ag-snackbar-primary-color: #003366;
+  --ag-snackbar-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  --ag-snackbar-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  min-width: var(--ag-snackbar-min-width);
+  max-width: var(--ag-snackbar-max-width);
+  height: var(--ag-snackbar-height);
+  padding: var(--ag-snackbar-gap);
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--ag-snackbar-background-color-light);
+  box-shadow: var(--ag-snackbar-box-shadow);
+  color: var(--ag-snackbar-color-dark);
+  border-radius: var(--ag-snackbar-radius);
+  font-family: var(--ag-snackbar-font-family);
+  font-size: 14px;
+
+  visibility: hidden;
+
+  &[position="top-left"] {
+    position: absolute;
+    top: var(--ag-snackbar-gap);
+    left: var(--ag-snackbar-gap);
+  }
+
+  &[position="top-right"] {
+    position: absolute;
+    top: var(--ag-snackbar-gap);
+    right: var(--ag-snackbar-gap);
+  }
+
+  &[position="bottom-left"] {
+    position: absolute;
+    bottom: var(--ag-snackbar-gap);
+    left: var(--ag-snackbar-gap);
+  }
+
+  &[position="bottom-right"] {
+    position: absolute;
+    bottom: var(--ag-snackbar-gap);
+    right: 100%;
+  }
+
+  .ag-snackbar__action {
+    transition: all .5s ease;
+    color: var(--ag-snackbar-primary-color);
+    text-transform: capitalize;
+
+    &:hover {
+      cursor: pointer;
+      color: var(--ag-snackbar-hover-color);
+    }
+    &:empty {
+      display: none;
+    }
+  }
+
+  &[theme="material"] {
+    background-color: var(--ag-snackbar-background-color);
+    color: var(--ag-snackbar-color-light);
+    .ag-snackbar__action {
+      color: var(--ag-snackbar-color-light);
+      text-transform: uppercase;
+    }
+  }
+}
+
+.ag-snackbar--show {
+  visibility: visible;
+  animation: fadeIn .5s, fadeOut .5s 5s;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
