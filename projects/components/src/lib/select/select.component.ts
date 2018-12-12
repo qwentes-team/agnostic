@@ -21,13 +21,6 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {convertToBoolean, EmitToNgModel, noop} from '../components.shared';
 import {ToggleBoolean} from '../toggle/toggle.component';
 
-export const KEYBOARD = {
-  DOWN_ARROW: 40,
-  UP_ARROW: 38,
-  ENTER: 13,
-  ESC: 27,
-};
-
 export class AgOption {
   constructor(public readonly label: string, public readonly value: any) {}
 }
@@ -82,12 +75,15 @@ export class SelectComponent
     this.destroy$.unsubscribe();
   }
 
-  public ngOnChanges({method, preselected, required}: SimpleChanges): void {
+  public ngOnChanges({method, preselected, required, disabled}: SimpleChanges): void {
     if (preselected) {
       this.updateValue(preselected.currentValue);
     }
     if (method) {
       this.defineMethod(method.currentValue);
+    }
+    if (disabled) {
+      this.setDisabledState(disabled.currentValue);
     }
     if (required) {
       this.required = convertToBoolean(required.currentValue);
