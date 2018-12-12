@@ -230,14 +230,13 @@ describe('ToggleComponent', () => {
         <form [formGroup]="form" novalidate>
           <div formGroupName="item">
             <select formControlName="language" (change)="onChangeLanguage($event.target.value)">
-              <option *ngFor="let option of selectOptions" [value]="option.id">{{option.label}}</option>
+              <option *ngFor="let option of selectOptions" [value]="option.id">{{ option.label }}</option>
             </select>
             <div formGroupName="translations">
-              <div [formGroup]="form.get('item.translations.'+ form.value.item.language)">
-                <ag-toggle
-                  [formControl]="form.get('item.translations.'+ form.value.item.language +'.hasFlag')">
+              <div [formGroup]="form.get('item.translations.' + form.value.item.language)">
+                <ag-toggle [formControl]="form.get('item.translations.' + form.value.item.language + '.hasFlag')">
                 </ag-toggle>
-                <input type="text" formControlName="value">
+                <input type="text" formControlName="value" />
               </div>
             </div>
           </div>

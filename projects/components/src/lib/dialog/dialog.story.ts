@@ -12,12 +12,10 @@ import {Overlay} from '@angular/cdk/overlay';
   selector: 'ag-dialog-modal',
   template: `
     <ag-modal>
-      <ag-modal-header>header
-        <button (click)="closeModal()">X</button>
-      </ag-modal-header>
+      <ag-modal-header>header <button (click)="closeModal()">X</button> </ag-modal-header>
       <ag-modal-content>
         <div>content</div>
-        <div><input type="text" placeholder="Type something..." (change)="getInputValue($event)"></div>
+        <div><input type="text" placeholder="Type something..." (change)="getInputValue($event)" /></div>
       </ag-modal-content>
     </ag-modal>
   `,
@@ -41,7 +39,7 @@ export class DialogModalComponent {
   template: `
     <button (click)="openModal()">open modal</button>
     <div>
-      <small>You closed modal with value: {{closedValue}}</small>
+      <small>You closed modal with value: {{ closedValue }}</small>
     </div>
   `,
 })
@@ -65,10 +63,9 @@ export class ModalStoryComponent {
   template: `
     <ag-popup>
       <div>
-        <span>{{dialogData.message}}</span>
-        <button (click)="closePopup()">X</button>
+        <span>{{ dialogData.message }}</span> <button (click)="closePopup()">X</button>
       </div>
-      <div><input type="text" placeholder="Type something..." (change)="getInputValue($event)"></div>
+      <div><input type="text" placeholder="Type something..." (change)="getInputValue($event)" /></div>
     </ag-popup>
   `,
 })
@@ -91,7 +88,7 @@ export class DialogPopupComponent {
   template: `
     <button (click)="openPopup()">open popup</button>
     <div>
-      <small>You closed pupup with value: {{closedValue}}</small>
+      <small>You closed pupup with value: {{ closedValue }}</small>
     </div>
   `,
 })
