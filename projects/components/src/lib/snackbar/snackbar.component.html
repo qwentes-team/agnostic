@@ -1,8 +1,3 @@
-<div class="ag-snackbar__content">
-  <ng-content></ng-content>
-</div>
+<div>{{ data.text }}</div>
 
-<div class="ag-snackbar__action">
-  <ng-content select="[usage=ag-snackbar--action]"></ng-content>
-</div>
-<!--<div *ngIf="isClosable" class="ag-snackbar__action" (click)="forceSnackbarClosing()">Close</div>-->
+<div class="ag-snackbar__action" (click)="closeSnackbar()">close</div>

@@ -1,3 +1,6 @@
+@import "~@angular/cdk/overlay";
+@include cdk-overlay();
+
 ag-snackbar {
   --ag-snackbar-height: 48px;
   --ag-snackbar-min-width: 288px;
@@ -17,8 +20,10 @@ ag-snackbar {
   max-width: var(--ag-snackbar-max-width);
   height: var(--ag-snackbar-height);
   padding: var(--ag-snackbar-gap);
+  margin-bottom: var(--ag-snackbar-gap);
   box-sizing: border-box;
-  display: inline-flex;
+  position: relative;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--ag-snackbar-background-color-light);
@@ -28,9 +33,9 @@ ag-snackbar {
   font-family: var(--ag-snackbar-font-family);
   font-size: 14px;
 
-  visibility: hidden;
+  /*visibility: hidden;*/
 
-  &[position="top-left"] {
+  /*&[position="top-left"] {
     position: absolute;
     top: var(--ag-snackbar-gap);
     left: var(--ag-snackbar-gap);
@@ -52,7 +57,7 @@ ag-snackbar {
     position: absolute;
     bottom: var(--ag-snackbar-gap);
     right: 100%;
-  }
+  }*/
 
   .ag-snackbar__action {
     transition: all .5s ease;
@@ -78,9 +83,9 @@ ag-snackbar {
   }
 }
 
-.ag-snackbar--show {
+/*.ag-snackbar--show {
   visibility: visible;
-  animation: fadeIn .5s, fadeOut .5s 5s;
+  animation: fadeIn .5s, fadeOut .5s 20s;
 }
 
 @keyframes fadeIn {
@@ -91,4 +96,4 @@ ag-snackbar {
 @keyframes fadeOut {
   from {opacity: 1;}
   to {opacity: 0;}
-}
+}*/
