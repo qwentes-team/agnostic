@@ -104,6 +104,10 @@ ag-select {
     background-color: #FFF;
   }
 
+  .ag-select__trigger ~ .ag-select__hybrid-options {
+    z-index: 10;
+  }
+
   .ag-select__hybrid-option {
     display: flex;
     align-items: center;
