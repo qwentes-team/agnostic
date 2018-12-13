@@ -1,0 +1,15 @@
+<label class="ag-radio" [ngClass]="{'ag-radio--disabled': disabled}">
+  <input
+    class="ag-radio__input"
+    type="radio"
+    [name]="name"
+    [value]="value"
+    [disabled]="disabled"
+    [required]="required"
+    [checked]="checked"
+    (change)="emitToNgModel($event)">
+  <div class="ag-radio__outer-circle">
+    <div class="ag-radio__inner-circle"></div>
+  </div>
+  <span class="ag-radio__label"><ng-content></ng-content></span>
+</label>

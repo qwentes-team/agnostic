@@ -1,8 +1,9 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
 import {ChipComponent} from './chip.component';
+import {SECTION} from './../../../../../.storybook/config';
 
-storiesOf('Chip', module)
+storiesOf(`${SECTION.INDICATORS}|Chip`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [ChipComponent],

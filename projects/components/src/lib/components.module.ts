@@ -7,6 +7,7 @@ import {FabModule} from './fab/fab.module';
 import {CardModule} from './card/card.module';
 import {CheckboxModule} from './checkbox/checkbox.module';
 import {InputModule} from './input/input.module';
+import {RadioModule} from './radio/radio.module';
 import {TabsModule} from './tabs/tabs.module';
 
 @NgModule({
@@ -19,6 +20,7 @@ import {TabsModule} from './tabs/tabs.module';
     CardModule,
     CheckboxModule,
     InputModule,
+    RadioModule,
     TabsModule,
   ],
   exports: [
@@ -30,6 +32,7 @@ import {TabsModule} from './tabs/tabs.module';
     CardModule,
     CheckboxModule,
     InputModule,
+    RadioModule,
     TabsModule,
   ],
 })

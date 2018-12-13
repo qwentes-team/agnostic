@@ -1,8 +1,9 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
 import {CheckboxComponent} from './checkbox.component';
+import {SECTION} from './../../../../../.storybook/config';
 
-storiesOf('Checkbox', module)
+storiesOf(`${SECTION.FORM}|Checkbox`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [CheckboxComponent],
