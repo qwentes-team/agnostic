@@ -4,6 +4,8 @@ ag-tabs {
   --ag-tabs-color: #DFDFDF;
   --ag-tabs-color-hover: #FAFAFA;
   --ag-tabs-color-active: #CECECE;
+  --ag-tabs-title-align: center;
+  --ag-tabs-title-min-width: 100px;
   --ag-tabs-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   
   display: flex;
@@ -13,7 +15,7 @@ ag-tabs {
   &[fit="true"] {
     .ag-tabs__nav {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(var(--ag-tabs-title-min-width), 1fr));
     }
   }
 }
@@ -25,7 +27,7 @@ ag-tabs {
   &__tab-title {
     padding: var(--ag-tabs-gap-lg);
     &-container {
-      text-align: center;
+      text-align: var(--ag-tabs-title-align);
     }
     
     &.active {
