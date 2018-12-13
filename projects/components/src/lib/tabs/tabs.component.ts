@@ -35,7 +35,7 @@ export class TabsComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     const activeTabs = this.tabs.filter(t => t.active);
-    if (activeTabs.length === 0) {
+    if (this.tabs.length && activeTabs.length === 0) {
       this.selectTab(this.tabs.first);
     }
   }
@@ -63,7 +63,7 @@ export class TabsComponent implements AfterContentInit {
     tab.active = true;
   }
 
-  public closeTab(tab: TabComponent) {
+  public closeTab(tab: TabComponent): void {
     const indexFound = this.dynamicTabs.findIndex(t => t === tab);
     this.dynamicTabs.splice(indexFound, 1);
     this.dynamicTabPlaceholder.remove(indexFound);
@@ -71,7 +71,7 @@ export class TabsComponent implements AfterContentInit {
     this.cd.detectChanges();
   }
 
-  public closeActiveTab() {
+  public closeActiveTab(): void {
     const activeTab = this.dynamicTabs.filter(tab => tab.active);
     if (activeTab.length > 0) {
       this.closeTab(activeTab[0]);
