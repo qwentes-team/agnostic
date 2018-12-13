@@ -116,11 +116,8 @@ describe('TabsComponent', () => {
       tabsDebugger = getTabsDebugger();
       const nav = tabsDebugger.nativeElement.querySelector('.ag-tabs__nav');
       const computedStyleForNav = window.getComputedStyle(nav);
-      document.body.style.margin = '0';
-      document.body.style.padding = '0';
       hostFixture.detectChanges();
       expect(computedStyleForNav.display).toBe('grid');
-      expect(parseInt(computedStyleForNav.width, 10)).toBe(window.innerWidth);
     });
   });
 });
