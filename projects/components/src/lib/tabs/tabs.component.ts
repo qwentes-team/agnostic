@@ -8,6 +8,7 @@ import {
   ContentChildren,
   Input,
   QueryList,
+  ReflectiveInjector,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
@@ -44,14 +45,21 @@ export class TabsComponent implements AfterContentInit {
     return [...this.tabs.toArray(), ...this.dynamicTabs];
   }
 
-  public createTab(title: string, template: any, dataContext: any, isCloseable: boolean = false): void {
+  public createTab(options: {
+    title: string;
+    template: any;
+    dataContext?: any;
+    isCloseable?: boolean;
+    icon?: string;
+  }): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(TabComponent);
     const componentRef = this.dynamicTabPlaceholder.createComponent(componentFactory);
     const instance: TabComponent = componentRef.instance as TabComponent;
-    instance.title = title;
-    instance.template = template;
-    instance.dataContext = dataContext;
-    instance.isCloseable = isCloseable;
+    instance.title = options.title;
+    instance.template = options.template;
+    instance.dataContext = options.dataContext;
+    instance.isCloseable = options.isCloseable;
+    instance.icon = options.icon;
     this.dynamicTabs.push(instance);
     this.selectTab(this.dynamicTabs[this.dynamicTabs.length - 1]);
     this.cd.detectChanges();
