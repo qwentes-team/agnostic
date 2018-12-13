@@ -145,7 +145,7 @@ describe('SelectComponent', () => {
 
       it('should change form value', () => {
         const form: FormGroup = hostFixture.componentInstance.form;
-        form.get('language').setValue(null);
+        form.get('language').setValue(undefined);
         hostFixture.detectChanges();
         selectDebugger = getSelectDebugger();
         const selectDOM: HTMLSelectElement = selectDebugger.nativeElement.querySelector(SELECTOR.NATIVE);
@@ -284,7 +284,7 @@ describe('SelectComponent', () => {
 
       it('should change form value', () => {
         const form: FormGroup = hostFixture.componentInstance.form;
-        form.get('language').setValue(null);
+        form.get('language').setValue(undefined);
         hostFixture.detectChanges();
         selectDebugger = getSelectDebugger();
         const selectElementDOM: HTMLSelectElement = selectDebugger.nativeElement;
@@ -523,7 +523,7 @@ describe('SelectComponent', () => {
 
       it('should change form value', () => {
         const form: FormGroup = hostFixture.componentInstance.form;
-        form.get('language').setValue(null);
+        form.get('language').setValue(undefined);
         hostFixture.detectChanges();
         selectDebugger = getSelectDebugger();
         const selectElementDOM: HTMLSelectElement = selectDebugger.nativeElement;

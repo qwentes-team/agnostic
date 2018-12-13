@@ -1,5 +1,5 @@
 export const OPTIONS = [
-  {label: 'Select Country', value: null},
+  {label: 'Select Country', value: undefined},
   {label: 'Afghanistan', value: 'AF'},
   {label: 'Albania', value: 'AL'},
   {label: 'Algeria', value: 'DZ'},
