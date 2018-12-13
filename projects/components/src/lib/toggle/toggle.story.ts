@@ -1,8 +1,9 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
 import {ToggleComponent} from './toggle.component';
+import {SECTION} from './../../../../../.storybook/config';
 
-storiesOf('Toggle', module)
+storiesOf(`${SECTION.FORM}|Toggle`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [ToggleComponent],

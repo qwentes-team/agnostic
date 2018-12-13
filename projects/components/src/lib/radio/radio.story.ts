@@ -1,7 +1,8 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {RadioComponent} from './radio.component';
+import {SECTION} from './../../../../../.storybook/config';
 
-storiesOf('Radio', module)
+storiesOf(`${SECTION.FORM}|Radio`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [RadioComponent],

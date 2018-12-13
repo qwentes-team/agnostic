@@ -1,8 +1,9 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
 import {CardComponent} from './card.component';
+import {SECTION} from './../../../../../.storybook/config';
 
-storiesOf('Card', module)
+storiesOf(`${SECTION.LAYOUT}|Card`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [CardComponent],

@@ -1,7 +1,8 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {FabComponent} from './fab.component';
+import {SECTION} from './../../../../../.storybook/config';
 
-storiesOf('Fab', module)
+storiesOf(`${SECTION.INDICATORS}|Fab`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [FabComponent],

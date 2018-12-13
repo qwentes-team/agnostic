@@ -2,8 +2,9 @@ import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
 import {withNotes} from '@storybook/addon-notes';
 import {ButtonComponent} from './button.component';
+import {SECTION} from './../../../../../.storybook/config';
 
-storiesOf('Button', module)
+storiesOf(`${SECTION.INDICATORS}|Button`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [ButtonComponent],

@@ -1,8 +1,9 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
 import {InputComponent} from './input.component';
+import {SECTION} from './../../../../../.storybook/config';
 
-storiesOf('Input', module)
+storiesOf(`${SECTION.FORM}|Input`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [InputComponent],

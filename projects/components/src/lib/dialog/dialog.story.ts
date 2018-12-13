@@ -7,6 +7,7 @@ import {DIALOG_DATA, DIALOG_REF, DialogService} from './dialog.service';
 import {Component, Inject} from '@angular/core';
 import {Dialog} from './dialog.model';
 import {Overlay} from '@angular/cdk/overlay';
+import {SECTION} from './../../../../../.storybook/config';
 
 @Component({
   selector: 'ag-dialog-modal',
@@ -107,7 +108,7 @@ export class PopupStoryComponent {
   }
 }
 
-storiesOf('Dialog', module)
+storiesOf(`${SECTION.MODAL}|Dialog`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [
