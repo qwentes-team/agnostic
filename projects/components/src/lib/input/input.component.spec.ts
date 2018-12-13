@@ -204,12 +204,11 @@ describe('InputComponent', () => {
         <form [formGroup]="form" novalidate>
           <div formGroupName="item">
             <select formControlName="language" (change)="onChangeLanguage($event.target.value)">
-              <option *ngFor="let option of selectOptions" [value]="option.id">{{option.label}}</option>
+              <option *ngFor="let option of selectOptions" [value]="option.id">{{ option.label }}</option>
             </select>
             <div formGroupName="translations">
-              <div [formGroup]="form.get('item.translations.'+ form.value.item.language)">
-                <ag-input
-                  [formControl]="form.get('item.translations.'+ form.value.item.language +'.inputValue')">
+              <div [formGroup]="form.get('item.translations.' + form.value.item.language)">
+                <ag-input [formControl]="form.get('item.translations.' + form.value.item.language + '.inputValue')">
                 </ag-input>
               </div>
             </div>
