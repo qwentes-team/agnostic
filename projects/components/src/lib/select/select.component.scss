@@ -1,0 +1,124 @@
+ag-select {
+  --ag-select-gap: 12px;
+  --ag-select-background-color: #FFF;
+  --ag-select-border: 1px solid rgba(0, 0, 0, .1);
+  --ag-select-height: 44px;
+  --ag-select-disabled-opacity: .5;
+  --ag-select-border-radius: 2px;
+  --ag-select-symbol-image: url('https://image.flaticon.com/icons/svg/120/120906.svg');
+  --ag-select-symbol-size: 14px;
+  --ag-select-hybrid-options-box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+  --ag-select-hybrid-option-border: 1px solid rgba(0, 0, 0, .04);
+  --ag-select-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  position: relative;
+  display: inline-flex;
+  height: var(--ag-select-height);
+  min-width: 300px;
+  font-family: var(--ag-select-font-family);
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .ag-select {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &--disabled {
+      opacity: var(--ag-select-disabled-opacity);
+    }
+  }
+
+  select, input {
+    appearance: none;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .ag-select__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
+
+  .ag-select__trigger {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--ag-select-background-color);
+    border: var(--ag-select-border);
+    padding: 0 var(--ag-select-gap);
+    border-radius: var(--ag-select-border-radius);
+  }
+
+  .ag-select__native, .ag-select__hybrid, .ag-select__autocomplete {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    padding: 0 calc(var(--ag-select-symbol-size) + (var(--ag-select-gap) * 2)) 0 var(--ag-select-gap);
+  }
+
+  .ag-select__symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    right: var(--ag-select-gap);
+    width: var(--ag-select-symbol-size);
+    height: var(--ag-select-symbol-size);
+    background-image: var(--ag-select-symbol-image);
+    background-size: var(--ag-select-symbol-size);
+    background-repeat: no-repeat;
+    background-position: center center;
+    transform: translate(0%, -50%);
+
+    &--open {
+      transform: translate(0%, -55%) rotate(180deg);
+    }
+  }
+
+  .ag-select__hybrid-options {
+    position: absolute;
+    border-radius: var(--ag-select-border-radius);
+    overflow: auto;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    margin-top: calc(var(--ag-select-gap) / 2);
+    box-shadow: var(--ag-select-hybrid-options-box-shadow);
+    background-color: #FFF;
+  }
+
+  .ag-select__trigger ~ .ag-select__hybrid-options {
+    z-index: 10;
+  }
+
+  .ag-select__hybrid-option {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0 var(--ag-select-gap);
+    height: var(--ag-select-height);
+    border-bottom: var(--ag-select-hybrid-option-border);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
