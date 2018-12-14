@@ -1,3 +1,5 @@
-<div>{{ data.text }}</div>
-
-<div class="ag-snackbar__action" (click)="closeSnackbar()">close</div>
+<div class="ag-snackbar__ref" [attr.position]="data.position" [attr.theme]="data.theme" [ngClass]="{'ag-snackbar--show': isVisibleSnackbar, 'ag-snackbar--hide': isVisibleSnackbar === false}">
+  {{ data.text }}
+  {{data.template | json}}
+  <div class="ag-snackbar__action" (click)="closeSnackbar()">close</div>
+</div>

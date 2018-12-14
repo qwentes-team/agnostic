@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {SNACKBAR_DATA, SnackbarData} from './snackbar.injection';
+import {SNACKBAR_CONFIG_TOKEN, SnackbarConfig} from './snackbar-config';
 import {SnackbarRef} from './snackbar-ref';
-import {OverlayRef} from '@angular/cdk/overlay';
 
 @Component({
   selector: 'ag-snackbar',
@@ -12,10 +11,16 @@ import {OverlayRef} from '@angular/cdk/overlay';
 })
 export class SnackbarComponent implements OnInit, OnDestroy {
   private intervalId: any;
+  public isVisibleSnackbar: boolean;
 
-  constructor(@Inject(SNACKBAR_DATA) readonly data: SnackbarData, readonly ref: SnackbarRef) {}
+  constructor(
+    readonly data: SnackbarConfig,
+    readonly ref: SnackbarRef,
+    @Inject(SNACKBAR_CONFIG_TOKEN) private snackbarConfig: SnackbarConfig
+  ) {}
 
   ngOnInit() {
+    this.isVisibleSnackbar = true;
     this.intervalId = setTimeout(() => this.closeSnackbar(), 5000);
   }
 
