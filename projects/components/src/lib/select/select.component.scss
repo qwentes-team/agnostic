@@ -14,7 +14,7 @@ ag-select {
   position: relative;
   display: inline-flex;
   height: var(--ag-select-height);
-  min-width: 300px;
+  width: 100%;
   font-family: var(--ag-select-font-family);
 
   * {

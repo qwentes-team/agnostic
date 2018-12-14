@@ -14,3 +14,4 @@ export * from './lib/input/input.module';
 export * from './lib/radio/radio.module';
 export * from './lib/select/select.module';
 export * from './lib/tabs/tabs.module';
+export * from './lib/form-field/form-field.module';
