@@ -1,21 +1,21 @@
 ag-select {
-  --ag-select-gap: 12px;
-  --ag-select-background-color: #FFF;
-  --ag-select-border: 1px solid rgba(0, 0, 0, .1);
   --ag-select-height: 44px;
-  --ag-select-disabled-opacity: .5;
-  --ag-select-border-radius: 2px;
   --ag-select-symbol-image: url('https://image.flaticon.com/icons/svg/120/120906.svg');
   --ag-select-symbol-size: 14px;
-  --ag-select-hybrid-options-box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
-  --ag-select-hybrid-option-border: 1px solid rgba(0, 0, 0, .04);
-  --ag-select-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --ag-select-gap: var(--ag-gap-md);
+  --ag-select-background-color: var(--ag-neutral-sweet);
+  --ag-select-border: var(--ag-neutral-regular);
+  --ag-select-disabled-opacity: var(--ag-disabled-opacity);
+  --ag-select-border-radius: var(--ag-border-radius-sm);
+  --ag-select-hybrid-options-box-shadow: var(--ag-box-shadow);
+  --ag-select-hybrid-option-border: 1px solid var(--ag-neutral-sweet);
+  --ag-select-hybrid-options-background-color: var(--ag-neutral-lightest);
 
   position: relative;
   display: inline-flex;
   height: var(--ag-select-height);
   width: 100%;
-  font-family: var(--ag-select-font-family);
+  font-family: inherit;
 
   * {
     box-sizing: border-box;
@@ -101,7 +101,7 @@ ag-select {
     max-height: 200px;
     margin-top: calc(var(--ag-select-gap) / 2);
     box-shadow: var(--ag-select-hybrid-options-box-shadow);
-    background-color: #FFF;
+    background-color: var(--ag-select-hybrid-options-background-color);
   }
 
   .ag-select__trigger ~ .ag-select__hybrid-options {

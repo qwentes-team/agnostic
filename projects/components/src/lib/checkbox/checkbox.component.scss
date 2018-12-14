@@ -1,14 +1,13 @@
 ag-checkbox {
   --ag-checkbox-size: 18px;
-  --ag-checkbox-gap: 8px;
-  --ag-checkbox-background-color: rgba(0, 0, 0, .1);
-  --ag-checkbox-border: 1px solid var(--ag-checkbox-background-color);
-  --ag-checkbox-radius: 2px;
-  --ag-checkbox-check-color: #FFF;
   --ag-checkbox-check-weight: 1px;
-  --ag-checkbox-background-color-primary: #003366;
-  --ag-checkbox-disabled-opacity: .5;
-  --ag-checkbox-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --ag-checkbox-gap: var(--ag-gap-sm);
+  --ag-checkbox-background-color: var(--ag-neutral-soft);
+  --ag-checkbox-border: 1px solid var(--ag-checkbox-background-color);
+  --ag-checkbox-radius: var(--ag-border-radius-sm);
+  --ag-checkbox-check-color: var(--ag-neutral-sweet);
+  --ag-checkbox-background-color-primary: var(--ag-primary-dark);
+  --ag-checkbox-disabled-opacity: var(--ag-disabled-opacity);
 
   display: inline-flex;
 
@@ -23,7 +22,7 @@ ag-checkbox {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: var(--ag-checkbox-font-family);
+    font-family: inherit;
 
     &__label {
       margin-left: var(--ag-checkbox-gap);

@@ -1,0 +1,36 @@
+:root {
+  --ag-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --ag-font-size: 14px;
+  
+  --ag-disabled-opacity: .4;
+  
+  --ag-gap-xs: 4px;
+  --ag-gap-sm: 8px;
+  --ag-gap-md: 12px;
+  --ag-gap-lg: 16px;
+  --ag-gap-xl: 24px;
+  
+  --ag-border-radius-sm: 2px;
+  --ag-border-radius-md: 8px;
+  
+  --ag-primary-dark: #414754;
+  --ag-primary-medium: #565E70;
+  --ag-primary-light: #6C778E;
+  
+  --ag-neutral-darkest: #000000;
+  --ag-neutral-dark: #303030;
+  --ag-neutral-intense: #4C4D4F;
+  --ag-neutral-medium: #999999;
+  --ag-neutral-regular: #CCCCCC;
+  --ag-neutral-soft: #EBEBEB;
+  --ag-neutral-sweet: #F6F6F6;
+  --ag-neutral-lightest: #FFFFFF;
+  
+  --ag-accent-positive: #DA6767;
+  --ag-accent-warning: #fff176;
+  --ag-accent-danger: #88BE78;
+  
+  --ag-box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+  --ag-box-shadow-hover: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+  --ag-box-shadow-active: 0 7px 8px -4px rgba(0,0,0,.2), 0 12px 17px 2px rgba(0,0,0,.14), 0 5px 22px 4px rgba(0,0,0,.12);
+}
