@@ -1,0 +1,4 @@
+<div [hidden]="!active">
+  <ng-content *ngIf="!template"></ng-content>
+  <ng-container *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{data: dataContext}"></ng-container>
+</div>

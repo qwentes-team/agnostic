@@ -1,0 +1,20 @@
+<div class="ag-tabs__nav">
+  <div
+    class="ag-tabs__tab-title"
+    *ngFor="let tab of getTabs()"
+    (click)="selectTab(tab)"
+    [class.active]="tab.active">
+    <div class="ag-tabs__tab-title-container">
+      <span><span *ngIf="tab.icon" [ngClass]="tab.icon"></span> {{tab.title}}</span>
+      <span
+        class="ag-tabs__close-icon"
+        *ngIf="tab.isCloseable"
+        (click)="closeTab(tab)">
+        <span *ngIf="!iconClose">X</span>
+        <span *ngIf="iconClose" [ngClass]="iconClose"></span>
+      </span>
+    </div>
+  </div>
+</div>
+<ng-content></ng-content>
+<ng-template #container></ng-template>
