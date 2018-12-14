@@ -1,0 +1,9 @@
+<label class="ag-form-field">
+  <div class="ag-form-field__message" *ngIf="hasMessage">
+    <div class="ag-form-field__label" *ngIf="label">{{label}}</div>
+    <span class="ag-form-field__meta-label" *ngIf="metaLabel">{{metaLabel}}</span>
+  </div>
+  <div class="ag-form-field__content">
+    <ng-content></ng-content>
+  </div>
+</label>
