@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {InputComponent} from './input.component';
+import {InputComponent, InputDirective} from './input.component';
 
 @NgModule({
   imports: [CommonModule],
-  exports: [InputComponent],
-  declarations: [InputComponent],
+  exports: [InputComponent, InputDirective],
+  declarations: [InputComponent, InputDirective],
 })
 export class InputModule {}
