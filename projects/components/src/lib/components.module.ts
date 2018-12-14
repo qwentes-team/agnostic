@@ -42,5 +42,4 @@ import {FormFieldModule} from './form-field/form-field.module';
     FormFieldModule,
   ],
 })
-export class ComponentsModule {
-}
+export class ComponentsModule {}
