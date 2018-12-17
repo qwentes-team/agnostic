@@ -1,0 +1,7 @@
+<div
+  infiniteScroll
+  [infiniteScrollDistance]="infiniteScrollDistance || DEFAULT_SETTING.DISTANCE"
+  [infiniteScrollThrottle]="infiniteScrollThrottle || DEFAULT_SETTING.THROTTLE"
+  (scrolled)="scrolled.emit()">
+  <ng-content></ng-content>
+</div>
