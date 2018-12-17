@@ -1,12 +1,12 @@
 .ag-input {
-  --ag-input-border-radius: 2px;
-  --ag-input-gap: 8px;
   --ag-input-border: 1px solid rgba(0, 0, 0, .2);
   --ag-input-box-shadow-focus: 0 0 1px 1px rgba(0, 0, 0, .1);
   --ag-input-font-size: 14px;
-  --ag-input-disabled-opacity: .5;
-  --ag-input-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
+  --ag-input-border-radius: var(--ag-border-radius-sm);
+  --ag-input-gap: var(--ag-gap-sm);
+  --ag-input-disabled-opacity: var(--ag-disabled-opacity);
+  --ag-input-background-color: var(--ag-neutral-lightest);
+  
   display: block;
   width: 100%;
   line-height: 18px;
@@ -20,11 +20,12 @@
   appearance: none;
   box-shadow: none;
   transition: box-shadow .3s ease;
-
+  background-color: var(--ag-input-background-color);
+  
   &:focus {
     box-shadow: var(--ag-input-box-shadow-focus);
   }
-
+  
   &[disabled="true"] {
     pointer-events: none;
     opacity: var(--ag-input-disabled-opacity);

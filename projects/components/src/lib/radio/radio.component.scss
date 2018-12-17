@@ -1,12 +1,12 @@
 ag-radio {
-  --ag-radio-gap: 8px;
-  --ag-radio-unchecked-color: rgba(0,0,0,.54);
-  --ag-radio-checked-color: #018786;
   --ag-radio-outer-size: 16px;
   --ag-radio-inner-size: 8px;
-  --ag-radio-outer-border-size: 2px;
-  --ag-radio-disabled-opacity: .5;
-  --ag-radio-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --ag-radio-gap: var(--ag-gap-sm);
+  --ag-radio-unchecked-color: var(--ag-primary-light);
+  --ag-radio-checked-color: var(--ag-primary-dark);
+  --ag-radio-outer-border-size: var(--ag-border-radius-sm);
+  --ag-radio-disabled-opacity: var(--ag-disabled-opacity);
+
   display: inline-flex;
   
   &[position="after"] .ag-radio__label {
@@ -16,7 +16,7 @@ ag-radio {
 }
 
 .ag-radio {
-  font-family: var(--ag-radio-font-family);
+  font-family: inherit;
   cursor: pointer;
   display: flex;
   align-items: center;

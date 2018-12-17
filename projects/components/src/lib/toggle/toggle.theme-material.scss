@@ -2,12 +2,13 @@
   &[theme="material"] {
     --ag-toggle-material-width: 34px;
     --ag-toggle-material-height: 14px;
-    --ag-toggle-material-background-color-inactive: #9e9e9e;
-    --ag-toggle-material-background-color-active: #a5d6a7;
     --ag-toggle-material-thumb-size: 20px;
-    --ag-toggle-material-thumb-background-color-inactive: #fafafa;
-    --ag-toggle-material-thumb-background-color-active: #4caf50;
     --ag-toggle-material-thumb-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .14), 0 2px 2px 0 rgba(0, 0, 0, .098), 0 1px 5px 0 rgba(0, 0, 0, .084);
+    --ag-toggle-material-background-color-inactive: var(--ag-neutral-medium);
+    --ag-toggle-material-background-color-active: var(--ag-accent-positive);
+    --ag-toggle-material-thumb-background-color-inactive: var(--ag-neutral-sweet);
+    --ag-toggle-material-thumb-background-color-active: var(--ag-accent-positive);
+    --ag-toggle-material-background-disabled-opacity: var(--ag-disabled-opacity);
 
     .ag-toggle__switch {
       padding: 3px 0;
@@ -40,6 +41,7 @@
 
       &-input:checked ~ .ag-toggle__switch {
         &-bar {
+          opacity: var(--ag-toggle-material-background-disabled-opacity);
           background-color: var(--ag-toggle-material-background-color-active);
         }
         &-thumb {

@@ -19,7 +19,7 @@ storiesOf(`${SECTION.LAYOUT}|Card`, module)
           testo placeholder
         </ag-card><br><br>
         <ag-card>
-          <img position="card-banner" src="http://via.placeholder.com/640x360">
+          <img position="card-banner" src="https://tinyurl.com/y9hzzrmc">
           testo placeholder
         </ag-card><br><br>
       </div>
@@ -49,7 +49,7 @@ storiesOf(`${SECTION.LAYOUT}|Card`, module)
       <div>
         <h3>Card</h3>
         <ag-card>
-          <img position="card-banner" src="http://via.placeholder.com/640x360">
+          <img position="card-banner" src="https://tinyurl.com/y9hzzrmc">
           testo placeholder
         </ag-card>
       </div>
@@ -61,7 +61,7 @@ storiesOf(`${SECTION.LAYOUT}|Card`, module)
         <h3>Card</h3>
         <ag-card>
           <h2 position="card-header">Header placeholder</h2>
-          <img position="card-banner" src="http://via.placeholder.com/640x360">
+          <img position="card-banner" src="https://tinyurl.com/y9hzzrmc">
           <div position="card-footer"><p>footer placeholder</p></div>
           content placeholder
         </ag-card>
@@ -73,7 +73,7 @@ storiesOf(`${SECTION.LAYOUT}|Card`, module)
       <div>
         <h3>Card</h3>
         <ag-card box-shadow="false">
-          <img position="card-banner" src="http://via.placeholder.com/640x360">
+          <img position="card-banner" src="https://tinyurl.com/y9hzzrmc">
           testo placeholder
         </ag-card>
       </div>

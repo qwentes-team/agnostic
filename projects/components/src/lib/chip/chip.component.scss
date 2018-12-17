@@ -1,15 +1,14 @@
 ag-chip {
   --ag-chip-height: 32px;
-  --ag-chip-gap: 16px;
+  --ag-chip-gap: var(--ag-gap-lg);
   --ag-chip-radius: 16px;
-  --ag-chip-color-dark: rgba(0, 0, 0, .75);
-  --ag-chip-color-light: rgba(255, 255, 255);
-  --ag-chip-background-color: rgba(0, 0, 0, .1);
-  --ag-chip-primary-background-color: #003366;
-  --ag-chip-success-background-color: #43a047;
-  --ag-chip-warning-background-color: #fff176;
-  --ag-chip-danger-background-color: #f04141;
-  --ag-chip-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --ag-chip-color-dark: var(--ag-neutral-dark);
+  --ag-chip-color-light: var(--ag-neutral-sweet);
+  --ag-chip-background-color: var(--ag-neutral-regular);
+  --ag-chip-primary-background-color: var(--ag-primary-dark);
+  --ag-chip-success-background-color: var(--ag-accent-positive);
+  --ag-chip-warning-background-color: var(--ag-accent-warning);
+  --ag-chip-danger-background-color: var(--ag-accent-danger);
 
   box-sizing: border-box;
   display: inline-flex;
@@ -20,7 +19,7 @@ ag-chip {
   padding: var(--ag-chip-gap);
   border-radius: var(--ag-chip-radius);
   height: var(--ag-chip-height);
-  font-family: var(--ag-chip-font-family);
+  font-family: inherit;
   font-size: 14px;
 
   [position="before"] {

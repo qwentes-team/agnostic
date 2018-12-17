@@ -1,17 +1,16 @@
 ag-fab {
-  --ag-fab-gap: 12px;
   --ag-fab-min-size: 50px;
   --ag-fab-border-radius: 40px;
-  --ag-fab-background-color: #DFDFDF;
-  --ag-fab-background-color-hover: #EEEDEB;
-  --ag-fab-background-color-active: #CECECE;
-  --ag-fab-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
-  --ag-fab-box-shadow-hover: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
-  --ag-fab-box-shadow-active: 0 7px 8px -4px rgba(0,0,0,.2), 0 12px 17px 2px rgba(0,0,0,.14), 0 5px 22px 4px rgba(0,0,0,.12);
   --ag-fab-position-top: 50%;
   --ag-fab-position-left: 50%;
   --ag-fab-z-index: 5;
-  --ag-fab-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --ag-fab-gap: var(--ag-gap-md);
+  --ag-fab-background-color: var(--ag-neutral-sweet);
+  --ag-fab-background-color-hover: var(--ag-neutral-lightest);
+  --ag-fab-background-color-active: var(--ag-neutral-soft);
+  --ag-fab-box-shadow: var(--ag-box-shadow);
+  --ag-fab-box-shadow-hover: var(--ag-box-shadow-hover);
+  --ag-fab-box-shadow-active: var(--ag-box-shadow-active);
   
   cursor: pointer;
   display: inline-flex;
@@ -22,7 +21,7 @@ ag-fab {
   top: var(--ag-fab-position-top);
   left: var(--ag-fab-position-left);
   transform: translate(-50%, -50%);
-  font-family: var(--ag-fab-font-family);
+  font-family: inherit;
   text-transform: uppercase;
   
   .ag-fab__icon {

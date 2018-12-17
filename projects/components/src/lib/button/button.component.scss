@@ -1,16 +1,15 @@
 ag-button {
   --ag-button-height: 44px;
-  --ag-button-gap: 12px;
-  --ag-button-radius: 2px;
-  --ag-button-color: rgba(0, 0, 0, .75);
-  --ag-button-outline-color: rgba(0, 0, 0, .75);
   --ag-button-outline-size: 1px;
-  --ag-button-disabled-opacity: .4;
-  --ag-button-disabled-background-color: #ddd;
-  --ag-button-background-color: rgba(0, 0, 0, .1);
-  --ag-button-background-color-hover: rgba(100, 100, 100, .1);
-  --ag-button-background-color-active: rgba(0, 0, 0, .15);
-  --ag-button-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --ag-button-gap: var(--ag-gap-md);
+  --ag-button-radius: var(--ag-border-radius-sm);
+  --ag-button-color: var(--ag-neutral-dark);
+  --ag-button-outline-color: var(--ag-neutral-dark);
+  --ag-button-disabled-opacity: var(--ag-disabled-opacity);
+  --ag-button-disabled-background-color: var(--ag-neutral-sweet);
+  --ag-button-background-color: var(--ag-neutral-soft);
+  --ag-button-background-color-hover: var(--ag-neutral-sweet);
+  --ag-button-background-color-active: var(--ag-neutral-regular);
 
   cursor: pointer;
   box-sizing: border-box;
@@ -22,7 +21,7 @@ ag-button {
   padding: var(--ag-button-gap);
   border-radius: var(--ag-button-radius);
   height: var(--ag-button-height);
-  font-family: var(--ag-button-font-family);
+  font-family: inherit;
   font-size: 1em;
   transition: background-color .3s ease;
 

@@ -2,10 +2,10 @@
 
 ag-popup {
   --ag-popup-width: 400px;
-  --ag-popup-border-radius: 2px;
   --ag-popup-padding: 16px;
-  --ag-popup-background-color: #fff;
-  --ag-popup-box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+  --ag-popup-border-radius: var(--ag-border-radius-sm);
+  --ag-popup-background-color: var(--ag-neutral-lightest);
+  --ag-popup-box-shadow: var(--ag-box-shadow-active);
 
   box-sizing: border-box;
   display: flex;
