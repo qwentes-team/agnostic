@@ -18,7 +18,7 @@ storiesOf(`${SECTION.FORM}|Form Field`, module)
           <input agInput placeholder="Write your fav color" required="true">
         </ag-form-field>
         <ag-form-field label="Material" metaLabel="optional">
-          <ag-select [options]="[{label: 'Wood', value: 'wood'}, {label: 'Metal', value: 'metal'}]"></ag-select>
+          <ag-select method="hybrid" [options]="[{label: 'Wood', value: 'wood'}, {label: 'Metal', value: 'metal'}]"></ag-select>
         </ag-form-field>
         <ag-form-field label="Message">
           <textarea agInput placeholder="Write your message"></textarea>

@@ -10,6 +10,7 @@ import {OPTION_IT, OPTIONS, OPTIONS_WITH_STRING_TO_SEARCH, STRING_TO_SEARCH} fro
 const SELECTOR = {
   SELECT_CONTAINER: '.ag-select',
   DISABLED: '.ag-select--disabled',
+  FOCUS: '.ag-select--focus',
   NATIVE: '.ag-select__native',
   HYBRID: '.ag-select__hybrid',
   HYBRID_OPTIONS: '.ag-select__hybrid-options',
@@ -250,6 +251,21 @@ describe('SelectComponent', () => {
         hostFixture.detectChanges();
         expect(selectElementDOM.querySelector(SELECTOR.HYBRID_OPTIONS)).toBeNull();
         expect(selectElementDOM.querySelector(SELECTOR.BACKDROP)).toBeNull();
+      });
+
+      it('should focus select', () => {
+        hostFixture.detectChanges();
+        selectDebugger = getSelectDebugger();
+        const selectElementDOM: HTMLSelectElement = selectDebugger.nativeElement;
+        const agSelectDOM: HTMLSelectElement = selectElementDOM.querySelector(SELECTOR.SELECT_CONTAINER);
+        const labelDOM: HTMLSelectElement = selectElementDOM.querySelector(SELECTOR.HYBRID);
+        expect(selectElementDOM.querySelector(SELECTOR.BACKDROP)).toBeNull();
+        click(labelDOM);
+        hostFixture.detectChanges();
+        expect(agSelectDOM.classList.contains(SELECTOR.FOCUS.split('.')[1])).toBe(true);
+        click(selectElementDOM.querySelector(SELECTOR.BACKDROP));
+        hostFixture.detectChanges();
+        expect(agSelectDOM.classList.contains(SELECTOR.FOCUS.split('.')[1])).toBe(false);
       });
     });
 
