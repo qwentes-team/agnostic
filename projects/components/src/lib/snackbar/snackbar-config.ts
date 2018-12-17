@@ -2,7 +2,6 @@ import {InjectionToken} from '@angular/core';
 import {PositionStrategy} from '@angular/cdk/overlay';
 
 export class SnackbarConfig {
-  type?: SnackbarType;
   theme?: SnackbarTheme;
   text?: string;
   position?: PositionStrategy | SnackbarPosition;
@@ -23,6 +22,7 @@ export const SNACKBAR_DIRECTIONS = {
 };
 
 export const defaultSnackbarConfig: SnackbarConfig = {
+  theme: 'ios',
   position: {
     top: 20,
     bottom: '',
@@ -33,6 +33,5 @@ export const defaultSnackbarConfig: SnackbarConfig = {
   duration: 5000,
 };
 
-export type SnackbarType = 'warning' | 'info' | 'success';
 export type SnackbarTheme = 'ios' | 'material';
 export const SNACKBAR_CONFIG_TOKEN = new InjectionToken('snackbar-config');
