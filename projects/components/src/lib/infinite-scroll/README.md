@@ -38,11 +38,17 @@ export class InfiniteScrollExample {
 
 | Property  | Description | Type  | Default |
 |-----------|-------------|-------|---------|
-| infiniteScrollDistance | The bottom percentage point of the scroll relatively to the infinite-scroll container. I.E: 2 => (2 * 10 = 20%) is event is triggered when 80% (100% - 20%) has been scrolled. | number | 2 |
-| infiniteScrollThrottle | Get a number of milliseconds for throttle. The event will be triggered this many milliseconds after the user stops scrolling. | number | 50 |
+| `infiniteScrollDistance` | The bottom percentage point of the scroll relatively to the infinite-scroll container. I.E: 2 => (2 * 10 = 20%) is event is triggered when 80% (100% - 20%) has been scrolled. | number | 2 |
+| `infiniteScrollThrottle` | Get a number of milliseconds for throttle. The event will be triggered this many milliseconds after the user stops scrolling. | number | 50 |
 
 ## Events
 
 | Event  | Description  | Return |
 |--------|--------------|--------|
-| scrolled | Triggered if the distance threshold has been reached on a scroll down. | void |
+| `scrolled` | Triggered if the distance threshold has been reached on a scroll down. | void |
+
+## CSS Custom Properties
+
+| Name                        | Description                             |
+| --------------------------- | --------------------------------------- |
+| `--ag-infinite-scroll-gap`  | Gap of the infinite scroll component    |
