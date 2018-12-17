@@ -58,7 +58,6 @@ export class SnackbarStoryComponent {
     this.snackbarService.showSnackbar({
       text: `Snackbar message ${this.count}`,
       theme: 'material',
-      type: 'success',
       position: {top: 20, right: 20},
     });
     this.count += 1;
