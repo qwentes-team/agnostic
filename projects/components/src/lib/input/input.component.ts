@@ -1,19 +1,22 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  forwardRef,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-  ViewEncapsulation,
-} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {ToggleBoolean} from '../toggle/toggle.component';
-import {convertToBoolean, EmitToNgModel, noop} from '../components.shared';
+import {ChangeDetectionStrategy, Component, Directive, HostBinding, ViewEncapsulation} from '@angular/core';
 
+@Directive({selector: InputDirective.selector})
+export class InputDirective {
+  static selector = 'input[agInput], textarea[agInput]';
+  static class = 'ag-input';
+  @HostBinding(`class.${InputDirective.class}`) private hostClass = true;
+}
+
+@Component({
+  selector: InputDirective.selector,
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class InputComponent {}
+
+/*
 @Component({
   selector: 'ag-input',
   templateUrl: './input.component.html',
@@ -59,7 +62,8 @@ export class InputComponent implements OnChanges, ControlValueAccessor, EmitToNg
   public onChange = noop.onChange;
   public onTouched = noop.onTouched;
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef) {
+  }
 
   public ngOnChanges({checked, disabled, required}: SimpleChanges) {
     if (disabled) {
@@ -98,3 +102,4 @@ export class InputComponent implements OnChanges, ControlValueAccessor, EmitToNg
     return this.value;
   }
 }
+*/

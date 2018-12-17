@@ -1,55 +1,31 @@
-ag-input {
+.ag-input {
+  --ag-input-border: 1px solid rgba(0, 0, 0, .2);
+  --ag-input-box-shadow-focus: 0 0 1px 1px rgba(0, 0, 0, .1);
   --ag-input-font-size: 14px;
-  --ag-input-border: none;
-  --ag-input-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
-  --ag-input-box-shadow-focus: 0 2px 2px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.08);
   --ag-input-border-radius: var(--ag-border-radius-sm);
   --ag-input-gap: var(--ag-gap-sm);
   --ag-input-disabled-opacity: var(--ag-disabled-opacity);
-
+  
   display: block;
-
-  &[disabled="true"], .ag-input--disabled {
+  width: 100%;
+  line-height: 18px;
+  box-sizing: border-box;
+  border-radius: var(--ag-input-border-radius);
+  padding: calc(var(--ag-input-gap) + (var(--ag-input-gap) / 2)) calc(var(--ag-input-gap) * 2);
+  font-size: var(--ag-input-font-size);
+  border: var(--ag-input-border);
+  font-family: inherit;
+  outline: none;
+  appearance: none;
+  box-shadow: none;
+  transition: box-shadow .3s ease;
+  
+  &:focus {
+    box-shadow: var(--ag-input-box-shadow-focus);
+  }
+  
+  &[disabled="true"] {
     pointer-events: none;
     opacity: var(--ag-input-disabled-opacity);
-  }
-
-  .ag-input {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    font-size: var(--ag-input-font-size);
-    font-family: inherit;
-  }
-
-  .ag-input__label {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: var(--ag-input-gap);
-
-    &:empty {
-      display: none;
-    }
-  }
-
-  .ag-input__meta-label {}
-
-  .ag-input__input {
-    display: block;
-    width: 100%;
-    line-height: 18px;
-    box-sizing: border-box;
-    border-radius: var(--ag-input-border-radius);
-    padding: calc(var(--ag-input-gap) + (var(--ag-input-gap) / 2)) calc(var(--ag-input-gap) * 2);
-    font-size: var(--ag-input-font-size);
-    border: var(--ag-input-border);
-    outline: none;
-    appearance: none;
-    box-shadow: var(--ag-input-box-shadow);
-    // transition: box-shadow .3s ease;
-
-    &:focus {
-      box-shadow: var(--ag-input-box-shadow-focus);
-    }
   }
 }
