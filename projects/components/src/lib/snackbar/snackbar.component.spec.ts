@@ -50,7 +50,6 @@ describe('SnackbarService', () => {
       snackbar = service.showSnackbar({
         text: `Toast message`,
         theme: 'material',
-        type: 'success',
       });
       const overlay = document.querySelector('.cdk-overlay-container');
       expect(overlay).toBeDefined();
