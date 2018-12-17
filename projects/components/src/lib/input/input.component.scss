@@ -33,3 +33,7 @@
     opacity: var(--ag-input-disabled-opacity);
   }
 }
+
+textarea.ag-input {
+  resize: vertical;
+}
