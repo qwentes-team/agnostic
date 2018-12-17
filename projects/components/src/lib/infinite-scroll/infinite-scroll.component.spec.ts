@@ -33,6 +33,20 @@ describe('InfiniteScrollComponent', () => {
     infiniteScrollDebugger = null;
   });
 
+  describe('transclude', () => {
+    @Component({template: '<ag-infinite-scroll>INFINITE SCROLL CONTENT</ag-infinite-scroll>'})
+    class TestHostComponent {}
+
+    beforeEach(() => setupBeforeEachTestWithHostComponent(TestHostComponent));
+
+    it('should transclude the content', () => {
+      hostFixture.detectChanges();
+      infiniteScrollDebugger = getInfiniteScrollDebugger();
+      const defaultTransclude = infiniteScrollDebugger.nativeElement.querySelector('[infiniteScroll]');
+      expect(defaultTransclude.innerHTML).toBe('INFINITE SCROLL CONTENT');
+    });
+  });
+
   describe('[infiniteScrollDistance]', () => {
     @Component({template: '<ag-infinite-scroll [infiniteScrollDistance]="5"></ag-infinite-scroll>'})
     class TestHostComponent {}
