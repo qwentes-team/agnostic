@@ -1,5 +1,6 @@
 ag-accordion {
   --ag-accordion-gap: var(--ag-gap-md);
+  --ag-accordion-disabled-opacity: var(--ag-disabled-opacity);
 
   display: flex;
 
@@ -8,6 +9,11 @@ ag-accordion {
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
+
+    &--disabled {
+      opacity: var(--ag-accordion-disabled-opacity);
+      pointer-events: none;
+    }
   }
 
   .ag-accordion__trigger {
