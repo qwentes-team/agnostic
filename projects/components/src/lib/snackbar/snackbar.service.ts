@@ -1,4 +1,4 @@
-import {Inject, Injectable, Injector} from '@angular/core';
+import {Inject, Injectable, Injector, Optional} from '@angular/core';
 import {ComponentPortal, PortalInjector} from '@angular/cdk/portal';
 import {Overlay, PositionStrategy} from '@angular/cdk/overlay';
 import {SnackbarComponent} from './snackbar.component';

@@ -23,10 +23,10 @@ export const SNACKBAR_DIRECTIONS = {
 
 export const defaultSnackbarConfig: SnackbarConfig = {
   position: {
-    top: '',
-    bottom: 60,
-    left: 20,
-    right: '',
+    top: 20,
+    bottom: '',
+    left: '',
+    right: 20,
   },
   direction: SNACKBAR_DIRECTIONS.FROM_TOP,
 };
