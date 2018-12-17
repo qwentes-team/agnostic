@@ -21,7 +21,7 @@ export class SnackbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isVisibleSnackbar = true;
-    this.intervalId = setTimeout(() => this.closeSnackbar(), 5000);
+    this.intervalId = setTimeout(() => this.closeSnackbar(), this.data.duration || this.snackbarConfig.duration);
   }
 
   ngOnDestroy() {

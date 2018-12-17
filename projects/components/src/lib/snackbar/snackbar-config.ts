@@ -7,6 +7,7 @@ export class SnackbarConfig {
   text?: string;
   position?: PositionStrategy | SnackbarPosition;
   direction?: string;
+  duration?: number;
 }
 
 export interface SnackbarPosition {
@@ -29,6 +30,7 @@ export const defaultSnackbarConfig: SnackbarConfig = {
     right: 20,
   },
   direction: SNACKBAR_DIRECTIONS.FROM_TOP,
+  duration: 5000,
 };
 
 export type SnackbarType = 'warning' | 'info' | 'success';
