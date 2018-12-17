@@ -4,7 +4,7 @@
   (click)="toggleHybridOptions(false); shouldUpdateAutocompleteValue()">
 </div>
 
-<div class="ag-select" [ngClass]="{'ag-select--disabled': disabled}">
+<div class="ag-select" [ngClass]="{'ag-select--disabled': disabled, 'ag-select--focus': areVisibleHybridOptions}">
   <div class="ag-select__trigger">
     <div class="ag-select__symbol" [ngClass]="{'ag-select__symbol--open': areVisibleHybridOptions}"></div>
     <select #nativeSelect class="ag-select__native" [disabled]="disabled" [required]="required">

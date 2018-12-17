@@ -2,7 +2,8 @@ ag-select {
   --ag-select-height: 44px;
   --ag-select-symbol-image: url('https://image.flaticon.com/icons/svg/120/120906.svg');
   --ag-select-symbol-size: 14px;
-  --ag-select-border: 1px solid rgba(0, 0, 0, .2);
+  --ag-select-border-color: var(--ag-neutral-regular);
+  --ag-select-border: 1px solid var(--ag-select-border-color);
   --ag-select-gap: var(--ag-gap-md);
   --ag-select-background-color: var(--ag-neutral-lightest);
   --ag-select-disabled-opacity: var(--ag-disabled-opacity);
@@ -29,6 +30,13 @@ ag-select {
     &--disabled {
       opacity: var(--ag-select-disabled-opacity);
     }
+
+    &--focus {
+      .ag-select__trigger {
+        box-shadow: var(--ag-select-hybrid-options-box-shadow);
+        border-color: transparent;
+      }
+    }
   }
 
   select, input {
@@ -38,6 +46,7 @@ ag-select {
     margin: 0;
     padding: 0;
     font-size: inherit;
+    border-radius: var(--ag-select-border-radius);
   }
 
   .ag-select__backdrop {
