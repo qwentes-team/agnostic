@@ -11,6 +11,7 @@ import {RadioModule} from './radio/radio.module';
 import {SelectModule} from './select/select.module';
 import {TabsModule} from './tabs/tabs.module';
 import {FormFieldModule} from './form-field/form-field.module';
+import {AccordionModule} from './accordion/accordion.module';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {FormFieldModule} from './form-field/form-field.module';
     SelectModule,
     TabsModule,
     FormFieldModule,
+    AccordionModule,
   ],
   exports: [
     ToggleModule,
@@ -40,6 +42,7 @@ import {FormFieldModule} from './form-field/form-field.module';
     SelectModule,
     TabsModule,
     FormFieldModule,
+    AccordionModule,
   ],
 })
 export class ComponentsModule {}

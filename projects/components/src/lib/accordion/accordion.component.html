@@ -1,0 +1,11 @@
+<div class="ag-accordion" [ngClass]="{'ag-accordion--open': isOpen, 'ag-accordion--disabled': disabled}">
+  <div class="ag-accordion__trigger" (click)="onToggleContent()">
+    <span *ngIf="label">{{label}}</span>
+    <div *ngIf="!label">
+      <ng-content select=".ag-accordion--trigger"></ng-content>
+    </div>
+  </div>
+  <div class="ag-accordion__content" *ngIf="isOpen">
+    <ng-content></ng-content>
+  </div>
+</div>

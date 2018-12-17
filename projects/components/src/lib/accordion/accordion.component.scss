@@ -1,0 +1,22 @@
+ag-accordion {
+  --ag-accordion-gap: var(--ag-gap-md);
+
+  display: flex;
+
+  .ag-accordion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ag-accordion__trigger {
+    box-sizing: border-box;
+    padding: var(--ag-accordion-gap);
+  }
+
+  .ag-accordion__content {
+    box-sizing: border-box;
+    padding: 0 var(--ag-accordion-gap) var(--ag-accordion-gap);
+  }
+}
