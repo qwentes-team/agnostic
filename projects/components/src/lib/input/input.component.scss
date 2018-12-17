@@ -1,9 +1,10 @@
 ag-input {
-  --ag-input-box-shadow-focus: 0 0 1px 1px rgba(0, 0, 0, .1);
   --ag-input-font-size: 14px;
+  --ag-input-border: none;
+  --ag-input-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --ag-input-box-shadow-focus: 0 2px 2px 0 rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.08);
   --ag-input-border-radius: var(--ag-border-radius-sm);
   --ag-input-gap: var(--ag-gap-sm);
-  --ag-input-border: 1px solid var(--ag-neutral-soft);
   --ag-input-disabled-opacity: var(--ag-disabled-opacity);
 
   display: block;
@@ -44,8 +45,8 @@ ag-input {
     border: var(--ag-input-border);
     outline: none;
     appearance: none;
-    box-shadow: none;
-    transition: box-shadow .3s ease;
+    box-shadow: var(--ag-input-box-shadow);
+    // transition: box-shadow .3s ease;
 
     &:focus {
       box-shadow: var(--ag-input-box-shadow-focus);

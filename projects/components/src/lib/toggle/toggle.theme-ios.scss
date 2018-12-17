@@ -3,13 +3,13 @@
     --ag-toggle-ios-width: 52px;
     --ag-toggle-ios-height: 32px;
     --ag-toggle-ios-inactive-outline-weight: 2px;
-    --ag-toggle-ios-background-color-inactive-outline: #f1f1f1;
-    --ag-toggle-ios-background-color-inactive: #fff;
-    --ag-toggle-ios-background-color-active: #4caf50;
     --ag-toggle-ios-thumb-size: 28px;
-    --ag-toggle-ios-thumb-background-color-inactive: #fafafa;
-    --ag-toggle-ios-thumb-background-color-active: #fff;
     --ag-toggle-ios-thumb-box-shadow: 0 3px 12px rgba(0, 0, 0, .16), 0 3px 1px rgba(0, 0, 0, .1);
+    --ag-toggle-ios-background-color-inactive-outline: var(--ag-neutral-sweet);
+    --ag-toggle-ios-background-color-inactive: var(--ag-neutral-lightest);
+    --ag-toggle-ios-background-color-active: var(--ag-accent-positive);
+    --ag-toggle-ios-thumb-background-color-inactive: var(--ag-neutral-sweet);
+    --ag-toggle-ios-thumb-background-color-active: var(--ag-neutral-lightest);
 
     .ag-toggle__switch {
 

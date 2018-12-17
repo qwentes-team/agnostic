@@ -26,9 +26,9 @@
   --ag-neutral-sweet: #F6F6F6;
   --ag-neutral-lightest: #FFFFFF;
   
-  --ag-accent-positive: #DA6767;
+  --ag-accent-danger: #DA6767;
   --ag-accent-warning: #fff176;
-  --ag-accent-danger: #88BE78;
+  --ag-accent-positive: #88BE78;
   
   --ag-box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
   --ag-box-shadow-hover: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
