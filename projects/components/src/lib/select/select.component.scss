@@ -2,9 +2,9 @@ ag-select {
   --ag-select-height: 44px;
   --ag-select-symbol-image: url('https://image.flaticon.com/icons/svg/120/120906.svg');
   --ag-select-symbol-size: 14px;
+  --ag-select-border: 1px solid rgba(0, 0, 0, .2);
   --ag-select-gap: var(--ag-gap-md);
-  --ag-select-background-color: var(--ag-neutral-sweet);
-  --ag-select-border: var(--ag-neutral-regular);
+  --ag-select-background-color: var(--ag-neutral-lightest);
   --ag-select-disabled-opacity: var(--ag-disabled-opacity);
   --ag-select-border-radius: var(--ag-border-radius-sm);
   --ag-select-hybrid-options-box-shadow: var(--ag-box-shadow);

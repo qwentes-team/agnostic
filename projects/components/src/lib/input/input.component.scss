@@ -5,6 +5,7 @@
   --ag-input-border-radius: var(--ag-border-radius-sm);
   --ag-input-gap: var(--ag-gap-sm);
   --ag-input-disabled-opacity: var(--ag-disabled-opacity);
+  --ag-input-background-color: var(--ag-neutral-lightest);
   
   display: block;
   width: 100%;
@@ -19,6 +20,7 @@
   appearance: none;
   box-shadow: none;
   transition: box-shadow .3s ease;
+  background-color: var(--ag-input-background-color);
   
   &:focus {
     box-shadow: var(--ag-input-box-shadow-focus);
