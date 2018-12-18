@@ -7,7 +7,7 @@ export class SnackbarRef {
     this.overlay.dispose();
   }
 
-  isVisible() {
+public  isVisible(): boolean {
     return this.overlay && this.overlay.overlayElement;
   }
 
