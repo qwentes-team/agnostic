@@ -12,6 +12,7 @@ import {SelectModule} from './select/select.module';
 import {TabsModule} from './tabs/tabs.module';
 import {FormFieldModule} from './form-field/form-field.module';
 import {AccordionModule} from './accordion/accordion.module';
+import {InfiniteScrollModule} from './infinite-scroll/infinite-scroll.module';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {AccordionModule} from './accordion/accordion.module';
     TabsModule,
     FormFieldModule,
     AccordionModule,
+    InfiniteScrollModule,
   ],
   exports: [
     ToggleModule,
@@ -43,6 +45,7 @@ import {AccordionModule} from './accordion/accordion.module';
     TabsModule,
     FormFieldModule,
     AccordionModule,
+    InfiniteScrollModule,
   ],
 })
 export class ComponentsModule {}

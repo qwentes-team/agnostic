@@ -16,3 +16,4 @@ export * from './lib/select/select.module';
 export * from './lib/tabs/tabs.module';
 export * from './lib/form-field/form-field.module';
 export * from './lib/accordion/accordion.module';
+export * from './lib/infinite-scroll/infinite-scroll.module';

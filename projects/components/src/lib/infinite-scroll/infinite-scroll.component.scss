@@ -1,0 +1,7 @@
+ag-infinite-scroll {
+  --ag-infinite-scroll-gap: var(--ag-gap-sm);
+  
+  display: flex;
+  justify-content: center;
+  padding: var(--ag-infinite-scroll-gap);
+}
