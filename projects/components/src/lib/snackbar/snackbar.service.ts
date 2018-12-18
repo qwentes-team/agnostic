@@ -24,9 +24,7 @@ export class SnackbarService {
 
     data.direction = this.setDirection(this.position, this.snackbarConfig.direction);
 
-    const strategy: PositionStrategy = this.isPositionStrategy(this.snackbarConfig.position || data.position)
-      ? (data.position as PositionStrategy)
-      : this.positionAdapter(this.position, data.direction);
+    const strategy: PositionStrategy = this.createPositionStrategy(data.position, data.direction);
 
     const overlayRef = this.overlay.create({positionStrategy: strategy});
     const snackbarRef = new SnackbarRef(overlayRef);
@@ -37,7 +35,13 @@ export class SnackbarService {
     return snackbarRef;
   }
 
-  private setDirection(position, defaultDirection) {
+  private createPositionStrategy(position, direction): PositionStrategy {
+    return this.isPositionStrategy(this.snackbarConfig.position || position)
+      ? (position as PositionStrategy)
+      : this.positionAdapter(this.position, direction);
+  }
+
+  private setDirection(position, defaultDirection): string {
     return position.bottom !== '' ? SNACKBAR_DIRECTIONS.FROM_BOTTOM : defaultDirection;
   }
 
@@ -78,16 +82,20 @@ export class SnackbarService {
     return typeof value === 'number' ? value + 'px' : value;
   }
 
+  private isFromTopDirection(direction: string): boolean {
+    return direction === SNACKBAR_DIRECTIONS.FROM_TOP;
+  }
+
   private getPositionRef(direction): string {
     const lastSnackbarRefIsVisible = this.lastSnackbarRef && this.lastSnackbarRef.isVisible();
 
     if (!lastSnackbarRefIsVisible) {
-      return direction === SNACKBAR_DIRECTIONS.FROM_TOP ? this.position.top + 'px' : this.position.bottom + 'px';
+      return this.isFromTopDirection(direction) ? this.position.top + 'px' : this.position.bottom + 'px';
     }
 
     const isFromTopOffset = this.lastSnackbarRef.getPosition().bottom;
     const isFromBottomOffset = window.innerHeight - this.lastSnackbarRef.getPosition().top;
-    const refPositionOffset = direction === SNACKBAR_DIRECTIONS.FROM_TOP ? isFromTopOffset : isFromBottomOffset;
+    const refPositionOffset = this.isFromTopDirection(direction) ? isFromTopOffset : isFromBottomOffset;
 
     return refPositionOffset + 'px';
   }

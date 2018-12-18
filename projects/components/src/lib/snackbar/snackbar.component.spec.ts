@@ -46,7 +46,7 @@ describe('SnackbarService', () => {
   describe('render a snackbar', () => {
     beforeEach(() => setupBeforeEachTestWithHostComponent(TestSnackbarComponent));
 
-    it('should create an overlay dialog', () => {
+    it('should create an overlay snackbar', () => {
       snackbar = service.showSnackbar({
         text: `Toast message`,
         theme: 'material',

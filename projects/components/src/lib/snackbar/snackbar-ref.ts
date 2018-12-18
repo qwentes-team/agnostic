@@ -1,17 +1,18 @@
 import {OverlayRef} from '@angular/cdk/overlay';
 
 export class SnackbarRef {
-  constructor(readonly overlay: OverlayRef) {}
+  constructor(readonly overlay: OverlayRef) {
+  }
 
-  closeSnackbar() {
+  closeSnackbar(): void {
     this.overlay.dispose();
   }
 
-public  isVisible(): boolean {
-    return this.overlay && this.overlay.overlayElement;
+  public isVisible(): boolean {
+    return Boolean(this.overlay && this.overlay.overlayElement);
   }
 
-  getPosition() {
+  getPosition(): ClientRect | DOMRect {
     return this.overlay.overlayElement.getBoundingClientRect();
   }
 }
