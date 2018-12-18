@@ -1,5 +1,5 @@
 import {configure, addDecorator} from '@storybook/angular';
-import {setOptions} from '@storybook/addon-options';
+import {withOptions} from '@storybook/addon-options';
 import {withKnobs} from '@storybook/addon-knobs';
 
 export const SECTION = {
@@ -9,14 +9,15 @@ export const SECTION = {
   MODAL: 'Popup & Modals',
 };
 
-setOptions({
-  name: 'Agnostic',
-  sortStoriesByKind: true,
-  hierarchySeparator: /\//,
-  hierarchyRootSeparator: /\|/,
-});
-
 addDecorator(withKnobs);
+addDecorator(
+  withOptions({
+    name: 'Agnostic',
+    sortStoriesByKind: true,
+    hierarchySeparator: /\//,
+    hierarchyRootSeparator: /\|/,
+  })
+);
 
 const req = require.context('../projects/components/', true, /\.story\.ts$/);
 
