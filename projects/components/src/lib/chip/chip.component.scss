@@ -1,7 +1,7 @@
 ag-chip {
   --ag-chip-height: 32px;
   --ag-chip-gap: var(--ag-gap-lg);
-  --ag-chip-radius: 16px;
+  --ag-chip-radius: var(--ag-border-radius-xl);
   --ag-chip-color-dark: var(--ag-neutral-dark);
   --ag-chip-color-light: var(--ag-neutral-sweet);
   --ag-chip-background-color: var(--ag-neutral-regular);
@@ -21,25 +21,32 @@ ag-chip {
   height: var(--ag-chip-height);
   font-family: inherit;
   font-size: 14px;
+  line-height: 100%;
 
   [position="before"] {
     padding-right: var(--ag-chip-gap);
   }
+
   [position="after"] {
     padding-left: var(--ag-chip-gap);
   }
+
   &[color="primary"] {
     background-color: var(--ag-chip-primary-background-color);
   }
+
   &[color="success"] {
     background-color: var(--ag-chip-success-background-color);
   }
+
   &[color="warning"] {
     background-color: var(--ag-chip-warning-background-color);
   }
+
   &[color="danger"] {
     background-color: var(--ag-chip-danger-background-color);
   }
+
   &[label-color="light"] {
     color: var(--ag-chip-color-light);
   }

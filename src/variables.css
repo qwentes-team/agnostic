@@ -12,7 +12,9 @@
   
   --ag-border-radius-sm: 2px;
   --ag-border-radius-md: 8px;
-  
+  --ag-border-radius-lg: 12px;
+  --ag-border-radius-xl: 16px;
+
   --ag-primary-dark: #414754;
   --ag-primary-medium: #565E70;
   --ag-primary-light: #6C778E;

@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'ag-form-field',
@@ -12,11 +20,16 @@ export class FormFieldComponent implements OnChanges {
   @Input() metaLabel: string;
   public hasMessage: boolean;
 
+  constructor(private cd: ChangeDetectorRef) {
+    this.cd.detach();
+  }
+
   ngOnChanges({label, metaLabel}: SimpleChanges): void {
     if (label || metaLabel) {
       const labelValue = label && label.currentValue;
       const metaLabelValue = metaLabel && metaLabel.currentValue;
       this.hasMessage = Boolean(labelValue || metaLabelValue);
+      this.cd.detectChanges();
     }
   }
 }

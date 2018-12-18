@@ -38,7 +38,7 @@ storiesOf(`${SECTION.LAYOUT}|Card`, module)
       <div>
         <h3>Card</h3>
         <ag-card>
-          <h3 position="card-header">Titolo</h3>
+          <h2 position="card-header">Titolo</h2>
           testo placeholder
         </ag-card>
       </div>

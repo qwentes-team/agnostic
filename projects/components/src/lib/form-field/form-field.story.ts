@@ -1,5 +1,6 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {action} from '@storybook/addon-actions';
+import {text} from '@storybook/addon-knobs';
 import {SECTION} from './../../../../../.storybook/config';
 import {FormFieldComponent} from './form-field.component';
 import {InputComponent, InputDirective} from '../input/input.component';
@@ -14,7 +15,7 @@ storiesOf(`${SECTION.FORM}|Form Field`, module)
   .add('Demo', () => ({
     template: `
       <div>
-        <ag-form-field label="Color" metaLabel="required">
+        <ag-form-field [label]="label" [metaLabel]="metaLabel">
           <input agInput placeholder="Write your fav color" required="true">
         </ag-form-field>
         <ag-form-field label="Material" metaLabel="optional">
@@ -26,6 +27,8 @@ storiesOf(`${SECTION.FORM}|Form Field`, module)
       </div>
     `,
     props: {
+      label: text('label', 'Color'),
+      metaLabel: text('metaLabel', 'required'),
       change: action('change'),
       blur: action('blur'),
       focus: action('focus'),

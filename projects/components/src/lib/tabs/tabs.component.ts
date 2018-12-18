@@ -8,7 +8,6 @@ import {
   ContentChildren,
   Input,
   QueryList,
-  ReflectiveInjector,
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation,
@@ -32,13 +31,16 @@ export class TabsComponent implements AfterContentInit {
     public componentFactoryResolver: ComponentFactoryResolver,
     private cd: ChangeDetectorRef,
     @Attribute('fit') public fit
-  ) {}
+  ) {
+    this.cd.detach();
+  }
 
   ngAfterContentInit() {
     const activeTabs = this.tabs.filter(t => t.active);
     if (this.tabs.length && activeTabs.length === 0) {
       this.selectTab(this.tabs.first);
     }
+    this.cd.detectChanges();
   }
 
   public getTabs(): TabComponent[] {
@@ -69,6 +71,7 @@ export class TabsComponent implements AfterContentInit {
     this.tabs.toArray().forEach(t => (t.active = false));
     this.dynamicTabs.forEach(t => (t.active = false));
     tab.active = true;
+    this.cd.detectChanges();
   }
 
   public closeTab(tab: TabComponent): void {

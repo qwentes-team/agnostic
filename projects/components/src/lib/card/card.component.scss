@@ -32,9 +32,16 @@ ag-card {
   .ag-card__header {
     padding: var(--ag-card-gap);
     margin: calc(var(--ag-card-gap) * -1) calc(var(--ag-card-gap) * -1) 0;
+    &:empty + .ag-card__banner [position="card-banner"] {
+      margin-top: calc(var(--ag-card-gap) * -1);
+    }
   }
 
   .ag-card__banner {
-    margin: calc(var(--ag-card-gap) * -1) calc(var(--ag-card-gap) * -1) var(--ag-card-gap);
+    margin: 0 calc(var(--ag-card-gap) * -1) var(--ag-card-gap);
+  }
+
+  .ag-card__footer {
+    margin-top: var(--ag-card-gap);
   }
 }
