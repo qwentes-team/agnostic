@@ -5,6 +5,7 @@ import {SnackbarRef} from './snackbar-ref';
 import {SnackbarService} from './snackbar.service';
 import {Overlay} from '@angular/cdk/overlay';
 import {SnackbarComponent} from './snackbar.component';
+import {SECTION} from './../../../../../.storybook/config';
 
 @Component({
   selector: 'ag-test-snackbar',
@@ -57,14 +58,12 @@ export class SnackbarStoryComponent {
   showSnackbar() {
     this.snackbarService.showSnackbar({
       text: `Snackbar message ${this.count}`,
-      theme: 'material',
-      position: {top: 20, right: 20},
     });
     this.count += 1;
   }
 }
 
-storiesOf('Snackbar', module)
+storiesOf(`${SECTION.MODAL}|Snackbar`, module)
   .addDecorator(
     moduleMetadata({
       declarations: [SnackbarComponent, SnackbarTestComponent, SnackbarStoryComponent],
