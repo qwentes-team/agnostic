@@ -1,12 +1,11 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Overlay} from '@angular/cdk/overlay';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import {SnackbarRef} from './snackbar-ref';
 import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN, SnackbarPosition} from './snackbar-config';
 import {SnackbarService} from './snackbar.service';
 import {SnackbarComponent} from './snackbar.component';
-import {By} from '@angular/platform-browser';
 import {click} from '../../test.shared';
 
 fdescribe('SnackbarService', () => {
@@ -43,17 +42,39 @@ fdescribe('SnackbarService', () => {
   describe('render a snackbar', () => {
     @Component({
       selector: 'ag-test-snackbar',
-      template: '<button (click)="openSnackbar()">open</button>',
+      template: `
+        <button #el (click)="openSnackbar()">open snackbar</button>
+        <button (click)="openDefaultSnackbar()">open default snackbar</button>
+      `,
     })
     class TestSnackbarComponent {
-      constructor(public snackbarService: SnackbarService) {}
+      @ViewChild('el') elRef;
+
+      constructor(public snackbarService: SnackbarService, public overlay: Overlay) {}
 
       openDefaultSnackbar() {
-        return this.snackbarService.showSnackbar({text: 'ciao!'});
+        return this.snackbarService.showSnackbar({
+          text: 'ciao!',
+          position: {bottom: 20, right: 20},
+        });
       }
 
       openSnackbar() {
-        return this.snackbarService.showSnackbar({text: 'ciao!', theme: 'material'});
+        return this.snackbarService.showSnackbar({
+          text: 'ciao!',
+          theme: 'material',
+          position: this.overlay
+            .position()
+            .flexibleConnectedTo(this.elRef)
+            .withPositions([
+              {
+                originX: 'center',
+                originY: 'center',
+                overlayX: 'center',
+                overlayY: 'center',
+              },
+            ]),
+        });
       }
     }
 
@@ -85,6 +106,7 @@ fdescribe('SnackbarService', () => {
 
     it('should create an overlay snackbar', () => {
       snackbar = hostFixture.componentInstance.openSnackbar();
+      hostFixture.detectChanges();
       const overlay = document.querySelector('.cdk-overlay-container');
       expect(overlay).toBeDefined();
       snackbar.closeSnackbar();
@@ -92,6 +114,7 @@ fdescribe('SnackbarService', () => {
 
     it('should create a snackbar', () => {
       snackbar = hostFixture.componentInstance.openSnackbar();
+      hostFixture.detectChanges();
       expect(snackbar).toBeDefined();
       snackbar.closeSnackbar();
     });
@@ -99,16 +122,27 @@ fdescribe('SnackbarService', () => {
     it('should create multiple snackbar', () => {
       snackbar = hostFixture.componentInstance.openSnackbar();
       snackbar = hostFixture.componentInstance.openSnackbar();
+      hostFixture.detectChanges();
       const snackbars = document.querySelectorAll('ag-snackbar');
       expect(snackbars.length).toBe(2);
       snackbars.forEach(s => snackbar.closeSnackbar());
     });
 
     it('should change snackbar position', () => {
-      snackbar = hostFixture.componentInstance.openSnackbar();
+      snackbar = hostFixture.componentInstance.openDefaultSnackbar();
+      hostFixture.detectChanges();
       const defaultPosition = (defaultSnackbarConfig.position as SnackbarPosition).bottom;
-      const newPosition = snackbar.getPosition().bottom;
-      expect(newPosition === defaultPosition).toBeFalsy();
+      const snackbarDOMPosition = document.querySelector('ag-snackbar').getBoundingClientRect().bottom;
+      expect(snackbarDOMPosition === defaultPosition).toBeFalsy();
+      snackbar.closeSnackbar();
+    });
+
+    it('should use custom position strategy', () => {
+      snackbar = hostFixture.componentInstance.openSnackbar();
+      const defaultPosition = defaultSnackbarConfig.position as SnackbarPosition;
+      const newPositionStrategy = snackbar.getPosition();
+      hostFixture.detectChanges();
+      expect(newPositionStrategy.left === defaultPosition.left).toBeFalsy();
       snackbar.closeSnackbar();
     });
 
