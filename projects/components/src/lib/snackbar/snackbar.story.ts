@@ -21,7 +21,7 @@ import {SECTION} from './../../../../../.storybook/config';
     </ag-snackbar>
   `,
 })
-export class SnackbarTestComponent implements OnInit, OnDestroy {
+export class SnackbarRefComponent implements OnInit, OnDestroy {
   private isVisibleSnackbar: boolean;
   private intervalId: any;
 
@@ -66,7 +66,7 @@ export class SnackbarStoryComponent {
 storiesOf(`${SECTION.MODAL}|Snackbar`, module)
   .addDecorator(
     moduleMetadata({
-      declarations: [SnackbarComponent, SnackbarTestComponent, SnackbarStoryComponent],
+      declarations: [SnackbarComponent, SnackbarStoryComponent],
       providers: [
         SnackbarService,
         Overlay,
@@ -75,7 +75,7 @@ storiesOf(`${SECTION.MODAL}|Snackbar`, module)
           useValue: {...defaultSnackbarConfig},
         },
       ],
-      entryComponents: [SnackbarTestComponent, SnackbarComponent],
+      entryComponents: [SnackbarComponent],
     })
   )
   .add('Snackbar', () => ({
