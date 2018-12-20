@@ -13,15 +13,11 @@ export class SnackbarComponent implements OnInit, OnDestroy {
   private intervalId: any;
   public isVisibleSnackbar: boolean;
 
-  constructor(
-    readonly data: SnackbarConfig,
-    readonly ref: SnackbarRef,
-    @Inject(SNACKBAR_CONFIG_TOKEN) private snackbarConfig: SnackbarConfig
-  ) {}
+  constructor(readonly data: SnackbarConfig, readonly ref: SnackbarRef) {}
 
   ngOnInit() {
     this.isVisibleSnackbar = true;
-    this.intervalId = setTimeout(() => this.closeSnackbar(), this.data.duration || this.snackbarConfig.duration);
+    this.intervalId = setTimeout(() => this.closeSnackbar(), this.data.duration);
   }
 
   ngOnDestroy() {
