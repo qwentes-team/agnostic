@@ -1,0 +1,60 @@
+ag-carousel-dots {
+  --ag-carousel-dots-in-viewport: 6;
+  --ag-carousel-dots-in-ghost: 3;
+  --ag-carousel-dots-gap: var(--ag-gap-sm);
+
+  --ag-carousel-dot-color: var(--ag-neutral-regular);
+  --ag-carousel-dot-current-color: var(--ag-primary-medium);
+  --ag-carousel-dot-size: 8px;
+  --ag-carousel-dot-margin: 2px;
+  --ag-carousel-dot-rect: calc((var(--ag-carousel-dot-size) + (var(--ag-carousel-dot-margin) * 2)));
+  --ag-carousel-dots-width: calc(var(--ag-carousel-dot-rect) * var(--ag-carousel-dots-in-viewport));
+
+  display: flex;
+  justify-content: flex-start;
+  // background-color: green;
+  margin: var(--ag-carousel-dots-gap) auto 0;
+  white-space: nowrap;
+  width: calc(var(--ag-carousel-dots-width) + (var(--ag-carousel-dot-rect) * (var(--ag-carousel-dots-in-ghost) * 2)));
+  overflow: hidden;
+
+  .ag-carousel-dots__ghost {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    // background-color: gray;
+  }
+
+  .ag-carousel-dots {
+    // background-color: blue;
+    display: flex;
+    white-space: nowrap;
+    margin: 0 auto;
+    width: var(--ag-carousel-dots-width);
+    overflow: visible;
+    transition: transform .3s ease .1s;
+  }
+
+  .ag-carousel__dot {
+    width: var(--ag-carousel-dot-size);
+    height: var(--ag-carousel-dot-size);
+    margin: var(--ag-carousel-dot-margin);
+    background-color: var(--ag-carousel-dot-color);
+    flex-shrink: 0;
+    border-radius: 50%;
+    transform: scale(.3);
+    transition: background-color .3s ease, transform .3s ease .1s;
+
+    &--current, &--in-viewport {
+      transform: scale(1);
+    }
+
+    &--current {
+      background-color: var(--ag-carousel-dot-current-color);
+    }
+  }
+
+  .ag-carousel__dot--ghost, .ag-carousel__dot--ghost{
+    transform: scale(.65);
+  }
+}

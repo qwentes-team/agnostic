@@ -1,0 +1,110 @@
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
+import Siema from 'siema';
+import {Subject} from 'rxjs';
+
+export interface AgCarouselConfig {
+  duration?: number;
+  perPage?: number;
+  startIndex?: number;
+  draggable?: boolean;
+  multipleDrag?: boolean;
+  loop?: boolean;
+}
+
+export const CAROUSEL_SYMBOL = '[[CarouselSymbol]]';
+
+export class AgCarousel {
+  public readonly element: HTMLElement | Element;
+  public readonly innerElements: HTMLElement[] | NodeList;
+  public readonly currentIndex: number;
+  private readonly [CAROUSEL_SYMBOL]: any;
+
+  constructor(public type: 'init' | 'change', instance: any) {
+    this[CAROUSEL_SYMBOL] = instance;
+    this.element = this[CAROUSEL_SYMBOL].selector;
+    this.innerElements = this[CAROUSEL_SYMBOL].innerElements;
+    this.currentIndex = this[CAROUSEL_SYMBOL].currentSlide;
+  }
+
+  public next() {
+    this[CAROUSEL_SYMBOL].next();
+  }
+
+  public prev() {
+    this[CAROUSEL_SYMBOL].prev();
+  }
+
+  public goTo(index: number): void {
+    this[CAROUSEL_SYMBOL].goTo(index);
+  }
+
+  public destroy(): void {
+    this[CAROUSEL_SYMBOL].destroy();
+  }
+}
+
+@Component({
+  selector: 'ag-carousel',
+  templateUrl: './carousel.component.html',
+  styleUrls: ['./carousel.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+})
+export class CarouselComponent implements OnInit, AfterContentInit, OnDestroy {
+  public instance: any;
+  private timeoutId: number;
+
+  @Input() config: AgCarouselConfig = {};
+  @Output() init: EventEmitter<any> = new EventEmitter();
+  @Output() change: EventEmitter<any> = new EventEmitter();
+
+  constructor(private cd: ChangeDetectorRef) {
+    this.cd.detach();
+  }
+
+  public ngOnInit(): void {}
+
+  public ngAfterContentInit(): void {
+    this.instance = new Siema({
+      ...this.config,
+      selector: '.ag-carousel',
+      onInit: () => this.onInit(),
+      onChange: () => this.onChange(),
+    });
+    this.cd.detectChanges();
+  }
+
+  public onInit(): void {
+    this.timeoutId = setTimeout(() => {
+      this.cd.detectChanges();
+      this.init.emit(this.createEvent('init'));
+    });
+  }
+
+  public onChange(): void {
+    this.cd.detectChanges();
+    this.change.emit(this.createEvent('change'));
+  }
+
+  private createEvent(type): AgCarousel {
+    return new AgCarousel(type, this.instance);
+  }
+
+  public ngOnDestroy(): void {
+    clearTimeout(this.timeoutId);
+    if (this.instance) {
+      this.instance.destroy();
+    }
+  }
+}
