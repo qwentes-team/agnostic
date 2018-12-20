@@ -12,7 +12,8 @@
     "prettier": "prettier \"**/*.+(js|ts)\" --write --parser typescript",
     "storybook:dev": "start-storybook -s ./ -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-dist && mkdir ./.storybook-dist/src/ && cp ./src/variables.css ./.storybook-dist/src/",
-    "validate": "npm run lint && npm run prettier"
+    "validate": "npm run lint && npm run prettier",
+    "readme": "node ./.readme/index.js"
   },
   "husky": {
     "hooks": {
