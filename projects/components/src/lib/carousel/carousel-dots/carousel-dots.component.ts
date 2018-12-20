@@ -6,7 +6,6 @@ import {
   ElementRef,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
@@ -26,13 +25,13 @@ const CSS_CLASS = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CarouselDotsComponent implements OnInit, OnChanges, AfterViewInit {
+export class CarouselDotsComponent implements OnChanges, AfterViewInit {
   @Input() totalDots: number;
   @Input() currentDot: number;
 
   public dots: number[];
   private dotsInViewport: number;
-  private dotsInGhost: number;
+  private dotsInGhost: number; // TODO ?
   private dotSize: number;
   private prevPosition = 0;
   private containerElement: HTMLElement;
@@ -46,13 +45,11 @@ export class CarouselDotsComponent implements OnInit, OnChanges, AfterViewInit {
     this.componentElementStyle = window.getComputedStyle(this.componentElement);
   }
 
-  public ngOnInit() {}
-
   public ngAfterViewInit(): void {
     this.containerElement = this.componentElement.querySelector(CSS_CLASS.DOTS);
     this.dotListElements = this.containerElement.children;
     this.cd.detectChanges();
-    this.setDotsClasses(this.currentDot);
+    this.updateDots(this.currentDot);
   }
 
   public ngOnChanges({totalDots, currentDot}: SimpleChanges): void {
@@ -63,10 +60,7 @@ export class CarouselDotsComponent implements OnInit, OnChanges, AfterViewInit {
     }
     if (currentDot && !currentDot.isFirstChange()) {
       const currentPosition = currentDot.currentValue;
-      this.setDotsClasses(currentPosition);
-      if (this.shouldTranslateDots()) {
-        this.translateDotsTo(currentPosition);
-      }
+      this.updateDots(currentPosition);
       this.prevPosition = currentPosition;
     }
   }
@@ -87,68 +81,109 @@ export class CarouselDotsComponent implements OnInit, OnChanges, AfterViewInit {
     return +this.componentElementStyle.getPropertyValue('--ag-carousel-dots-in-ghost');
   }
 
-  private shouldTranslateDots(): boolean {
-    return this.currentDot + 1 >= this.dotsInViewport;
-  }
-
-  private resetAllDotsClasses(): void {
-    for (let i = 0; i < this.dotListElements.length; i++) {
-      const el = this.dotListElements[i];
-      el.classList.remove(CSS_CLASS.CURRENT);
-      el.classList.remove(CSS_CLASS.VIEWPORT);
-      el.classList.remove(CSS_CLASS.GHOST);
+  private setDotViewportClasses(newFrom, newTo) {
+    document.querySelectorAll(`.${CSS_CLASS.VIEWPORT}`).forEach(el => {
+      this.removeClass(CSS_CLASS.VIEWPORT, el);
+    });
+    for (let i = newFrom; i < newTo; i++) {
+      this.addClass(CSS_CLASS.VIEWPORT, this.dotListElements[i]);
     }
   }
 
-  private setDotViewportClasses(fromIndex, toIndex) {
-    for (let i = fromIndex; i < toIndex; i++) {
-      this.dotListElements[i].classList.add(CSS_CLASS.VIEWPORT);
+  private moveDots(nextPosition): void {
+    const isLeftDirection = nextPosition - this.prevPosition < 0;
+    isLeftDirection ? this.moveDotsToLeft(nextPosition) : this.moveDotsToRight(nextPosition);
+  }
+
+  private shouldPreventRightMovement(nextPosition): boolean {
+    const nextElement = this.dotListElements[nextPosition].nextElementSibling;
+    const nextElementIsViewport = nextElement && nextElement.classList.contains(CSS_CLASS.VIEWPORT);
+    return nextPosition < this.dotsInViewport || nextElementIsViewport;
+  }
+
+  private moveDotsToRight(nextPosition: number): void {
+    if (nextPosition === 0) {
+      return this.setAsInitDots(nextPosition);
+    } else if (this.shouldPreventRightMovement(nextPosition)) {
+      return;
+    }
+    const newFrom = nextPosition - this.dotsInViewport;
+    const newTo = nextPosition + 1;
+    this.setDotGhostClasses(newFrom, newTo);
+    this.setDotViewportClasses(newFrom + 1, newTo);
+    this.translateDotsTo(nextPosition);
+  }
+
+  private canDoLeftMovement(prevElement): boolean {
+    return (
+      prevElement &&
+      !prevElement.classList.contains(CSS_CLASS.GHOST) &&
+      !prevElement.classList.contains(CSS_CLASS.VIEWPORT)
+    );
+  }
+
+  private moveDotsToLeft(nextPosition: number) {
+    const prevElement = this.dotListElements[nextPosition].previousElementSibling;
+    if (!prevElement) {
+      this.setAsInitDots(nextPosition);
+      this.translateDotsTo(nextPosition);
+    } else if (this.canDoLeftMovement(prevElement)) {
+      const newFrom = this.prevPosition - this.dotsInViewport + 1;
+      const newTo = this.prevPosition + (this.dotsInViewport - 1);
+      this.setDotGhostClasses(newFrom, newTo);
+      this.setDotViewportClasses(nextPosition, nextPosition + this.dotsInViewport);
+      this.translateDotsTo(this.prevPosition + 1);
     }
   }
 
-  private setDotDynamicClasses(nextPosition): void {
-    if (this.isAbsoluteGhostDot(nextPosition)) {
-      this.setAbsoluteDotGhostClasses();
-      this.setDotViewportClasses(0, this.dotsInViewport);
-    } else {
-      const initialPrevGhostIndex = nextPosition - this.dotsInViewport;
-      const initialNextGhostIndex = nextPosition + 1;
-      this.setRelativeDotGhostClasses(initialPrevGhostIndex, initialNextGhostIndex);
-      this.setDotViewportClasses(initialPrevGhostIndex + 1, initialNextGhostIndex);
-    }
+  private setAsInitDots(nextPosition) {
+    const newFrom = nextPosition - this.dotsInViewport + 1;
+    const newTo = nextPosition + this.dotsInViewport;
+    this.setDotGhostClasses(newFrom, newTo);
+    this.setDotViewportClasses(nextPosition, nextPosition + this.dotsInViewport);
   }
 
-  private setRelativeDotGhostClasses(initialPrevGhostIndex, initialNextGhostIndex): void {
-    this.addGhostClass(this.dotListElements[initialPrevGhostIndex]);
-    this.addGhostClass(this.dotListElements[initialNextGhostIndex]);
+  private setDotGhostClasses(newFrom, newTo): void {
+    document.querySelectorAll(`.${CSS_CLASS.GHOST}`).forEach(el => {
+      this.removeClass(CSS_CLASS.GHOST, el);
+    });
+    this.addClass(CSS_CLASS.GHOST, this.dotListElements[newFrom]);
+    this.addClass(CSS_CLASS.GHOST, this.dotListElements[newTo]);
   }
 
-  private setAbsoluteDotGhostClasses(): void {
-    this.addGhostClass(this.dotListElements[this.dotsInViewport]);
+  private addClass(className: string, element: Element): void {
+    this.updateClassElement('add', className, element);
   }
 
-  private addGhostClass(element: Element): void {
+  private removeClass(className: string, element: Element): void {
+    this.updateClassElement('remove', className, element);
+  }
+
+  private updateClassElement(updateType: 'add' | 'remove', className: string, element: Element): void {
     if (element) {
-      element.classList.add(CSS_CLASS.GHOST);
+      element.classList[updateType](className);
     }
   }
 
-  private setDotsClasses(nextPosition): void {
-    this.resetAllDotsClasses();
-    this.setCurrentDotClass(nextPosition);
-    this.setDotDynamicClasses(nextPosition);
+  private updateDots(nextPosition): void {
+    this.setCurrentDot(nextPosition);
+    this.moveDots(nextPosition);
   }
 
-  private setCurrentDotClass(nextPosition: number): void {
-    const currentElement = this.dotListElements[nextPosition];
-    currentElement.classList.add(CSS_CLASS.CURRENT);
-  }
-
-  private isAbsoluteGhostDot(nextPosition): boolean {
-    return nextPosition < this.dotsInViewport;
+  private setCurrentDot(nextPosition: number): void {
+    this.removeClass(CSS_CLASS.CURRENT, this.dotListElements[this.prevPosition]);
+    this.addClass(CSS_CLASS.CURRENT, this.dotListElements[nextPosition]);
   }
 
   private translateDotsTo(nextPosition: number): void {
+    if (nextPosition === 0) {
+      this.containerElement.style.transform = `translateX(${nextPosition}px)`;
+      return;
+    }
+    const canMove = nextPosition + 1 >= this.dotsInViewport;
+    if (!canMove) {
+      return;
+    }
     const ratio = nextPosition - this.dotsInViewport + 1;
     const movement = this.getDotSize() * ratio;
     this.containerElement.style.transform = `translateX(${-movement}px)`;
