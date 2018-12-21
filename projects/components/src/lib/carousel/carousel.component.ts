@@ -63,7 +63,6 @@ export class AgCarousel {
 })
 export class CarouselComponent implements AfterContentInit, OnDestroy {
   public instance: any;
-  private timeoutId: number;
 
   @Input() config: AgCarouselConfig = {};
   @Output() init: EventEmitter<any> = new EventEmitter();
@@ -97,7 +96,6 @@ export class CarouselComponent implements AfterContentInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    clearTimeout(this.timeoutId);
     if (this.instance) {
       this.instance.destroy();
     }
