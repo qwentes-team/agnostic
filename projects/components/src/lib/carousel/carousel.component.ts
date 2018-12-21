@@ -5,7 +5,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  NgZone,
   OnDestroy,
   Output,
   ViewEncapsulation,
