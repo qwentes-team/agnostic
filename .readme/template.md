@@ -22,11 +22,7 @@ import {COMPONENT_NAME_EXAMPLEModule} from '@qwentes/agnostic/components';
 })
 export class AppModule {}
 
-export class COMPONENT_NAME_EXAMPLEExample {
-  loadData() {
-    console.log('call when scrolled is triggered');
-  }
-}
+export class COMPONENT_NAME_EXAMPLEExample {}
 ```
 
 ## Properties
