@@ -5,7 +5,7 @@ DESCRIPTION
 ## Usage
 
 ```html
-HTML_TEMPLATE_EXAMPLE
+HTML_TEMPLATE_USAGE
 ```
 
 ```typescript
@@ -29,13 +29,13 @@ export class COMPONENT_NAME_EXAMPLEExample {}
 
 | Property  | Description | Type  | Default |
 |-----------|-------------|-------|---------|
-| PROP_NAME | PROP_DESCRIPTION | PROP_TYPE | PROP_DEFAULT |
+PROPERTIES
 
 ## Events
 
 | Event  | Description  | Return |
 |--------|--------------|--------|
-| EVENT_NAME | EVENT_DESCRIPTION | EVENT_RETURN_TYPE |
+EVENTS
 
 ## CSS Custom Properties
 
