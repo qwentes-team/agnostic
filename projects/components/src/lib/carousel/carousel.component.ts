@@ -5,13 +5,12 @@ import {
   Component,
   EventEmitter,
   Input,
+  NgZone,
   OnDestroy,
-  OnInit,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
 import Siema from 'siema';
-import {Subject} from 'rxjs';
 
 export interface AgCarouselConfig {
   duration?: number;
@@ -30,7 +29,7 @@ export class AgCarousel {
   public readonly currentIndex: number;
   private readonly [CAROUSEL_SYMBOL]: any;
 
-  constructor(public type: 'init' | 'change', instance: any) {
+  constructor(public type: 'init' | 'change', instance: any = {}) {
     this[CAROUSEL_SYMBOL] = instance;
     this.element = this[CAROUSEL_SYMBOL].selector;
     this.innerElements = this[CAROUSEL_SYMBOL].innerElements;
@@ -61,7 +60,7 @@ export class AgCarousel {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CarouselComponent implements OnInit, AfterContentInit, OnDestroy {
+export class CarouselComponent implements AfterContentInit, OnDestroy {
   public instance: any;
   private timeoutId: number;
 
@@ -73,23 +72,18 @@ export class CarouselComponent implements OnInit, AfterContentInit, OnDestroy {
     this.cd.detach();
   }
 
-  public ngOnInit(): void {}
-
   public ngAfterContentInit(): void {
     this.instance = new Siema({
       ...this.config,
       selector: '.ag-carousel',
-      onInit: () => this.onInit(),
       onChange: () => this.onChange(),
     });
-    this.cd.detectChanges();
+    this.onInit();
   }
 
-  public onInit(): void {
-    this.timeoutId = setTimeout(() => {
-      this.cd.detectChanges();
-      this.init.emit(this.createEvent('init'));
-    });
+  private onInit(): void {
+    this.cd.detectChanges();
+    this.init.emit(this.createEvent('init'));
   }
 
   public onChange(): void {

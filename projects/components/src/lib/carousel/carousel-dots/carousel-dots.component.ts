@@ -128,11 +128,12 @@ export class CarouselDotsComponent implements OnChanges, AfterViewInit {
       this.setAsInitDots(nextPosition);
       this.translateDotsTo(nextPosition);
     } else if (this.canDoLeftMovement(prevElement)) {
-      const newFrom = this.prevPosition - this.dotsInViewport + 1;
-      const newTo = this.prevPosition + (this.dotsInViewport - 1);
-      this.setDotGhostClasses(newFrom, newTo);
+      this.setDotGhostClasses(nextPosition - 1, this.prevPosition + (this.dotsInViewport - 1));
       this.setDotViewportClasses(nextPosition, nextPosition + this.dotsInViewport);
-      this.translateDotsTo(this.prevPosition + 1);
+      const delta = this.dotsInViewport - this.dotsInGhost;
+      const translation = this.prevPosition + delta + Math.ceil(this.dotsInViewport / 2) - this.dotsInGhost;
+      console.log(translation);
+      this.translateDotsTo(nextPosition - 1, true);
     }
   }
 
@@ -175,16 +176,16 @@ export class CarouselDotsComponent implements OnChanges, AfterViewInit {
     this.addClass(CSS_CLASS.CURRENT, this.dotListElements[nextPosition]);
   }
 
-  private translateDotsTo(nextPosition: number): void {
-    if (nextPosition === 0) {
+  private translateDotsTo(nextPosition: number, isLeft?: boolean): void {
+    if (isLeft ? nextPosition === -1 : nextPosition === 0) {
       this.containerElement.style.transform = `translateX(${nextPosition}px)`;
       return;
     }
-    const canMove = nextPosition + 1 >= this.dotsInViewport;
+    const canMove = (isLeft ? nextPosition + this.dotsInViewport : nextPosition) + 1 >= this.dotsInViewport;
     if (!canMove) {
       return;
     }
-    const ratio = nextPosition - this.dotsInViewport + 1;
+    const ratio = (isLeft ? nextPosition : nextPosition - this.dotsInViewport) + 1;
     const movement = this.getDotSize() * ratio;
     this.containerElement.style.transform = `translateX(${-movement}px)`;
   }
