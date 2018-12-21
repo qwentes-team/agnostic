@@ -19,6 +19,7 @@ export interface AgCarouselConfig {
   draggable?: boolean;
   multipleDrag?: boolean;
   loop?: boolean;
+  dots?: boolean;
 }
 
 export const CAROUSEL_SYMBOL = '[[CarouselSymbol]]';
