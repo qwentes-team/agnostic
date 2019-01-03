@@ -1,9 +1,5 @@
 import {Attribute, ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
 
-export type ButtonExpand = 'block' | 'full';
-export type ButtonFill = 'clear' | 'outline';
-export type ButtonShape = 'round';
-
 @Component({
   selector: 'ag-button',
   templateUrl: './button.component.html',
