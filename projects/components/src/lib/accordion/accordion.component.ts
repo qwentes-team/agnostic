@@ -23,12 +23,12 @@ export interface AccordionEvent {
   encapsulation: ViewEncapsulation.None,
 })
 export class AccordionComponent implements OnChanges, AfterContentInit {
-  @Input() isOpen: boolean;
-  @Input() label: string;
-  @Input() disabled: boolean;
-  @Output() open: EventEmitter<AccordionEvent> = new EventEmitter();
-  @Output() close: EventEmitter<AccordionEvent> = new EventEmitter();
-  @Output() change: EventEmitter<AccordionEvent> = new EventEmitter();
+  @Input() public isOpen: boolean;
+  @Input() public label: string;
+  @Input() public disabled: boolean;
+  @Output() public open: EventEmitter<AccordionEvent> = new EventEmitter();
+  @Output() public close: EventEmitter<AccordionEvent> = new EventEmitter();
+  @Output() public change: EventEmitter<AccordionEvent> = new EventEmitter();
 
   private readonly OPEN_EVENT: AccordionEvent;
   private readonly CLOSE_EVENT: AccordionEvent;

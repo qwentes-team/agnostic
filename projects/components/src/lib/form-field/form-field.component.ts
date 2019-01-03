@@ -16,8 +16,8 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class FormFieldComponent implements OnChanges {
-  @Input() label: string;
-  @Input() metaLabel: string;
+  @Input() public label: string;
+  @Input() public metaLabel: string;
   public hasMessage: boolean;
 
   constructor(private cd: ChangeDetectorRef) {

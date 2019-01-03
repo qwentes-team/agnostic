@@ -26,12 +26,12 @@ const CSS_CLASS = {
   encapsulation: ViewEncapsulation.None,
 })
 export class CarouselDotsComponent implements OnChanges, AfterViewInit {
-  @Input() totalDots: number;
-  @Input() currentDot: number;
+  @Input() public totalDots: number;
+  @Input() public currentDot: number;
 
   public dots: number[];
   private dotsInViewport: number;
-  private dotsInGhost: number; // TODO ?
+  private dotsInGhost: number;
   private dotSize: number;
   private prevPosition = 0;
   private containerElement: HTMLElement;

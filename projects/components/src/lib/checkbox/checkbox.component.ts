@@ -28,16 +28,11 @@ export type CheckboxBoolean = boolean | 'true' | 'false';
   ],
 })
 export class CheckboxComponent implements ControlValueAccessor, OnChanges, EmitToNgModel {
-  @Input()
-  public name: string;
-  @Input()
-  public required: CheckboxBoolean;
-  @Input()
-  public disabled: CheckboxBoolean;
-  @Input()
-  public checked: CheckboxBoolean;
-  @Input()
-  public value: any;
+  @Input() public name: string;
+  @Input() public required: CheckboxBoolean;
+  @Input() public disabled: CheckboxBoolean;
+  @Input() public checked: CheckboxBoolean;
+  @Input() public value: any;
 
   public onChange = noop.onChange;
   public onTouched = noop.onChange;

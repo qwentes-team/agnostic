@@ -12,11 +12,9 @@ export type ButtonShape = 'round';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  @Input()
-  public disabled = false;
+  @Input() public disabled = false;
 
-  @HostBinding('attr.disabled')
-  get disabledValue() {
+  @HostBinding('attr.disabled') get disabledValue() {
     return this.disabled ? true : null;
   }
 

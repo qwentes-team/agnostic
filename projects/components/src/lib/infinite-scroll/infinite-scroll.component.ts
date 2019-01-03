@@ -16,9 +16,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfiniteScrollComponent implements OnInit {
-  @Input() infiniteScrollDistance: number;
-  @Input() infiniteScrollThrottle: number;
-  @Output() scrolled: EventEmitter<void> = new EventEmitter();
+  @Input() public infiniteScrollDistance: number;
+  @Input() public infiniteScrollThrottle: number;
+  @Output() public scrolled: EventEmitter<void> = new EventEmitter();
 
   public DEFAULT_SETTING = {DISTANCE: 2, THROTTLE: 50};
 

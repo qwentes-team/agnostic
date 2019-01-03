@@ -23,10 +23,11 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   `,
 })
 export class InfiniteScrollStoryComponent implements OnInit {
-  items = [];
-  shown = 0;
-  itemsToAdd = 100;
-  @Output() scrolled: EventEmitter<void> = new EventEmitter();
+  public items = [];
+  public shown = 0;
+  public itemsToAdd = 100;
+  @Output() public scrolled: EventEmitter<void> = new EventEmitter();
+
   ngOnInit() {
     this.loadMore();
   }

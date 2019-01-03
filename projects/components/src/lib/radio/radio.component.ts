@@ -28,19 +28,14 @@ export type RadioBoolean = boolean | 'true' | 'false';
   ],
 })
 export class RadioComponent implements ControlValueAccessor, OnChanges, EmitToNgModel {
-  @Input()
-  public name: string;
-  @Input()
-  public value: any;
-  @Input()
-  public disabled: RadioBoolean;
-  @Input()
-  public checked: RadioBoolean;
-  @Input()
-  public required: RadioBoolean;
+  @Input() public name: string;
+  @Input() public value: any;
+  @Input() public disabled: RadioBoolean;
+  @Input() public checked: RadioBoolean;
+  @Input() public required: RadioBoolean;
 
-  onChange = noop.onChange;
-  onTouched = noop.onTouched;
+  public onChange = noop.onChange;
+  public onTouched = noop.onTouched;
 
   constructor(private cd: ChangeDetectorRef) {}
 

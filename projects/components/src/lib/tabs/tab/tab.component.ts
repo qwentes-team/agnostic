@@ -16,12 +16,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabComponent implements AfterContentChecked {
-  @Input() title: string;
-  @Input() icon: string;
-  @Input() active = false;
-  @Input() template;
-  @Input() dataContext;
-  @Input() isCloseable;
+  @Input() public title: string;
+  @Input() public icon: string;
+  @Input() public active = false;
+  @Input() public template;
+  @Input() public dataContext;
+  @Input() public isCloseable;
 
   constructor(private cd: ChangeDetectorRef) {
     this.cd.detach();
