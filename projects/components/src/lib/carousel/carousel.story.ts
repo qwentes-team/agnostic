@@ -30,7 +30,7 @@ storiesOf(`${SECTION.LAYOUT}|Carousel`, module)
       </div>
     `,
     props: {
-      init: action('onCarouselInit'),
-      change: action('onCarouselChange'),
+      onCarouselInit: action('init'),
+      onCarouselChange: action('change'),
     },
   }));
