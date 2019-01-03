@@ -1,8 +1,7 @@
 import {OverlayRef} from '@angular/cdk/overlay';
 
 export class SnackbarRef {
-  constructor(readonly overlay: OverlayRef) {
-  }
+  constructor(readonly overlay: OverlayRef) {}
 
   closeSnackbar(): void {
     this.overlay.dispose();
