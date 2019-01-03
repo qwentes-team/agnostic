@@ -95,7 +95,6 @@ fdescribe('SnackbarService', () => {
       const snackbarHTML = document.querySelector('.ag-snackbar__ref');
       expect(snackbarHTML.innerHTML).toContain('ciao!');
       snackbar.closeSnackbar();
-      snackbar = null;
     });
 
     it('should have default theme', () => {
@@ -104,7 +103,6 @@ fdescribe('SnackbarService', () => {
       const snackbarTheme = document.querySelector('.ag-snackbar__ref').getAttribute('theme');
       expect(snackbarTheme).toBeNull();
       snackbar.closeSnackbar();
-      snackbar = null;
     });
 
     it('should change theme', () => {
@@ -114,7 +112,6 @@ fdescribe('SnackbarService', () => {
       const snackbarTheme = document.querySelector('.ag-snackbar__ref').getAttribute('theme');
       expect(snackbarTheme !== defaultSnackbarConfig.theme).toBeTruthy();
       snackbar.closeSnackbar();
-      snackbar = null;
     });
 
     it('should create an overlay snackbar', () => {
@@ -124,7 +121,6 @@ fdescribe('SnackbarService', () => {
       const overlay = document.querySelector('.cdk-overlay-container');
       expect(overlay).toBeDefined();
       snackbar.closeSnackbar();
-      snackbar = null;
     });
 
     it('should create a snackbar', () => {
@@ -133,7 +129,6 @@ fdescribe('SnackbarService', () => {
       hostFixture.detectChanges();
       expect(snackbar).toBeDefined();
       snackbar.closeSnackbar();
-      snackbar = null;
     });
 
     it('should create multiple snackbar', () => {
@@ -145,7 +140,6 @@ fdescribe('SnackbarService', () => {
       expect(snackbars.length).toBe(2);
       snackbarMultiple.closeSnackbar();
       snackbar.closeSnackbar();
-      snackbar = null;
       snackbarMultiple = null;
     });
 
@@ -157,7 +151,6 @@ fdescribe('SnackbarService', () => {
       const snackbarDOMPosition = document.querySelector('ag-snackbar').getBoundingClientRect().bottom;
       expect(snackbarDOMPosition === defaultPosition).toBeFalsy();
       snackbar.closeSnackbar();
-      snackbar = null;
     });
 
     it('should use custom position strategy', () => {
@@ -168,7 +161,6 @@ fdescribe('SnackbarService', () => {
       hostFixture.detectChanges();
       expect(newPositionStrategy.left === defaultPosition.left).toBeFalsy();
       snackbar.closeSnackbar();
-      snackbar = null;
     });
 
     it('should close snackbar onclick', done => {
@@ -182,7 +174,6 @@ fdescribe('SnackbarService', () => {
       hostFixture.detectChanges();
       setTimeout(() => {
         snackbar.closeSnackbar();
-        snackbar = null;
         expect(snackbarDOM).toBeNull();
         done();
       }, 0);
