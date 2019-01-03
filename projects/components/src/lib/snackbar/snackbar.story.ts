@@ -9,15 +9,7 @@ import {SECTION} from './../../../../../.storybook/config';
 @Component({
   selector: 'ag-snackbar-story',
   template: `
-    <ag-snackbar>
-      <div class="ag-snackbar__ref"
-           [attr.position]="data.position"
-           [attr.theme]="data.theme"
-           [ngClass]="{'ag-snackbar--show': isVisibleSnackbar, 'ag-snackbar--hide': isVisibleSnackbar === false}">
-        {{ data.text }}
-        <div class="ag-snackbar__action" (click)="closeSnackbar()">close</div>
-      </div>
-    </ag-snackbar>
+    <p>Shows default style snackbar from top</p>
     <button (click)="showSnackbar()">Show snackbar</button>
   `,
 })
@@ -35,6 +27,7 @@ export class SnackbarStoryComponent {
 @Component({
   selector: 'ag-material-snackbar-story',
   template: `
+    <p>Shows material style snackbar from bottom</p>
     <button (click)="showMaterialSnackbar()">Show material snackbar</button>
   `,
 })
@@ -53,6 +46,7 @@ export class MaterialSnackbarStoryComponent {
 @Component({
   selector: 'ag-position-snackbar-story',
   template: `
+    <p>Shows default style snackbar with element-relative position</p>
     <button #el (click)="showPositionSnackbar()">Show snackbar</button>
   `,
 })
