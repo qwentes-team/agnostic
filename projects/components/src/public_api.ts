@@ -18,3 +18,6 @@ export * from './lib/form-field/form-field.module';
 export * from './lib/accordion/accordion.module';
 export * from './lib/infinite-scroll/infinite-scroll.module';
 export * from './lib/carousel/carousel.module';
+export * from './lib/snackbar/snackbar.module';
+export * from './lib/snackbar/snackbar.service';
+export * from './lib/snackbar/snackbar-config';

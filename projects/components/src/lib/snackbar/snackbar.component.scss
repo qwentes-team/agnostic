@@ -1,0 +1,75 @@
+@import "~@angular/cdk/overlay";
+@include cdk-overlay();
+
+ag-snackbar {
+  --ag-snackbar-height: 48px;
+  --ag-snackbar-min-width: 288px;
+  --ag-snackbar-max-width: 568px;
+  --ag-snackbar-gap: var(--ag-gap-lg);
+  --ag-snackbar-radius: var(--ag-border-radius-sm);
+  --ag-snackbar-color-dark: var(--ag-neutral-dark);
+  --ag-snackbar-color-light: var(--ag-neutral-lightest);
+  --ag-snackbar-background-color: var(--ag-neutral-soft);
+  --ag-snackbar-background-color-medium: var(--ag-neutral-intense);
+  --ag-snackbar-hover-color: var(--ag-neutral-dark);
+  --ag-snackbar-primary-color: var(--ag-primary-dark);
+  --ag-snackbar-box-shadow: var(--ag-box-shadow);
+  --ag-snackbar-font-family: var(--ag-font-family);
+
+  .ag-snackbar__ref {
+    min-width: var(--ag-snackbar-min-width);
+    max-width: var(--ag-snackbar-max-width);
+    height: var(--ag-snackbar-height);
+    padding: var(--ag-snackbar-gap);
+    margin-bottom: var(--ag-snackbar-gap);
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--ag-snackbar-background-color);
+    box-shadow: var(--ag-snackbar-box-shadow);
+    color: var(--ag-snackbar-color-dark);
+    border-radius: var(--ag-snackbar-radius);
+    font-family: var(--ag-snackbar-font-family);
+    font-size: var(--ag-font-size);
+
+    .ag-snackbar__action {
+      transition: all .5s ease;
+      color: var(--ag-snackbar-primary-color);
+      text-transform: capitalize;
+      &:hover {
+        cursor: pointer;
+        color: var(--ag-snackbar-hover-color);
+      }
+      &:empty {
+        display: none;
+      }
+    }
+  }
+
+  .ag-snackbar__ref[theme="material"] {
+    background-color: var(--ag-snackbar-background-color-medium);
+    color: var(--ag-snackbar-color-light);
+    .ag-snackbar__action {
+      color: var(--ag-snackbar-color-light);
+      text-transform: uppercase;
+    }
+  }
+}
+
+.ag-snackbar--show {
+  display: flex;
+  justify-content: space-between;
+  animation: fadeIn .5s linear, fadeOut .5s 4.7s;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}

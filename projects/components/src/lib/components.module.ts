@@ -14,6 +14,7 @@ import {FormFieldModule} from './form-field/form-field.module';
 import {AccordionModule} from './accordion/accordion.module';
 import {InfiniteScrollModule} from './infinite-scroll/infinite-scroll.module';
 import {CarouselModule} from './carousel/carousel.module';
+import {SnackbarModule} from './snackbar/snackbar.module';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import {CarouselModule} from './carousel/carousel.module';
     AccordionModule,
     InfiniteScrollModule,
     CarouselModule,
+    SnackbarModule,
   ],
   exports: [
     ToggleModule,
@@ -49,6 +51,7 @@ import {CarouselModule} from './carousel/carousel.module';
     AccordionModule,
     InfiniteScrollModule,
     CarouselModule,
+    SnackbarModule,
   ],
 })
 export class ComponentsModule {}
