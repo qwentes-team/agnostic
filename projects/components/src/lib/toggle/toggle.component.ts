@@ -32,42 +32,25 @@ export type ToggleBoolean = boolean | 'true' | 'false';
   ],
 })
 export class ToggleComponent implements ControlValueAccessor, OnChanges, EmitToNgModel {
-  @Input()
-  public name: string;
+  @Input() public name: string;
+  @Input() public value: any;
+  @Input() public checked: ToggleBoolean;
+  @Input() public disabled: ToggleBoolean;
+  @Input() public required: ToggleBoolean;
+  @Input() public type: ToggleType = 'checkbox';
+  @Input() public theme: ToggleTheme = 'material';
+  @Input() public position: TogglePosition = 'before';
 
-  @Input()
-  public value: any;
-
-  @Input()
-  public checked: ToggleBoolean;
-
-  @Input()
-  public disabled: ToggleBoolean;
-
-  @Input()
-  public required: ToggleBoolean;
-
-  @Input()
-  public type: ToggleType = 'checkbox';
-
-  @Input()
-  public theme: ToggleTheme = 'material';
-
-  @Input()
-  public position: TogglePosition = 'before';
-
-  @HostBinding('attr.theme')
-  get themeType() {
+  @HostBinding('attr.theme') get themeType() {
     return this.theme;
   }
 
-  @HostBinding('attr.position')
-  get positionType() {
+  @HostBinding('attr.position') get positionType() {
     return this.position;
   }
 
-  onChange = noop.onChange;
-  onTouched = noop.onTouched;
+  public onChange = noop.onChange;
+  public onTouched = noop.onTouched;
 
   constructor(private cd: ChangeDetectorRef) {}
 
