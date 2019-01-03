@@ -1,10 +1,11 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
-import {Component, ViewChild} from '@angular/core';
-import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN} from './snackbar-config';
+import {Component, Input, ViewChild} from '@angular/core';
+import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN, SnackbarTheme} from './snackbar-config';
 import {SnackbarService} from './snackbar.service';
 import {Overlay} from '@angular/cdk/overlay';
 import {SnackbarComponent} from './snackbar.component';
 import {SECTION} from './../../../../../.storybook/config';
+import {select, text} from '@storybook/addon-knobs';
 
 @Component({
   selector: 'ag-snackbar-story',
@@ -14,31 +15,25 @@ import {SECTION} from './../../../../../.storybook/config';
   `,
 })
 export class SnackbarStoryComponent {
+  @Input() theme: SnackbarTheme;
+  @Input() text: string;
+  @Input() positionTop: string;
+  @Input() positionBottom: string;
+  @Input() positionLeft: string;
+  @Input() positionRight: string;
+
   constructor(private snackbarService: SnackbarService) {}
 
   showSnackbar() {
     this.snackbarService.showSnackbar({
-      text: 'Snackbar Message',
-      theme: 'ios',
-    });
-  }
-}
-
-@Component({
-  selector: 'ag-material-snackbar-story',
-  template: `
-    <p>Shows material style snackbar from bottom</p>
-    <button (click)="showMaterialSnackbar()">Show material snackbar</button>
-  `,
-})
-export class MaterialSnackbarStoryComponent {
-  constructor(private snackbarService: SnackbarService) {}
-
-  showMaterialSnackbar() {
-    this.snackbarService.showSnackbar({
-      text: 'Snackbar Message',
-      theme: 'material',
-      position: {bottom: 20, right: 20},
+      text: this.text,
+      theme: this.theme,
+      position: {
+        top: parseInt(this.positionTop, 10) || '',
+        bottom: parseInt(this.positionBottom, 10) || '',
+        left: parseInt(this.positionLeft, 10) || '',
+        right: parseInt(this.positionRight, 10) || '',
+      },
     });
   }
 }
@@ -64,12 +59,11 @@ export class PositionSnackbarStoryComponent {
         .flexibleConnectedTo(this.elRef)
         .withPositions([
           {
-            originX: 'start',
-            originY: 'bottom',
-            overlayX: 'end',
+            originX: 'center',
+            originY: 'center',
+            overlayX: 'center',
             overlayY: 'top',
-            offsetX: -12,
-            offsetY: 12,
+            offsetY: 24,
           },
         ]),
     });
@@ -79,12 +73,7 @@ export class PositionSnackbarStoryComponent {
 storiesOf(`${SECTION.MODAL}|Snackbar`, module)
   .addDecorator(
     moduleMetadata({
-      declarations: [
-        SnackbarComponent,
-        SnackbarStoryComponent,
-        MaterialSnackbarStoryComponent,
-        PositionSnackbarStoryComponent,
-      ],
+      declarations: [SnackbarComponent, SnackbarStoryComponent, PositionSnackbarStoryComponent],
       providers: [
         SnackbarService,
         Overlay,
@@ -96,12 +85,23 @@ storiesOf(`${SECTION.MODAL}|Snackbar`, module)
       entryComponents: [SnackbarComponent],
     })
   )
-  .add('Ios Snackbar', () => ({
-    template: `<ag-snackbar-story></ag-snackbar-story>`,
-  }))
-  .add('Material Snackbar', () => ({
-    template: `<ag-material-snackbar-story></ag-material-snackbar-story>`,
+  .add('Demo', () => ({
+    template: `<ag-snackbar-story
+[theme]="theme"
+[text]="text"
+[positionTop]="positionTop"
+[positionBottom]="positionBottom"
+[positionLeft]="positionLeft"
+[positionRight]="positionRight"></ag-snackbar-story>`,
+    props: {
+      text: text('text', 'Snackbar Message'),
+      theme: select('theme', {ios: 'ios', material: 'material'}, 'ios'),
+      positionTop: text('positionTop', 20),
+      positionBottom: text('positionBottom', ''),
+      positionLeft: text('positionLeft', ''),
+      positionRight: text('positionRight', 20),
+    },
   }))
   .add('Relative position Snackbar', () => ({
-    template: `<ag-position-snackbar-story></ag-position-snackbar-story>`,
+    template: `<ag-position-snackbar-story style="display: flex; flex-flow: column; justify-content: center; align-items: center;"></ag-position-snackbar-story>`,
   }));
