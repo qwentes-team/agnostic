@@ -1,6 +1,6 @@
 <div class="ag-snackbar__ref"
      [attr.position]="data.position"
-     [attr.theme]="data.theme || snackbarConfig.theme"
+     [attr.theme]="data.theme"
      [ngClass]="{'ag-snackbar--show': isVisibleSnackbar, 'ag-snackbar--hide': !isVisibleSnackbar}">
   {{ data.text }}
   <div class="ag-snackbar__action" (click)="closeSnackbar()">close</div>

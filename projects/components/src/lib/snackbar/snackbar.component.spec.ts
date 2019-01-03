@@ -90,6 +90,7 @@ describe('SnackbarService', () => {
 
     it('should have default theme', () => {
       snackbar = hostFixture.componentInstance.openDefaultSnackbar();
+      hostFixture.detectChanges();
       const snackbarTheme = document.querySelector('.ag-snackbar__ref').getAttribute('theme');
       expect(snackbarTheme).toBeNull();
       snackbar.closeSnackbar();
@@ -145,7 +146,7 @@ describe('SnackbarService', () => {
       snackbar.closeSnackbar();
     });
 
-    it('should close snackbar onclick', () => {
+    it('should close snackbar onclick', done => {
       snackbar = hostFixture.componentInstance.openSnackbar();
       hostFixture.detectChanges();
       const snackbarCloseBtn = document.querySelector('.ag-snackbar__action');
@@ -153,8 +154,11 @@ describe('SnackbarService', () => {
       hostFixture.detectChanges();
       const snackbarDOM = document.querySelector('ag-snackbar');
       hostFixture.detectChanges();
-      expect(snackbarDOM).toBeNull();
-      snackbar.closeSnackbar();
+      setTimeout(() => {
+        expect(snackbarDOM).toBeNull();
+        snackbar.closeSnackbar();
+        done();
+      }, 10);
     });
   });
 });
