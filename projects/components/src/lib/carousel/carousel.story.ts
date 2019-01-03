@@ -12,7 +12,7 @@ storiesOf(`${SECTION.LAYOUT}|Carousel`, module)
   )
   .add('Demo', () => ({
     template: `
-      <style>ag-carousel {max-width: 50%; margin: auto}</style>
+      <style>ag-carousel {max-width: 50%; margin: auto} ag-carousel img {display: block; width: 100%}</style>
       <div>
         <h3>Carousel</h3>
         <ag-carousel
