@@ -64,8 +64,8 @@ export class CarouselComponent implements AfterContentInit, OnDestroy {
   public instance: any;
 
   @Input() config: AgCarouselConfig = {};
-  @Output() init: EventEmitter<any> = new EventEmitter();
-  @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() init: EventEmitter<AgCarousel> = new EventEmitter();
+  @Output() change: EventEmitter<AgCarousel> = new EventEmitter();
 
   constructor(private cd: ChangeDetectorRef) {
     this.cd.detach();
