@@ -8,7 +8,7 @@ import {SnackbarService} from './snackbar.service';
 import {SnackbarComponent} from './snackbar.component';
 import {click} from '../../test.shared';
 
-fdescribe('SnackbarService', () => {
+describe('SnackbarService', () => {
   let fixture: ComponentFixture<any>;
   let hostFixture: ComponentFixture<any>;
   let service: SnackbarService;
@@ -90,9 +90,8 @@ fdescribe('SnackbarService', () => {
 
     it('should have default theme', () => {
       snackbar = hostFixture.componentInstance.openDefaultSnackbar();
-      hostFixture.detectChanges();
       const snackbarTheme = document.querySelector('.ag-snackbar__ref').getAttribute('theme');
-      expect(snackbarTheme === defaultSnackbarConfig.theme).toBeTruthy();
+      expect(snackbarTheme).toBeNull();
       snackbar.closeSnackbar();
     });
 

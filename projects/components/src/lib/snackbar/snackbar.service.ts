@@ -21,14 +21,12 @@ export class SnackbarService {
 
   public showSnackbar(data: SnackbarConfig) {
     this.position = {...this.snackbarConfig.position, ...data.position};
-    console.log('position', data.position);
 
     data.direction = this.setDirection(this.position, this.snackbarConfig.direction);
 
     data.duration = this.setDuration(data.duration);
 
     const strategy: PositionStrategy = this.createPositionStrategy(data.position, data.direction);
-    console.log('strategy', strategy);
     const overlayRef = this.overlay.create({positionStrategy: strategy});
     const snackbarRef = new SnackbarRef(overlayRef);
     const injector = this.getInjector(data, snackbarRef, this.injector);
@@ -60,9 +58,7 @@ export class SnackbarService {
   }
 
   private isPositionStrategy(position): boolean {
-    console.log('isPositionStrategy', position);
     if (typeof (position as PositionStrategy).dispose === 'function') {
-      console.log('si');
       return Boolean(position as PositionStrategy);
     }
   }
