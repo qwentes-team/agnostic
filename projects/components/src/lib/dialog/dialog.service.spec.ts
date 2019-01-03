@@ -17,13 +17,13 @@ class TestDialogComponent {
   constructor(@Inject(DIALOG_REF) private dialogRef: Dialog, @Inject(DIALOG_DATA) private dialogData: any) {}
 }
 
-// @TODO: fix tests!!!
-xdescribe('DialogService', () => {
+describe('DialogService', () => {
+  let testBed;
   let service: DialogService;
   let dialog: Dialog;
 
   const setupBeforeEachTestWithHostComponent = HostComponentClass => {
-    TestBed.configureTestingModule({
+    testBed = TestBed.configureTestingModule({
       declarations: [HostComponentClass, ModalComponent, PopupComponent],
       providers: [
         DialogService,
@@ -42,6 +42,8 @@ xdescribe('DialogService', () => {
 
   afterEach(() => {
     dialog = null;
+    service = null;
+    testBed.resetTestingModule();
   });
 
   describe('render a dialog', () => {
@@ -60,8 +62,10 @@ xdescribe('DialogService', () => {
 
     it('should create an overlay dialog with data injection', done => {
       dialog = service.open(TestDialogComponent);
-      dialog.afterClosed().subscribe(() => done());
-      expect(TestBed.get(TestDialogComponent).dialogData).toEqual(MOCK_INJECTION.DATA);
+      dialog.afterClosed().subscribe(() => {
+        expect(TestBed.get(TestDialogComponent).dialogData).toEqual(MOCK_INJECTION.DATA);
+        done();
+      });
       dialog.close();
     });
   });
