@@ -1,0 +1,9 @@
+<div class="ag-carousel">
+  <ng-content></ng-content>
+</div>
+
+<ag-carousel-dots
+  *ngIf="config.dots"
+  [totalDots]="instance.innerElements.length"
+  [currentDot]="instance.currentSlide">
+</ag-carousel-dots>

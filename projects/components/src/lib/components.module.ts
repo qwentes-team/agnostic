@@ -13,6 +13,7 @@ import {TabsModule} from './tabs/tabs.module';
 import {FormFieldModule} from './form-field/form-field.module';
 import {AccordionModule} from './accordion/accordion.module';
 import {InfiniteScrollModule} from './infinite-scroll/infinite-scroll.module';
+import {CarouselModule} from './carousel/carousel.module';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import {InfiniteScrollModule} from './infinite-scroll/infinite-scroll.module';
     FormFieldModule,
     AccordionModule,
     InfiniteScrollModule,
+    CarouselModule,
   ],
   exports: [
     ToggleModule,
@@ -46,6 +48,7 @@ import {InfiniteScrollModule} from './infinite-scroll/infinite-scroll.module';
     FormFieldModule,
     AccordionModule,
     InfiniteScrollModule,
+    CarouselModule,
   ],
 })
 export class ComponentsModule {}
