@@ -50,7 +50,8 @@ const description = moduleFileContent => {
 
 const properties = componentFileContent => {
   const header = `| Property  | Type  | Default |\n|-----------|-------|---------|\n`;
-  const content = componentFileContent
+
+  const contentInput = componentFileContent
     .split('\n')
     .filter(line => line.match('@Input()'))
     .map(line => {
@@ -62,13 +63,30 @@ const properties = componentFileContent => {
       const formattedLineSplittedByColon = formattedLine.split(':');
       const formattedLineSplittedByEqual = formattedLine.split('=');
       const name = formattedLine.split(' ')[0].slice(0, -1);
-      const type = formattedLine.indexOf(':') > 0 ? formattedLineSplittedByColon[1].trim().split(' ')[0] : '';
       const defaultValue = formattedLine.indexOf('=') > 0 ? formattedLineSplittedByEqual[1].trim() : '';
+      const type =
+        formattedLine.indexOf(':') > 0
+          ? formattedLineSplittedByColon[1].trim().split(' ')[0]
+          : defaultValue === 'true' || defaultValue === 'false'
+          ? 'boolean'
+          : '';
       return {name, type, defaultValue};
     })
     .reduce((acc, line) => acc + `| ${line.name} | ${line.type} | ${line.defaultValue} |\n`, '');
 
-  return content ? header + content : 'No properties';
+  const contentAttribute = componentFileContent
+    .split('\n')
+    .filter(line => line.match('@Attribute'))
+    .join('')
+    .match(/'(.*?)'/gm)
+    .map(element => ({name: element.slice(1, -1), type: 'string', defaultValue: ''}))
+    .reduce((acc, line) => acc + `| ${line.name} | ${line.type} | ${line.defaultValue} |\n`, '');
+
+  if (!contentInput && !contentAttribute) {
+    return 'No properties';
+  }
+
+  return header + contentInput + contentAttribute;
 };
 
 const events = componentFileContent => {
