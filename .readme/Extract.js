@@ -12,12 +12,16 @@ const componentNameExample = title => {
   return snakeToCamelString[0].toUpperCase() + snakeToCamelString.slice(1);
 };
 
-const cssCustomProperties = (scssFileContent, componentTitle) => {
-  return scssFileContent
+const cssCustomProperties = (scssFileContent, title) => {
+  const content = scssFileContent
     .split('\n')
-    .filter(line => line.includes(`  --${componentTitle}`))
+    .filter(line => line.includes(`  --ag-${title}`))
     .map(line => line.substr(2, line.lastIndexOf(':') - 2))
     .join('\n');
+  if (!content) {
+    return 'No CSS custom properties';
+  }
+  return `These are the CSS custom properties you can manage:\n\n\`\`\`\n${content}\n\`\`\``;
 };
 
 const htmlTemplateUsage = storyFileContent => {
@@ -25,7 +29,11 @@ const htmlTemplateUsage = storyFileContent => {
   return storyFileContent
     .split(splitter)[1]
     .match(/`([\s\S]*?)`/gm)[0]
-    .slice(1, -1);
+    .slice(1, -1)
+    .replace(new RegExp('<br/>|<br>', 'g'), '')
+    .split('\n')
+    .filter(line => line.trim())
+    .join('\n');
 };
 
 const description = moduleFileContent => {
@@ -40,10 +48,55 @@ const description = moduleFileContent => {
     .join('\n');
 };
 
+const properties = componentFileContent => {
+  const header = `| Property  | Type  | Default |\n|-----------|-------|---------|\n`;
+  const content = componentFileContent
+    .split('\n')
+    .filter(line => line.match('@Input()'))
+    .map(line => {
+      const formattedLine = line
+        .split('@Input() public')
+        .pop()
+        .trim()
+        .slice(0, -1);
+      const formattedLineSplittedByColon = formattedLine.split(':');
+      const formattedLineSplittedByEqual = formattedLine.split('=');
+      const name = formattedLine.split(' ')[0].slice(0, -1);
+      const type = formattedLine.indexOf(':') > 0 ? formattedLineSplittedByColon[1].trim().split(' ')[0] : '';
+      const defaultValue = formattedLine.indexOf('=') > 0 ? formattedLineSplittedByEqual[1].trim() : '';
+      return {name, type, defaultValue};
+    })
+    .reduce((acc, line) => acc + `| ${line.name} | ${line.type} | ${line.defaultValue} |\n`, '');
+
+  return content ? header + content : 'No properties';
+};
+
+const events = componentFileContent => {
+  const header = `| Event  | Return |\n|--------|--------|\n`;
+  const content = componentFileContent
+    .split('\n')
+    .filter(line => line.match('@Output()'))
+    .map(line => {
+      const formattedLine = line
+        .split('@Output() public')
+        .pop()
+        .trim()
+        .slice(0, -1);
+      const name = formattedLine.split(' ')[0].slice(0, -1);
+      const returnValue = formattedLine.match('<(.*?)>') && formattedLine.match('<(.*?)>')[1];
+      return {name, returnValue};
+    })
+    .reduce((acc, line) => acc + `| ${line.name} | ${line.returnValue} |\n`, '');
+
+  return content ? header + content : 'No events';
+};
+
 module.exports = {
   componentTitle,
   componentNameExample,
   cssCustomProperties,
   htmlTemplateUsage,
   description,
+  properties,
+  events,
 };

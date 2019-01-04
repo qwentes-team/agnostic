@@ -34,17 +34,18 @@ valueToInsertInReadme.componentTitle = Extract.componentTitle(componentFileConte
 valueToInsertInReadme.componentDescription = Extract.description(moduleFileContent);
 valueToInsertInReadme.componentNameExample = Extract.componentNameExample(paramsTitle);
 valueToInsertInReadme.htmlTemplateUsage = Extract.htmlTemplateUsage(storyFileContent);
-valueToInsertInReadme.cssCustomProperties = Extract.cssCustomProperties(
-  scssFileContent,
-  valueToInsertInReadme.componentTitle
-);
+valueToInsertInReadme.cssCustomProperties = Extract.cssCustomProperties(scssFileContent, paramsTitle);
+valueToInsertInReadme.properties = Extract.properties(componentFileContent);
+valueToInsertInReadme.events = Extract.events(componentFileContent);
 
 const readmeFileContent = baseTemplateFileContent
   .replace(Constants.TEMPLATE.TITLE, valueToInsertInReadme.componentTitle)
   .replace(Constants.TEMPLATE.DESCRIPTION, valueToInsertInReadme.componentDescription)
   .replace(new RegExp(Constants.TEMPLATE.COMPONENT_NAME_EXAMPLE, 'g'), valueToInsertInReadme.componentNameExample)
   .replace(Constants.TEMPLATE.CSS_CUSTOM_PROPERTIES, valueToInsertInReadme.cssCustomProperties)
-  .replace(Constants.TEMPLATE.HTML_TEMPLATE_USAGE, valueToInsertInReadme.htmlTemplateUsage);
+  .replace(Constants.TEMPLATE.HTML_TEMPLATE_USAGE, valueToInsertInReadme.htmlTemplateUsage)
+  .replace(Constants.TEMPLATE.PROPERTIES, valueToInsertInReadme.properties)
+  .replace(Constants.TEMPLATE.EVENTS, valueToInsertInReadme.events);
 
 fs.writeFileSync(`${basePath}/README.md`, readmeFileContent);
 
