@@ -9,3 +9,7 @@ import {InfiniteScrollModule as NgxInfiniteScrollModule} from 'ngx-infinite-scro
   exports: [InfiniteScrollComponent],
 })
 export class InfiniteScrollModule {}
+
+/*
+The Infinite Scroll component trigger an event when the user scrolls a specified distance from the bottom of the page.
+ */
