@@ -74,13 +74,15 @@ const properties = componentFileContent => {
     })
     .reduce((acc, line) => acc + `| ${line.name} | ${line.type} | ${line.defaultValue} |\n`, '');
 
-  const contentAttribute = componentFileContent
-    .split('\n')
-    .filter(line => line.match('@Attribute'))
-    .join('')
-    .match(/'(.*?)'/gm)
-    .map(element => ({name: element.slice(1, -1), type: 'string', defaultValue: ''}))
-    .reduce((acc, line) => acc + `| ${line.name} | ${line.type} | ${line.defaultValue} |\n`, '');
+  const contentAttribute = !componentFileContent.match('@Attribute')
+    ? ''
+    : componentFileContent
+        .split('\n')
+        .filter(line => line.match('@Attribute'))
+        .join('')
+        .match(/'(.*?)'/gm)
+        .map(element => ({name: element.slice(1, -1), type: 'string', defaultValue: ''}))
+        .reduce((acc, line) => acc + `| ${line.name} | ${line.type} | ${line.defaultValue} |\n`, '');
 
   if (!contentInput && !contentAttribute) {
     return 'No properties';
