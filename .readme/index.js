@@ -1,5 +1,6 @@
 const fs = require('fs');
 const yargs = require('yargs');
+const signale = require('signale');
 const Constants = require('./Constants');
 const Extract = require('./Extract');
 
@@ -30,7 +31,7 @@ const componentFileContent = fs.readFileSync(componentPath, 'utf8');
 const scssFileContent = fs.readFileSync(scssPath, 'utf8');
 const storyFileContent = fs.readFileSync(storyPath, 'utf8');
 
-valueToInsertInReadme.componentTitle = Extract.componentTitle(componentFileContent);
+valueToInsertInReadme.componentTitle = Extract.componentTitle(paramsTitle);
 valueToInsertInReadme.componentDescription = Extract.description(moduleFileContent);
 valueToInsertInReadme.componentNameExample = Extract.componentNameExample(paramsTitle);
 valueToInsertInReadme.htmlTemplateUsage = Extract.htmlTemplateUsage(storyFileContent);
@@ -49,4 +50,4 @@ const readmeFileContent = baseTemplateFileContent
 
 fs.writeFileSync(`${basePath}/README.md`, readmeFileContent);
 
-console.log(`File created in the component ${paramsTitle} folder`);
+signale.success(`File created in the component ${paramsTitle} folder`);

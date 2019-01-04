@@ -5,12 +5,7 @@ The Infinite Scroll component trigger an event when the user scrolls a specified
 ## Usage
 
 ```html
-<ag-infinite-scroll
-  [infiniteScrollDistance]="5"
-  [infiniteScrollThrottle]="100"
-  (scrolled)="loadData()">
-  TEXT OR COMPONENT TO TRANSCLUDE
-</ag-infinite-scroll>
+      <ag-infinite-scroll-story (scrolled)="scrolled($event)"></ag-infinite-scroll-story>
 ```
 
 ```typescript

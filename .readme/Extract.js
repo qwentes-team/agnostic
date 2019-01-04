@@ -1,10 +1,7 @@
 const Constants = require('./Constants');
 
-const componentTitle = componentFileContent => {
-  return componentFileContent
-    .split('\n')
-    .find(line => line.includes('selector: '))
-    .match(/'([^']+)'/)[1];
+const componentTitle = title => {
+  return `ag-${title}`;
 };
 
 const componentNameExample = title => {

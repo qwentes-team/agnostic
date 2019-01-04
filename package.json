@@ -13,7 +13,8 @@
     "storybook:dev": "start-storybook -s ./ -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-dist && mkdir ./.storybook-dist/src/ && cp ./src/variables.css ./.storybook-dist/src/",
     "validate": "npm run lint && npm run prettier",
-    "readme": "node ./.readme/index.js"
+    "readme": "node ./.readme/index.js",
+    "readme:all": "node ./.readme/all.js"
   },
   "husky": {
     "hooks": {
@@ -72,6 +73,7 @@
     "ng-packagr": "~4.4.5",
     "prettier": "^1.15.3",
     "protractor": "~5.4.1",
+    "signale": "^1.3.0",
     "ts-node": "~7.0.1",
     "tsickle": "~0.34.0",
     "tslib": "^1.9.0",
