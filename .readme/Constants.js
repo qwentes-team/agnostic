@@ -8,6 +8,9 @@ const TEMPLATE = {
   CSS_CUSTOM_PROPERTIES: 'CSS_CUSTOM_PROPERTIES',
 };
 
+const PROJECTS_PATH = `${__dirname}/../projects/components/src/lib`;
+
 module.exports = {
   TEMPLATE,
+  PROJECTS_PATH,
 };

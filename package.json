@@ -13,8 +13,9 @@
     "storybook:dev": "start-storybook -s ./ -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-dist && mkdir ./.storybook-dist/src/ && cp ./src/variables.css ./.storybook-dist/src/",
     "validate": "npm run lint && npm run prettier",
-    "readme": "node ./.readme/index.js",
-    "readme:all": "node ./.readme/all.js"
+    "readme": "node ./.readme/single.js",
+    "readme:all": "node ./.readme/all.js",
+    "readme:list": "node ./.readme/list.js"
   },
   "husky": {
     "hooks": {
