@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {SNACKBAR_CONFIG_TOKEN, SnackbarConfig} from './snackbar-config';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {SnackbarConfig} from './snackbar-config';
 import {SnackbarRef} from './snackbar-ref';
 
 @Component({
