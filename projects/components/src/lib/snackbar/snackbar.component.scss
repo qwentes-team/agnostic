@@ -1,5 +1,4 @@
-@import "~@angular/cdk/overlay";
-@include cdk-overlay();
+@import "~@angular/cdk/overlay-prebuilt.css";
 
 ag-snackbar {
   --ag-snackbar-height: 48px;
