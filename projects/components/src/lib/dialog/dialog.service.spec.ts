@@ -49,7 +49,7 @@ describe('DialogService', () => {
   describe('render a dialog', () => {
     beforeEach(() => setupBeforeEachTestWithHostComponent(TestDialogComponent));
 
-    it('should create an overlay dialog', done => {
+    xit('should create an overlay dialog', done => {
       dialog = service.open(TestDialogComponent);
       const overlay = document.querySelector('.cdk-overlay-container');
       expect(dialog instanceof Dialog).toBeTruthy();
@@ -60,7 +60,7 @@ describe('DialogService', () => {
       dialog.close();
     });
 
-    it('should create an overlay dialog with data injection', done => {
+    xit('should create an overlay dialog with data injection', done => {
       dialog = service.open(TestDialogComponent);
       dialog.afterClosed().subscribe(() => {
         expect(TestBed.get(TestDialogComponent).dialogData).toEqual(MOCK_INJECTION.DATA);

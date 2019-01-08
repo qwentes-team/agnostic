@@ -8,7 +8,7 @@ import {SnackbarService} from './snackbar.service';
 import {SnackbarComponent} from './snackbar.component';
 import {click} from '../../test.shared';
 
-fdescribe('SnackbarService', () => {
+describe('SnackbarService', () => {
   let fixture: ComponentFixture<any>;
   let hostFixture: ComponentFixture<any>;
   let service: SnackbarService;
