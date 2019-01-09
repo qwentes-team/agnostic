@@ -1,51 +1,83 @@
 # ag-fab
 
-FAB (Floating Action Button) highlights the most relevant or frequently used actions. They should be placed in a fixed position that does not scroll with the content. FAB should be related to one main function.
+FAB (Floating Action Button) highlights the most relevant or frequently used actions.
+
+They should be placed in a fixed position that does not scroll with the content. FAB should be related to one main function.
 
 ## Usage
 
 ```html
-<ag-fab fixed="false" position="top-left">
-  X
-  <span position="after">Label</span>
-</ag-fab>
+      <h3 style="text-align: center">Demo</h3>
+      <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <div style="position: relative; height: 300px; width: 300px; border: 1px solid #ccc;">
+          <ag-fab fixed="false">X</ag-fab>
+          <ag-fab fixed="false" position="top-left">X</ag-fab>
+          <ag-fab fixed="false" position="top-right">X</ag-fab>
+          <ag-fab fixed="false" position="bottom-left">X</ag-fab>
+          <ag-fab fixed="false" position="bottom-right">X</ag-fab>
+        </div>
+        <ag-fab position="top-left">
+          X
+          <span position="after">top / left</span>
+        </ag-fab>
+        <ag-fab position="top-right">
+          X
+          <span position="before">top / right</span>
+        </ag-fab>
+        <ag-fab position="bottom-left">
+          X
+          <span position="after">bottom / left</span>
+        </ag-fab>
+        <ag-fab position="bottom-right">
+          X
+          <span position="before">bottom / right</span>
+        </ag-fab>
+      </div>
 ```
 
 ```typescript
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
 
 import {FabModule} from '@qwentes/agnostic/components';
 
 @NgModule({
-  declarations: [],
+  declarations: [FabExample],
   imports: [BrowserModule, FabModule],
   providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
 ```
 
 ## Properties
 
-| Property  | Description | Type  | Default |
-|-----------|-------------|-------|---------|
-| `position` (on tag `ag-fab`) | Position of the fab. Options are: top-left, top-right, bottom-left, bottom-right. | string | center |
-| `position` (on transcluded tag) | Position of the content related to the FAB. Options are: before, after. | string | |
-| `fixed` | Block the FAB in position fixed. If false, FAB will be in position absolute. | boolean | true |
+| Property  | Type  | Default |
+|-----------|-------|---------|
+| position | string |  |
+| fixed | string |  |
+
+
+## Events
+
+No events
 
 ## CSS Custom Properties
 
-| Name                                | Description                                                 |
-| ----------------------------------- | ----------------------------------------------------------- |
-| `--ag-fab-min-size`                 | Minimum size (width and height)                   |
-| `--ag-fab-border-radius`            | Border radius                                     |
-| `--ag-fab-position-top`             | Position top (with no `position` property set)    |
-| `--ag-fab-position-left`            | Position left (with no `position` property set )  |
-| `--ag-fab-z-index`                  | Z-index                                           |
-| `--ag-fab-gap`                      | Gap                                               |
-| `--ag-fab-background-color`         | Default background color                          |
-| `--ag-fab-background-color-hover`   | Background color on hover                         |
-| `--ag-fab-background-color-active`  | Background color on active                        |
-| `--ag-fab-box-shadow`               | Default box shadow                                |
-| `--ag-fab-box-shadow-hover`         | Box shadow on hover                               |
-| `--ag-fab-box-shadow-active`        | Box shadow on active                              |
+These are the CSS custom properties you can manage:
+
+```
+--ag-fab-min-size
+--ag-fab-border-radius
+--ag-fab-position-top
+--ag-fab-position-left
+--ag-fab-z-index
+--ag-fab-gap
+--ag-fab-background-color
+--ag-fab-background-color-hover
+--ag-fab-background-color-active
+--ag-fab-box-shadow
+--ag-fab-box-shadow-hover
+--ag-fab-box-shadow-active
+```
