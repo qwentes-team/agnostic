@@ -1,11 +1,11 @@
 {
   "name": "agnostic",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
     "build": "ng build",
-    "release": "node ./.release/index.js",
+    "release": "node ./.release/index.js && cd dist && npm publish",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
