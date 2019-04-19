@@ -40,14 +40,16 @@ export class DialogService {
       .centerHorizontally()
       .centerVertically();
 
+    const canBeFalse = (value, fallback) => (value === false ? value : fallback);
+
     const overlayConfig = new OverlayConfig({
-      hasBackdrop: config.hasBackdrop || DEFAULT_CONFIG.hasBackdrop,
+      hasBackdrop: canBeFalse(config.hasBackdrop, DEFAULT_CONFIG.hasBackdrop),
       backdropClass: config.backdropClass,
       panelClass: config.panelClass,
       scrollStrategy: this.overlay.scrollStrategies.block(),
-      disposeOnNavigation: config.disposeOnNavigation || DEFAULT_CONFIG.disposeOnNavigation,
+      disposeOnNavigation: canBeFalse(config.disposeOnNavigation, DEFAULT_CONFIG.disposeOnNavigation),
       positionStrategy,
-      disposeOnClickOut: config.disposeOnClickOut || DEFAULT_CONFIG.disposeOnClickOut,
+      disposeOnClickOut: canBeFalse(config.disposeOnClickOut, DEFAULT_CONFIG.disposeOnClickOut),
     } as OverlayConfig);
 
     return overlayConfig;

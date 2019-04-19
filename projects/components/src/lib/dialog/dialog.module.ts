@@ -4,6 +4,7 @@ import {ModalComponent, ModalContentComponent, ModalHeaderComponent} from './mod
 import {PopupComponent} from './popup/popup.component';
 
 export * from './modal/modal.component';
+export * from './dialog.model';
 
 @NgModule({
   imports: [OverlayModule],
