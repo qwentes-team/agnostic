@@ -83,15 +83,15 @@ describe('CarouselComponent', () => {
       const carousel: AgCarousel = hostFixture.componentInstance.instance;
       carousel.next();
       expect(spy.calls.count()).toBe(1);
-      const argNext: AgCarousel = spy.calls.first().args[0];
+      const argNext = spy.calls.first().args[0] as AgCarousel;
       expect(argNext instanceof AgCarousel).toBe(true);
       expect(argNext.currentIndex).toBe(1);
       carousel.prev();
-      const argPrev: AgCarousel = spy.calls.all()[1].args[0];
+      const argPrev = spy.calls.all()[1].args[0] as AgCarousel;
       expect(argPrev instanceof AgCarousel).toBe(true);
       expect(argPrev.currentIndex).toBe(0);
       carousel.goTo(2);
-      const argGo: AgCarousel = spy.calls.all()[2].args[0];
+      const argGo = spy.calls.all()[2].args[0] as AgCarousel;
       expect(argGo instanceof AgCarousel).toBe(true);
       expect(argGo.currentIndex).toBe(2);
     });
