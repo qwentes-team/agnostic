@@ -1,5 +1,5 @@
 ag-card {
-  --ag-chip-max-width: 500px;
+  --ag-card-max-width: 500px;
   --ag-card-gap: var(--ag-gap-lg);
   --ag-card-radius: var(--ag-border-radius-md);
   --ag-card-color-dark: var(--ag-neutral-dark);
@@ -7,7 +7,7 @@ ag-card {
   --ag-card-background-color: var(--ag-neutral-lightest);
   --ag-card-box-shadow: var(--ag-box-shadow);
 
-  max-width: var(--ag-chip-max-width);
+  max-width: var(--ag-card-max-width);
   box-sizing: border-box;
   padding: var(--ag-card-gap);
   display: flex;
