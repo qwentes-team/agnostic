@@ -18,6 +18,7 @@ import {
 export class InfiniteScrollComponent implements OnInit {
   @Input() public infiniteScrollDistance: number;
   @Input() public infiniteScrollThrottle: number;
+  @Input() public infiniteScrollContainer: string | Element | HTMLElement;
   @Output() public scrolled: EventEmitter<void> = new EventEmitter();
 
   public DEFAULT_SETTING = {DISTANCE: 2, THROTTLE: 50};
