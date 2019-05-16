@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prettier": "prettier \"**/*.+(js|ts)\" --write --parser typescript",
+    "prettier": "prettier \"{src, projects, .storybook, .release}/*.+(js|ts)\" \"!.storybook-dist/*.+(js|ts)\" --write --parser typescript",
     "storybook:dev": "start-storybook -s ./ -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-dist && mkdir ./.storybook-dist/src/ && cp ./src/variables.css ./.storybook-dist/src/",
     "validate": "npm run lint && npm run prettier"
