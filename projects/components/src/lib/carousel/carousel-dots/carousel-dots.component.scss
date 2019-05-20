@@ -26,8 +26,8 @@ ag-carousel-dots {
   }
 
   .ag-carousel-dots {
-    // background-color: blue;
     display: flex;
+    justify-content: center;
     white-space: nowrap;
     margin: 0 auto;
     width: var(--ag-carousel-dots-width);
@@ -54,7 +54,7 @@ ag-carousel-dots {
     }
   }
 
-  .ag-carousel__dot--ghost, .ag-carousel__dot--ghost{
+  .ag-carousel__dot--ghost, .ag-carousel__dot--ghost {
     transform: scale(.65);
   }
 }

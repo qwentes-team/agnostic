@@ -130,9 +130,6 @@ export class CarouselDotsComponent implements OnChanges, AfterViewInit {
     } else if (this.canDoLeftMovement(prevElement)) {
       this.setDotGhostClasses(nextPosition - 1, this.prevPosition + (this.dotsInViewport - 1));
       this.setDotViewportClasses(nextPosition, nextPosition + this.dotsInViewport);
-      const delta = this.dotsInViewport - this.dotsInGhost;
-      const translation = this.prevPosition + delta + Math.ceil(this.dotsInViewport / 2) - this.dotsInGhost;
-      console.log(translation);
       this.translateDotsTo(nextPosition - 1, true);
     }
   }
