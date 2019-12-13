@@ -46,7 +46,7 @@ export class SnackbarStoryComponent {
   `,
 })
 export class PositionSnackbarStoryComponent {
-  @ViewChild('el', {static: false}) elRef;
+  @ViewChild('el') elRef;
 
   constructor(private snackbarService: SnackbarService, private overlay: Overlay) {}
 

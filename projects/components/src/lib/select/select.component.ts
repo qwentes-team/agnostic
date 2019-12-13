@@ -46,8 +46,8 @@ export class SelectComponent
   @Input() public required: any;
   @Input() public method: 'native' | 'hybrid' | 'autocomplete' = 'native';
   @Output() public change: EventEmitter<any> = new EventEmitter();
-  @ViewChild('nativeSelect', {static: false}) nativeSelectRef: ElementRef;
-  @ViewChild('autocompleteSelect', {static: false}) autocompleteSelectRef: ElementRef;
+  @ViewChild('nativeSelect') nativeSelectRef: ElementRef;
+  @ViewChild('autocompleteSelect') autocompleteSelectRef: ElementRef;
 
   public currentOptions: AgOption[];
   public currentValue: any;

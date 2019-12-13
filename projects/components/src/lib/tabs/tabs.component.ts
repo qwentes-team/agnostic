@@ -23,7 +23,7 @@ import {TabComponent} from './tab/tab.component';
 })
 export class TabsComponent implements AfterContentInit {
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
-  @ViewChild('container', {read: ViewContainerRef, static: false}) dynamicTabPlaceholder;
+  @ViewChild('container', {read: ViewContainerRef}) dynamicTabPlaceholder;
   @Input() public iconClose: string;
   public dynamicTabs: TabComponent[] = [];
 

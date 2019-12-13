@@ -11,7 +11,7 @@ import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN, SnackbarConfig} from './sn
   entryComponents: [SnackbarComponent],
 })
 export class SnackbarModule {
-  public static forRoot(config: SnackbarConfig = defaultSnackbarConfig): ModuleWithProviders {
+  public static forRoot(config: SnackbarConfig = defaultSnackbarConfig): ModuleWithProviders<SnackbarModule> {
     return {
       ngModule: SnackbarModule,
       providers: [
