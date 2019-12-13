@@ -15,8 +15,8 @@ import {Component, ViewChild} from '@angular/core';
   `,
 })
 export class TabsStoryComponent {
-  @ViewChild(TabsComponent) tabsComponent;
-  @ViewChild('customTemplate') customTemplate;
+  @ViewChild(TabsComponent, {static: false}) tabsComponent;
+  @ViewChild('customTemplate', {static: false}) customTemplate;
   count = 1;
   person = {name: 'Mario', surname: 'Rossi'};
 
