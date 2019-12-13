@@ -56,7 +56,7 @@ describe('SnackbarService', () => {
       `,
     })
     class TestSnackbarComponent {
-      @ViewChild('el') elRef;
+      @ViewChild('el', /* TODO: add static flag */ {}) elRef;
 
       constructor(public snackbarService: SnackbarService, public overlay: Overlay) {}
 
