@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FabComponent} from './fab.component';
 
+export {FabComponent} from './fab.component';
+
 @NgModule({
   imports: [CommonModule],
   exports: [FabComponent],

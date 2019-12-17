@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {CarouselComponent} from './carousel.component';
 import {CarouselDotsComponent} from './carousel-dots/carousel-dots.component';
 
+export {CarouselComponent} from './carousel.component';
+export {CarouselDotsComponent} from './carousel-dots/carousel-dots.component';
 export {AgCarousel, AgCarouselConfig} from './carousel.component';
 
 @NgModule({
