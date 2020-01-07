@@ -1,6 +1,6 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {Component, Input, ViewChild} from '@angular/core';
-import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN, SnackbarTheme} from './snackbar-config';
+import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN} from './snackbar-config';
 import {SnackbarService} from './snackbar.service';
 import {Overlay} from '@angular/cdk/overlay';
 import {SnackbarComponent} from './snackbar.component';
