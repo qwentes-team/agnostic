@@ -3,6 +3,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {ModalComponent, ModalContentComponent, ModalHeaderComponent} from './modal/modal.component';
 import {PopupComponent} from './popup/popup.component';
 
+export {PopupComponent} from './popup/popup.component';
 export * from './modal/modal.component';
 export * from './dialog.model';
 

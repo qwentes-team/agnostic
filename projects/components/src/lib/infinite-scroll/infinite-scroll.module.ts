@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {InfiniteScrollComponent} from './infinite-scroll.component';
 import {InfiniteScrollModule as NgxInfiniteScrollModule} from 'ngx-infinite-scroll';
 
+export {InfiniteScrollComponent} from './infinite-scroll.component';
+
 @NgModule({
   declarations: [InfiniteScrollComponent],
   imports: [CommonModule, NgxInfiniteScrollModule],

@@ -4,6 +4,8 @@ import {CommonModule} from '@angular/common';
 import {SnackbarComponent} from './snackbar.component';
 import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN, SnackbarConfig} from './snackbar-config';
 
+export {SnackbarComponent} from './snackbar.component';
+
 @NgModule({
   imports: [CommonModule, OverlayModule],
   declarations: [SnackbarComponent],
@@ -11,7 +13,7 @@ import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN, SnackbarConfig} from './sn
   entryComponents: [SnackbarComponent],
 })
 export class SnackbarModule {
-  public static forRoot(config: SnackbarConfig = defaultSnackbarConfig): ModuleWithProviders {
+  public static forRoot(config: SnackbarConfig = defaultSnackbarConfig): ModuleWithProviders<SnackbarModule> {
     return {
       ngModule: SnackbarModule,
       providers: [

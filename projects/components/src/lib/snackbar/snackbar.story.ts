@@ -1,6 +1,6 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
 import {Component, Input, ViewChild} from '@angular/core';
-import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN, SnackbarTheme} from './snackbar-config';
+import {defaultSnackbarConfig, SNACKBAR_CONFIG_TOKEN} from './snackbar-config';
 import {SnackbarService} from './snackbar.service';
 import {Overlay} from '@angular/cdk/overlay';
 import {SnackbarComponent} from './snackbar.component';
@@ -15,7 +15,7 @@ import {select, text} from '@storybook/addon-knobs';
   `,
 })
 export class SnackbarStoryComponent {
-  @Input() theme: SnackbarTheme;
+  @Input() theme: any;
   @Input() text: string;
   @Input() positionTop: string;
   @Input() positionBottom: string;
@@ -96,10 +96,10 @@ storiesOf(`${SECTION.MODAL}|Snackbar`, module)
     props: {
       text: text('text', 'Snackbar Message'),
       theme: select('theme', {ios: 'ios', material: 'material'}, 'ios'),
-      positionTop: text('positionTop', 20),
+      positionTop: text('positionTop', '20'),
       positionBottom: text('positionBottom', ''),
       positionLeft: text('positionLeft', ''),
-      positionRight: text('positionRight', 20),
+      positionRight: text('positionRight', '20'),
     },
   }))
   .add('Relative position Snackbar', () => ({
