@@ -96,10 +96,10 @@ storiesOf(`${SECTION.MODAL}|Snackbar`, module)
     props: {
       text: text('text', 'Snackbar Message'),
       theme: select('theme', {ios: 'ios', material: 'material'}, 'ios'),
-      positionTop: text('positionTop', 20),
+      positionTop: text('positionTop', '20'),
       positionBottom: text('positionBottom', ''),
       positionLeft: text('positionLeft', ''),
-      positionRight: text('positionRight', 20),
+      positionRight: text('positionRight', '20'),
     },
   }))
   .add('Relative position Snackbar', () => ({

@@ -1,8 +1,7 @@
 import {moduleMetadata, storiesOf} from '@storybook/angular';
-import {action} from '@storybook/addon-actions';
 import {SelectComponent} from './select.component';
 import {SECTION} from './../../../../../.storybook/config';
-import {boolean, array, select} from '@storybook/addon-knobs';
+import {boolean, array} from '@storybook/addon-knobs';
 import {OPTIONS} from './select.mock';
 import {FormsModule} from '@angular/forms';
 
@@ -29,6 +28,6 @@ storiesOf(`${SECTION.FORM}|Select`, module)
     `,
     props: {
       disabled: boolean('disabled', false),
-      options: array('options', OPTIONS),
+      options: array('options', OPTIONS as any),
     },
   }));
