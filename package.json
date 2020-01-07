@@ -6,7 +6,7 @@
     "start": "ng serve --open",
     "build": "ng build",
     "release": "node ./.release/index.js && cd dist && npm publish",
-    "test": "ng test",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prettier": "prettier \"{src, projects, .storybook, .release}/*.+(js|ts)\" \"!.storybook-dist/*.+(js|ts)\" --write --parser typescript",
