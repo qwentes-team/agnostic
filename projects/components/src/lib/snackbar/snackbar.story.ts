@@ -15,7 +15,7 @@ import {select, text} from '@storybook/addon-knobs';
   `,
 })
 export class SnackbarStoryComponent {
-  @Input() theme: SnackbarTheme;
+  @Input() theme: any;
   @Input() text: string;
   @Input() positionTop: string;
   @Input() positionBottom: string;
